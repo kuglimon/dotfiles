@@ -33,6 +33,8 @@ fi
 echo "Running dotfiles from $(pwd)\n"
 
 # Common configuration for all operating systems
+mkdir -p $HOME/.config
+
 symlink "$(pwd)/bin"            $HOME/.bin
 symlink "$(pwd)/git_template"   $HOME/.git_template
 
@@ -44,6 +46,8 @@ symlink "$(pwd)/gitmessage"     $HOME/.gitmessage
 
 symlink "$(pwd)/psqlrc"         $HOME/.psqlrc
 symlink "$(pwd)/rspec"          $HOME/.rspec
+
+symlink "$(pwd)/tmux"           $HOME/.config/tmux
 symlink "$(pwd)/tmux.conf"      $HOME/.rspec
 
 symlink "$(pwd)/vimrc"          $HOME/.vimrc
