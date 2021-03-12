@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+# Installs all my dotfiles for this operating system.
+
+set -e
+
+# Make sure we're relative to the install script
+cd "$(dirname "$0")"
+
+# Setup some colors
+ERROR='\033[0;31m'
+OK='\033[0;32m'
+NC='\033[0m' # No Color
+
+if_os () { [[ $OSTYPE == *$1* ]]; }
+
+if_osx () { [[ $OSTYPE == *darwin* ]]; }
+if_linux () { [[ $OSTYPE == *linux* ]]; }
+
+# Wrap ln -sfn with print so I can verify stuff goes
+# where it probably should go.
+symlink() {
+  echo "${OK}Linking $1 -> $2$NC"
+  ln -sfn $1 $2
+}
+
+if ! if_osx && ! if_linux ; then
+  >&2 echo "${ERROR}Exiting due to unknown OS $OSTYPE"
+  >&2 echo "OSTYPE should be one of *darwin* or *linux*$NC"
+  echo "No dotfiles have been changed!"
+  exit 1
+fi
+
+echo "Running dotfiles from $(pwd)\n"
+
+# Common configuration for all operating systems
+symlink "$(pwd)/bin"            $HOME/.bin
+symlink "$(pwd)/git_template"   $HOME/.git_template
+
+symlink "$(pwd)/gemrc"          $HOME/.gemrc
+
+symlink "$(pwd)/gitconfig"      $HOME/.gitconfig
+symlink "$(pwd)/gitignore"      $HOME/.gitignore
+symlink "$(pwd)/gitmessage"     $HOME/.gitmessage
+
+symlink "$(pwd)/psqlrc"         $HOME/.psqlrc
+symlink "$(pwd)/rspec"          $HOME/.rspec
+symlink "$(pwd)/tmux.conf"      $HOME/.rspec
+
+symlink "$(pwd)/vimrc"          $HOME/.vimrc
+symlink "$(pwd)/vimrc.bundles"  $HOME/.vimrc.bundles
+
+symlink "$(pwd)/zshenv"         $HOME/.zshenv
+symlink "$(pwd)/zshrc"          $HOME/.zshrc
+
+echo "${OK}All done!$NC"
