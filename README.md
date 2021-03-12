@@ -46,5 +46,5 @@ update libraries for a project like that.
 ### Local settings `.config.local`
 
 For any configuration where possible at the end they should load a file with
-suffix `.local`. I might have custom configuratio, which should not end up in
-`git` say client specific env variables in `.zshenv.local`.
+suffix `.local`. I might have custom configuration, which should not end up in
+`git`. Like client specific env variables in `.zshenv.local`.
