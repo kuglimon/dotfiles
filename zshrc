@@ -92,6 +92,8 @@ _load_settings "$HOME/.zsh/configs"
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-export PATH="$HOME/.bin:$PATH"
-eval "$(rbenv init - zsh --no-rehash)"
-source /Users/kuglimon/.asdf/asdf.sh
+# load rbenv if available
+if which rbenv &>/dev/null ; then
+  eval "$(rbenv init - zsh --no-rehash)"
+fi
+
