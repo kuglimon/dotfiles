@@ -1,7 +1,3 @@
-for function in ~/.zsh/functions/*; do
-  source $function
-done
-
 # use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL

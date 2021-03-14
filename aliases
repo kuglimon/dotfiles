@@ -1,6 +1,15 @@
+for function in ~/.zsh/functions/*; do
+  source $function
+done
+
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
-alias ls='ls --color=auto'
+
+if if_osx; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
 
 # use bat instead of cat if it's available
 if type "bat" > /dev/null; then
