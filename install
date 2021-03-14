@@ -59,7 +59,6 @@ symlink "$(pwd)/vimrc"                $HOME/.vimrc
 symlink "$(pwd)/vimrc.bundles"        $HOME/.vimrc.bundles
 
 mkdir -p "$HOME/.zsh/functions"
-
 symlink "$(pwd)/zsh/functions/is_os"  $HOME/.zsh/functions/is_os
 symlink "$(pwd)/zshenv"               $HOME/.zshenv
 symlink "$(pwd)/zshrc"                $HOME/.zshrc

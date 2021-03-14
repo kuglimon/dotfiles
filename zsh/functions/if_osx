@@ -1,8 +1,0 @@
-# Checks if given string matches part of current OS
-if_os () { [[ $OSTYPE == *$1* ]]; }
-
-# Checks if we're running on a mac
-if_osx () { [[ $OSTYPE == *darwin* ]]; }
-
-# Checks if we're running on linux
-if_linux () { [[ $OSTYPE == *linux* ]]; }

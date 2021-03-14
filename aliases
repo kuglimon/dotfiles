@@ -1,5 +1,8 @@
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 alias ls='ls --color=auto'
-# Check if bat exists
-#alias cat='bat'
+
+# use bat instead of cat if it's available
+if type "bat" > /dev/null; then
+  alias cat='bat'
+fi

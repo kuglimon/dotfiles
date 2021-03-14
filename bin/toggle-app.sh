@@ -6,5 +6,5 @@ if pgrep $1 > /dev/null; then
   killall -q $1
   while pgrep -u $UID -x $1 >/dev/null; do sleep 1; done
 fi
-  exec $@
-exit
+
+exec $@
