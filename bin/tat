@@ -1,31 +1,77 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 #
-# Attach or create tmux session named the same as current directory.
+# Starts a tmuxinator layout from the pwd.
+#
+# Project is selected based on directory contents, if we're
+# in a git repo then the git root is used as the project name
+# and setup. Otherwise pwd is used.
+#
+# This is safe to call from inside tmux, it'll just change to
+# that session.
+#
+# If someone else happens to read these I use a private repository
+# for these layouts as they contain client names and such. If you
+# want to use this script then just create some base layout in
+# ~/.config/tmuxinator/base.yml and work from that. I'd save that
+# to a repository and symlink, so you can share layouts between
+# machines. My base layout just contains stuff I usually need,
+# tiled layout for services (usually databases, webservers and logs),
+# window for editor and one for just messing around.
 
-path_name="$(basename "$PWD" | tr . -)"
+# Check if we're in a git project, use git root if we are
+# Otherwise use current directory
+project_path="$(git rev-parse --show-toplevel 2> /dev/null)"
+
+if [ $? -ne 0 ]; then
+  project_path="$(print -P %~)"
+else
+  # Make it relative to home so it'll work on my other machines. I might
+  # have client machines with different names. But at least I can control
+  # directory layout
+  project_path="~/$(realpath --relative-to="$HOME" "$project_path")"
+fi
+
+path_name="$(basename "$project_path" | tr . -)"
 session_name=${1-$path_name}
 
-not_in_tmux() {
-  [ -z "$TMUX" ]
+project_exists() {
+  tmuxinator list $1 | grep -w "$session_name" > /dev/null
 }
 
-session_exists() {
-  tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"
-}
+create_project() {
+  # Copy the base layout to a new project
+  # Use the -n option in case there's a bug and we try
+  # to create a project even though one exists already.
+  # This way we don't override the existing configuration.
+  cp -n ~/.config/tmuxinator/base.yml ~/.config/tmuxinator/${session_name}.yml
 
-create_detached_session() {
-  (TMUX='' tmux new-session -Ad -s "$session_name")
+  sed "s|name: .*|name: $session_name|g" \
+    ~/.config/tmuxinator/${session_name}.yml > \
+    ~/.config/tmuxinator/${session_name}.yml.tmp
+
+  sed "s|root: .*|root: $project_path|g" \
+    ~/.config/tmuxinator/${session_name}.yml.tmp > \
+    ~/.config/tmuxinator/${session_name}.yml.tmp2
+
+  mv ~/.config/tmuxinator/${session_name}.yml.tmp2 \
+     ~/.config/tmuxinator/${session_name}.yml
+
+  rm ~/.config/tmuxinator/${session_name}.yml.*
+
+  # Open the file up for edit
+  $EDITOR ~/.config/tmuxinator/${session_name}.yml
 }
 
 create_if_needed_and_attach() {
-  if not_in_tmux; then
-    tmux new-session -As "$session_name"
-  else
-    if ! session_exists; then
-      create_detached_session
-    fi
-    tmux switch-client -t "$session_name"
+  if ! project_exists; then
+    create_project
   fi
+
+  # tmuxinator handles calls from inside tmux so
+  # we can just swap to the other session.
+  # If the session doesn't exist it'll create
+  # one as well. Easypeasylemonskveesy.
+  tmuxinator start $session_name
 }
 
 create_if_needed_and_attach
