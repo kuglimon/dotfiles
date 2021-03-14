@@ -24,6 +24,6 @@
 [rebase]
   autosquash = true
 [user]
-	signingkey = F15F62CBA236362C
-	email = tatu.argillander@kouralabs.com
-	name = Tatu Argillander
+  signingkey = F15F62CBA236362C
+  email = tatu.argillander@kouralabs.com
+  name = Tatu Argillander

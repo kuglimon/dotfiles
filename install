@@ -6,20 +6,21 @@ set -e
 # Make sure we're relative to the install script
 cd "$(dirname "$0")"
 
+# Make sure the helper functions are loaded. Although
+# these are loaded in the .zshrc we still need to make
+# them available in case this is the first run and
+# system is really not setup yet.
+source "./zsh/functions/is_os"
+
 # Setup some colors
 ERROR='\033[0;31m'
 OK='\033[0;32m'
 NC='\033[0m' # No Color
 
-if_os () { [[ $OSTYPE == *$1* ]]; }
-
-if_osx () { [[ $OSTYPE == *darwin* ]]; }
-if_linux () { [[ $OSTYPE == *linux* ]]; }
-
 # Wrap ln -sfn with print so I can verify stuff goes
 # where it probably should go.
 symlink() {
-  echo "${OK}Linking $1 -> $2$NC"
+  echo "  ${OK}Linking $1 -> $2$NC"
   ln -sfn $1 $2
 }
 
@@ -33,27 +34,67 @@ fi
 echo "Running dotfiles from $(pwd)\n"
 
 # Common configuration for all operating systems
+echo "Setting up common configuration"
 mkdir -p $HOME/.config
 
-symlink "$(pwd)/bin"            $HOME/.bin
-symlink "$(pwd)/git_template"   $HOME/.git_template
+symlink "$(pwd)/aliases"              $HOME/.aliases
 
-symlink "$(pwd)/gemrc"          $HOME/.gemrc
+symlink "$(pwd)/bin"                  $HOME/bin
 
-symlink "$(pwd)/gitconfig"      $HOME/.gitconfig
-symlink "$(pwd)/gitignore"      $HOME/.gitignore
-symlink "$(pwd)/gitmessage"     $HOME/.gitmessage
+symlink "$(pwd)/git_template"         $HOME/.git_template
 
-symlink "$(pwd)/psqlrc"         $HOME/.psqlrc
-symlink "$(pwd)/rspec"          $HOME/.rspec
+symlink "$(pwd)/gemrc"                $HOME/.gemrc
 
-symlink "$(pwd)/tmux"           $HOME/.config/tmux
-symlink "$(pwd)/tmux.conf"      $HOME/.rspec
+symlink "$(pwd)/gitconfig"            $HOME/.gitconfig
+symlink "$(pwd)/gitignore"            $HOME/.gitignore
+symlink "$(pwd)/gitmessage"           $HOME/.gitmessage
 
-symlink "$(pwd)/vimrc"          $HOME/.vimrc
-symlink "$(pwd)/vimrc.bundles"  $HOME/.vimrc.bundles
+symlink "$(pwd)/psqlrc"               $HOME/.psqlrc
+symlink "$(pwd)/rspec"                $HOME/.rspec
 
-symlink "$(pwd)/zshenv"         $HOME/.zshenv
-symlink "$(pwd)/zshrc"          $HOME/.zshrc
+symlink "$(pwd)/tmux"                 $HOME/.config/tmux
+symlink "$(pwd)/tmux.conf"            $HOME/.tmux.conf
+
+symlink "$(pwd)/vimrc"                $HOME/.vimrc
+symlink "$(pwd)/vimrc.bundles"        $HOME/.vimrc.bundles
+
+mkdir -p "$HOME/.zsh/functions"
+
+symlink "$(pwd)/zsh/functions/is_os"  $HOME/.zsh/functions/is_os
+symlink "$(pwd)/zshenv"               $HOME/.zshenv
+symlink "$(pwd)/zshrc"                $HOME/.zshrc
+echo "Setup done for common configuration\n"
+
+# Linux specific setup, only tested on Arch linux
+if if_linux ; then
+  echo "Setting up Linux"
+
+  symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
+
+  mkdir -p $HOME/.config/i3
+  symlink "$(pwd)/i3/config"                $HOME/.config/i3/config
+
+  mkdir -p $HOME/.config/dunst
+  symlink "$(pwd)/dunst/dunstrc"            $HOME/.config/dunst/dunstrc
+
+  mkdir -p $HOME/.config/polybar
+  symlink "$(pwd)/polybar/config"           $HOME/.config/polybar/config
+  symlink "$(pwd)/polybar/launch.sh"        $HOME/.config/polybar/launch.sh
+
+  mkdir -p $HOME/.config/rofi
+  symlink "$(pwd)/rofi/config.rasi"         $HOME/.config/rofi/config.rasi
+
+  mkdir -p $HOME/.config/alacritty
+  symlink "$(pwd)/alacritty/alacritty.yml"  $HOME/.config/alacritty/alacritty.yml
+
+  echo "Setup done for Linux\n"
+fi
+
+# macOS specific setup. Only tested on Catalina
+if if_osx; then
+  echo "Setting up macOS"
+
+  echo "Setup done for macOS\n"
+fi
 
 echo "${OK}All done!$NC"
