@@ -73,6 +73,6 @@ bindkey "^N" insert-last-word
 
 # load rbenv if available
 if which rbenv &>/dev/null ; then
-  eval "$(rbenv init - zsh --no-rehash)"
+  eval "$(rbenv init - --no-rehash zsh)"
 fi
 
