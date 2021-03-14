@@ -65,6 +65,16 @@ bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
 
+# Search command history based on the command typed.
+# So for example say you've typed the following:
+#
+#  $ git co
+#
+# Pressing up would search the history for commands
+# starting with 'git co'
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
