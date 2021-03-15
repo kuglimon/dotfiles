@@ -29,7 +29,7 @@ git_prompt_info() {
 setopt prompt_subst
 
 # prints an arrow ➜, red if the last command failed green if ok
-PROMPT='%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
+PROMPT='%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜  )'
 
 # current dir from $HOME
 PROMPT+='%{$fg_bold[cyan]%}%~%{$reset_color%}'
