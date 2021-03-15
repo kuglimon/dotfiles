@@ -32,7 +32,7 @@ setopt prompt_subst
 PROMPT='%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
 
 # current dir from $HOME
-PROMPT+='%{$fg_bold[cyan]%}%~%{$reset_color%}'
+PROMPT+='%{$fg_bold[cyan]%}%1d%{$reset_color%}'
 
 # current git branch if we're in a repository
 PROMPT+=' $(git_prompt_info)'
