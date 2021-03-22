@@ -18,6 +18,16 @@
 # tiled layout for services (usually databases, webservers and logs),
 # window for editor and one for just messing around.
 
+help() {
+  echo "tat - tmuxinator helper utility 6000"
+  echo
+  echo "usage: tat"
+  echo '  tat         # open current $PWD/git-root project'
+  echo '  tat edit    # open current layout file in $EDITOR'
+  echo
+  exit 1
+}
+
 # Check if we're in a git project, use git root if we are
 # Otherwise use current directory
 project_path="$(git rev-parse --show-toplevel 2> /dev/null)"
@@ -32,7 +42,17 @@ else
 fi
 
 path_name="$(basename "$project_path" | tr . -)"
-session_name=${1-$path_name}
+session_name="$path_name"
+
+# Check if we have any arguments to parse
+if [ -n "$1" ]; then
+  if [ "$1" = "edit" ]; then
+    $EDITOR ~/.config/tmuxinator/${session_name}.yml
+    exit 0
+  else
+    help
+  fi
+fi
 
 project_exists() {
   tmuxinator list $1 | grep -w "$session_name" > /dev/null
