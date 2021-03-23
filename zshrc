@@ -43,7 +43,22 @@ HISTFILE=~/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
 
-# awesome cd movements from zshkit
+# TODO: Check if I need all of these
+# I don't even know what some of these do... I copied these years ago from
+# Thoughtbot dot files. But a few of these are in use:
+#
+#   autocd
+#     This enables you to just type a path and cd on it. So let's say you're in
+#     a directory with subdirectories 'dev/log' rather than typing 'cd dev/log'
+#     you can just type 'dev/log'
+#
+#   cdablevars
+#     Zsh has named directories but they require to type tilde before the
+#     directory name, in Finnish keyboard layout this is annoying as fuck. So
+#     cdablevars makes it so that it'll first check if the text you gave is a
+#     directory, then it'll check if it's a named directory and expand that with
+#     the tilde in place. It might do other stuff as well but this is the main
+#     feature we're looking for.
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5
 
@@ -79,6 +94,19 @@ bindkey "^[[B" history-beginning-search-forward
 if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
+
+# Named directories for directories I use all the time.
+# These are SO much better than just having some crappy ass
+# cd alias. You can just type the name and they're tab
+# completable due to cdablevars!
+hash -d dotfiles=~/development/personal/dotfiles
+hash -d layouts=~/development/personal/layouts
+
+hash -d development=~/development
+hash -d personal=~/development/personal
+hash -d work=~/development/work
+hash -d clients=~/development/work/clients
+hash -d internal=~/development/work/internal
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
