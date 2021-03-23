@@ -24,6 +24,11 @@ symlink() {
   ln -sfn $1 $2
 }
 
+mkdirp() {
+  echo "  ${OK}Creating directories $1$NC"
+  mkdir -p $1
+}
+
 if ! if_osx && ! if_linux ; then
   >&2 echo "${ERROR}Exiting due to unknown OS $OSTYPE"
   >&2 echo "OSTYPE should be one of *darwin* or *linux*$NC"
@@ -35,7 +40,13 @@ echo "Running dotfiles from $(pwd)\n"
 
 # Common configuration for all operating systems
 echo "Setting up common configuration"
-mkdir -p $HOME/.config
+mkdirp $HOME/development
+mkdirp $HOME/development/personal
+mkdirp $HOME/development/work
+mkdirp $HOME/development/work/clients
+mkdirp $HOME/development/work/internal
+
+mkdirp $HOME/.config
 
 symlink "$(pwd)/aliases"              $HOME/.aliases
 
@@ -58,7 +69,7 @@ symlink "$(pwd)/tmux.conf"            $HOME/.tmux.conf
 symlink "$(pwd)/vimrc"                $HOME/.vimrc
 symlink "$(pwd)/vimrc.bundles"        $HOME/.vimrc.bundles
 
-mkdir -p "$HOME/.zsh/functions"
+mkdirp "$HOME/.zsh/functions"
 symlink "$(pwd)/zsh/functions/is_os"  $HOME/.zsh/functions/is_os
 symlink "$(pwd)/zshenv"               $HOME/.zshenv
 symlink "$(pwd)/zshrc"                $HOME/.zshrc
@@ -70,20 +81,20 @@ if if_linux ; then
 
   symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
 
-  mkdir -p $HOME/.config/i3
+  mkdirp $HOME/.config/i3
   symlink "$(pwd)/i3/config"                $HOME/.config/i3/config
 
-  mkdir -p $HOME/.config/dunst
+  mkdirp $HOME/.config/dunst
   symlink "$(pwd)/dunst/dunstrc"            $HOME/.config/dunst/dunstrc
 
-  mkdir -p $HOME/.config/polybar
+  mkdirp $HOME/.config/polybar
   symlink "$(pwd)/polybar/config"           $HOME/.config/polybar/config
   symlink "$(pwd)/polybar/launch.sh"        $HOME/.config/polybar/launch.sh
 
-  mkdir -p $HOME/.config/rofi
+  mkdirp $HOME/.config/rofi
   symlink "$(pwd)/rofi/config.rasi"         $HOME/.config/rofi/config.rasi
 
-  mkdir -p $HOME/.config/alacritty
+  mkdirp $HOME/.config/alacritty
   symlink "$(pwd)/alacritty/alacritty.yml"  $HOME/.config/alacritty/alacritty.yml
 
   echo "Setup done for Linux\n"
