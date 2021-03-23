@@ -132,11 +132,10 @@ nnoremap <C-p> :Files<Cr>
 
 " Search vimwiki with fzf
 nnoremap <Leader>n :Files ~/vimwiki<Cr>
-nnoremap <Leader>m :Rg ~/vimwiki<Cr>
+nnoremap <Leader>m :RgWiki <Cr>
 
-" FIXME: This shit doesn' work brah
-command! -bang -nargs=* PRg
-  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': '~/vimwiki'}, <bang>0)
+" Searches content in my VimWiki
+command! -bang -nargs=* RgWiki call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': '~/vimwiki'}), <bang>0)
 
 " vim-rspec mappings
 nnoremap <Leader><Leader>t :call RunCurrentSpecFile()<CR>
