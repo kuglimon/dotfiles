@@ -128,7 +128,7 @@ set nu rnu
 set numberwidth=3
 
 " Use markdown for vimwiki format
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'index': 'README',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 let wiki_1 = {}
