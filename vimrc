@@ -136,7 +136,9 @@ let wiki_1.path = '~/vimwiki/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
 
-" You need to learn, son
+" These bindings are a relic from when I started to learn vim.
+" I left these here in case anyone else decides to copy this config.
+" Initially this really does help learning vim.
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
