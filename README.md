@@ -19,9 +19,9 @@ Trying to remember how `rcrc` worked and having it installed
 was not worth it. You rarely have to install these from scratch
 and when you do, you won't remember what the hell you did 4
 years ago. Same goes for crap like Ansible, you'll just fight
-outdated libraries and try to get system python to work. All
+outdated libraries and try to get system Python to work. All
 this to make a couple of symlinks. You'll rarely come back and
-update libraries for a project like that.
+update libraries for a project like this.
 
 Some rules for configuration:
 
