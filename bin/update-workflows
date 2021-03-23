@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+#
+# Updates all my work repositories at one go. Some of these
+# are private so if someone else is reading - these won't work
+# for you.
+set -e
+
+echo "\033[0;32mUpdating layouts"
+cd ~/development/personal/layouts
+git fetch && git rebase origin/master
+
+echo "\033[0;32mUpdating dotfiles"
+cd ~/development/personal/dotfiles
+git fetch && git rebase origin/master
+
+echo "\033[0;32mUpdating wiki\033[0m"
+cd ~/vimwiki
+git fetch && git rebase origin/master
