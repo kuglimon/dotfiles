@@ -7,21 +7,20 @@ these in another decade.
 
 # Requirements
 
-The scripts have only been tested using ZSH. They might work on other shells but I not
-been tested it.
+* zsh
+* mac or arch linux
 
 # Architecture
 
-After trying bunch of different options for provisioning
-dotfiles I returned back to just plain old shell scripting.
+After trying bunch of different options for provisioning dotfiles I returned
+back to just plain old shell scripting.
 
-Trying to remember how `rcrc` worked and having it installed
-was not worth it. You rarely have to install these from scratch
-and when you do, you won't remember what the hell you did 4
-years ago. Same goes for crap like Ansible, you'll just fight
-outdated libraries and try to get system Python to work. All
-this to make a couple of symlinks. You'll rarely come back and
-update libraries for a project like this.
+Trying to remember how `rcrc` worked and having it installed was not worth it.
+You rarely have to install these from scratch and when you do, you won't
+remember what the hell you did 4 years ago. Same goes for crap like Ansible,
+you'll just fight outdated libraries and try to get system Python to work. All
+this to make a couple of symlinks. You'll rarely come back and update libraries
+for a project like this.
 
 Some rules for configuration:
 
@@ -43,14 +42,19 @@ Some rules for configuration:
 
 ### Configuration
 
-Configuration should follow the following guide lines.
+Configuration should follow the following guidelines.
+
+#### Naming
+
+All files should be named without a leading dot. Files are visible by just
+running `ls`.
 
 #### Platforms
 
 Helper functions exist for asserting current platform: `if_linux` and `if_osx`
 
-Use these to differentiate functionality. There's no need to install i3 configuration
-on macOS.
+Use these to differentiate functionality. There's no need to install i3
+configuration on macOS.
 
 #### Local configuration - `.config.local`
 
