@@ -1,1 +1,2 @@
+:ipv4_fallback_enabled: true
 gem: --no-document

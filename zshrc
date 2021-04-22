@@ -108,6 +108,8 @@ hash -d work=~/development/work
 hash -d clients=~/development/work/clients
 hash -d internal=~/development/work/internal
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
