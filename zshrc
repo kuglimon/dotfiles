@@ -95,6 +95,11 @@ if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
 
+# load nodenv if available
+if which nodenv &>/dev/null ; then
+  eval "$(nodenv init -)"
+fi
+
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass
 # cd alias. You can just type the name and they're tab
