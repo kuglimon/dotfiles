@@ -55,7 +55,7 @@ if [ -n "$1" ]; then
 fi
 
 project_exists() {
-  tmuxinator list $1 | grep -w "$session_name" > /dev/null
+  tmuxinator list -n | grep -w "$session_name$" > /dev/null
 }
 
 create_project() {
