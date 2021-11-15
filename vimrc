@@ -190,11 +190,16 @@ let g:rspec_command = "!bundle exec rspec -f d -c {spec}"
 
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
+" \   'javascript': ['prettier', 'eslint'],
 let g:ale_fixers = {
-\   'javascript': ['prettier', 'eslint'],
 \   'rust': ['rustfmt']
 \}
-let g:ale_linters = {'rust': ['analyzer']}
+
+let g:ale_linters = {
+\  'rust': ['analyzer'],
+\  'sh': ['shellcheck'],
+\  'python': ['flake8']
+\}
 
 " Only run ale on save
 let g:ale_fix_on_save = 1
