@@ -100,6 +100,22 @@ if which nodenv &>/dev/null ; then
   eval "$(nodenv init -)"
 fi
 
+# load pyenv if available
+if which pyenv &>/dev/null ; then
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  # only setup path if pyenv is available
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+
+  # load pyenv virtualenv plugin if available
+  if pyenv virtualenv --version &>/dev/null ; then
+    eval "$(pyenv virtualenv-init -)"
+  fi
+fi
+
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass
 # cd alias. You can just type the name and they're tab
