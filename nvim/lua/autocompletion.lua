@@ -50,7 +50,7 @@ end
 
 -- NOTE piece of shit pyright does not support snippets and Microsoft won't add
 -- them to the open source product.
-local servers = { 'terraformls', 'pyright' }
+local servers = { 'terraformls', 'pyright', 'solargraph' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,

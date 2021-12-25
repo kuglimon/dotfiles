@@ -119,6 +119,8 @@ fi
 #         jenv
 #         nodenv
 #         node MAKE sure to update init.lua if you change this!
+#         gem install solargraph
+#         gem install solargraph-standardrb
 
 # macOS specific setup. Only tested on Catalina
 if if_osx; then
