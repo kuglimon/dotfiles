@@ -48,9 +48,7 @@ local on_attach = function(client, bufnr)
 
 end
 
--- NOTE piece of shit pyright does not support snippets and Microsoft won't add
--- them to the open source product.
-local servers = { 'terraformls', 'pyright', 'solargraph', 'tsserver' }
+local servers = { 'terraformls', 'jedi_language_server', 'solargraph', 'tsserver' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,

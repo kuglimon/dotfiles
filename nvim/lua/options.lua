@@ -66,5 +66,5 @@ vim.o.breakindent = true
 -- commands through vim I suspect they will use this version, which of course
 -- might not have the tools I expect it to have.
 vim.cmd([[
-let $PATH = '/Users/kuglimon/.nodenv/versions/14.15.3/bin:' . $PATH
+let $PATH = $HOME . '/.nodenv/versions/14.15.3/bin:' . $HOME . '/.pyenv/versions/vim-3.9.5/bin:'. $PATH
 ]])

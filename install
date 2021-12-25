@@ -123,6 +123,9 @@ fi
 #         gem install solargraph-standardrb
 #         npm i -g bash-language-server
 #         npm install -g typescript typescript-language-server
+#         pip install -U 'python-lsp-server[all]'
+#         pyenv virtualenv 3.9.5 vim-3.9.5
+#         pyenv activate vim-3.9.5
 
 # macOS specific setup. Only tested on Catalina
 if if_osx; then
