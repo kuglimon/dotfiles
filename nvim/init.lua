@@ -3,7 +3,6 @@
 -- There's probably no reason to actually use lua for this configuration. But
 -- I've never used Lua and wanted to learn it.
 
-
 -- Order of these imports might be significant
 require('plugins')
 require('options')
