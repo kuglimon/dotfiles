@@ -121,6 +121,8 @@ fi
 #         node MAKE sure to update init.lua if you change this!
 #         gem install solargraph
 #         gem install solargraph-standardrb
+#         npm i -g bash-language-server
+#         npm install -g typescript typescript-language-server
 
 # macOS specific setup. Only tested on Catalina
 if if_osx; then
