@@ -1,0 +1,33 @@
+--
+-- Plugins/modules
+--
+local Plug = vim.fn['plug#']
+
+vim.call('plug#begin', '~/.config/nvim/plugged')
+
+-- Used to configure different LSP clients for NeoVim internal LSP. It has
+-- support for multiple languages and can automatically build them.
+Plug 'neovim/nvim-lspconfig'
+
+-- I think these are different sources for autocompletion/suggestions. I'm not
+-- sure if I need all of these. Documentation could be improved I guess.
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+-- Lua based snippets and the integration plugin for cmp. What I use this plugin
+-- is to generate snippets through LSP clients - for example function signatures
+-- when autocompleting code. There's supposed to be some community made snippets
+-- and I could create my own snippets.
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+
+-- Could not get this to work through Lua.
+-- Tree sitter, :TSUpdate signals to install all languages
+vim.cmd([[
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+]])
+
+vim.call('plug#end')

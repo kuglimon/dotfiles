@@ -70,10 +70,16 @@ symlink "$(pwd)/rspec"                $HOME/.rspec
 symlink "$(pwd)/tmux"                 $HOME/.config/tmux
 symlink "$(pwd)/tmux.conf"            $HOME/.tmux.conf
 
+# Vim configuration
 symlink "$(pwd)/vimrc"                $HOME/.vimrc
 symlink "$(pwd)/vimrc.bundles"        $HOME/.vimrc.bundles
 
-mkdirp "$HOME/.zsh/functions"
+# NeoVim configuration
+mkdirp  "$HOME/.config/nvim"
+symlink "$(pwd)/nvim/init.lua"        "$HOME/.config/nvim/init.lua"
+symlink "$(pwd)/nvim/lua"             "$HOME/.config/nvim/lua"
+
+mkdirp  "$HOME/.zsh/functions"
 symlink "$(pwd)/zsh/functions/is_os"  $HOME/.zsh/functions/is_os
 symlink "$(pwd)/zshenv"               $HOME/.zshenv
 symlink "$(pwd)/zshrc"                $HOME/.zshrc
@@ -104,10 +110,25 @@ if if_linux ; then
   echo "Setup done for Linux\n"
 fi
 
+# TODO: This should install these packages I need as well:
+#         pyright
+#         terraformls
+#         neovim
+#         tfenv
+#         pyenv
+#         jenv
+#         nodenv
+#         node MAKE sure to update init.lua if you change this!
+
 # macOS specific setup. Only tested on Catalina
 if if_osx; then
   echo "Setting up macOS"
 
+  # TODO install these
+  # brew install hashicorp/tap/terraform-ls
+
+  # TODO install default packages for node js
+  #      many of the tools I use need some packages
   echo "Setup done for macOS\n"
 fi
 
