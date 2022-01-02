@@ -1,0 +1,7 @@
+brew "vim"
+brew "tmux"
+brew "awscli"
+brew "ripgrep"
+brew "fzf"
+brew "tree"
+brew "bat"

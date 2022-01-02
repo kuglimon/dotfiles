@@ -27,6 +27,7 @@ com! -nargs=+  -bar Bundle call VundleToPlug("Bundle", <args>)
 call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise'

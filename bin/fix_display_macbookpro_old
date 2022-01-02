@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# OSX tends to mess up display ordering and rotation during sleep/login/restart,
+# this script should force correct laytout.
+#
+# TODO: Make this agnostic of the ports used. If I remember correctly I need to
+# always use the same ports on the mac, if I plug the cable to a different one
+# mac will see it as a completely new monitor.
+
+
+set -e
+
+echo "Fixing display order..."
+
+displayplacer "id:DFE64421-E54E-A45F-2377-D547F7C3449E res:2560x1440 hz:144 color_depth:8 scaling:off origin:(0,0) degree:0" "id:CC4389ED-2B16-DF16-C8EC-A31984E9019B res:1440x2560 hz:60 color_depth:8 scaling:off origin:(-1440,0) degree:90" "id:C10852A6-A696-C1E5-3AFB-F5D4657E4C68 res:1440x2560 hz:60 color_depth:8 scaling:off origin:(2560,0) degree:270"
