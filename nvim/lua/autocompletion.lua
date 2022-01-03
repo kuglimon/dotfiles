@@ -1,6 +1,8 @@
 --
 -- Auto-completion support (nvim-cmp + NeoVim LSP)
 --
+-- TODO this is not only about autocompletion
+--
 -- vim.cmd([[set completeopt=menu,menuone,noselect]])
 
 vim.o.completeopt = 'menuone,noselect'
@@ -128,3 +130,10 @@ cmp.setup {
       { name = "buffer" }
    },
 }
+
+-- Other diagnostics through null-ls
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.shellcheck
+    },
+})

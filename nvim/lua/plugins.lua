@@ -5,6 +5,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
+-- Library of NeoVim lua functions, plugins like null-ls require this
+Plug 'nvim-lua/plenary.nvim'
+
 -- Used to configure different LSP clients for NeoVim internal LSP. It has
 -- support for multiple languages and can automatically build them.
 Plug 'neovim/nvim-lspconfig'
@@ -23,6 +26,10 @@ Plug 'hrsh7th/nvim-cmp'
 -- and I could create my own snippets.
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
+
+-- Provides an in-memory language server. This is used to allow tools without
+-- their own language server to talk with NeoVim.
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- Could not get this to work through Lua.
 -- Tree sitter, :TSUpdate signals to install all languages
