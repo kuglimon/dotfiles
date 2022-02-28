@@ -119,7 +119,8 @@ set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 80 characters is
 set textwidth=80
-set formatoptions-=tc
+" ftplugin keeps overriding formatoptions...
+set fo-=tc
 set colorcolumn=+1
 
 " turn hybrid line numbers on
@@ -209,6 +210,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
 " enable smart indentation. This will indent wrapped lines.
+set nowrap
 set breakindent
 
 " remove trailing whitespace on save
