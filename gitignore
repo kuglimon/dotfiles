@@ -123,3 +123,11 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# My personal notes for a given project, usually TODO lists, installation notes,
+# runbooks and what not.
+MYNOTES.md
+
+# Some python projects are against having requirements files for development
+# dependencies and sometimes I have personal dependencies I need for the project
+# but not everyone in the team needs them.
+requirements-mylocal.txt
