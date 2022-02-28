@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# Allows specifying which identity file git should use
+#
+# To use this script just set this scripts path to environmental variable
+# GIT_SSH and make sure we're executable. Set GIT_PKEY_HACK as the path to the
+# key you want to use.
+#
+# Why?
+#
+# This assumes you are using Github, other service providers might not have
+# these issues.
+#
+# From my understanding all git operations are done with a single user called
+# git, when using ssh keys for authentication. Github then differentiates users
+# based on the key sent.
+#
+# This poses an issue when you have multiple accounts. Your solutions usually
+# are:
+#
+#   1. Use the same key in all accounts
+#
+#      This is the same as using the same password in every service. If you can
+#      with a straight face explain to your company/client that you're possibly
+#      sharing passwords across personal and business accounts then go ahead.
+#
+#   2. Use .ssh/config with domain aliases
+#
+#      This breaks with git submodules, but everything is pretty fucked anyways
+#      if you've gone with the submodule route.
+#
+#      Breaks when project does any sort of dependency resolution through git
+#      and you need to pass keys to these git invokations.
+#
+# This script is based on the discussions in found here:
+#
+# https://stackoverflow.com/questions/3496037/how-to-specify-which-ssh-key-to-use-within-git-for-git-push-in-order-to-have-git
+
+if [ -z "$GIT_PKEY_HACK" ]; then
+    # if PKEY is not specified, run ssh using default keyfile
+    ssh "$@"
+else
+    ssh -i "$GIT_PKEY_HACK" -o IdentitiesOnly=yes "$@"
+fi
