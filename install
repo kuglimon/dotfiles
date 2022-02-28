@@ -126,6 +126,11 @@ fi
 #         pip install -U 'python-lsp-server[all]'
 #         pyenv virtualenv 3.9.5 vim-3.9.5
 #         pyenv activate vim-3.9.5
+#         gem install debug
+#         pip install debugpy
+#
+# Kubernetes:
+#         brew install kind
 
 # macOS specific setup. Only tested on Catalina
 if if_osx; then
