@@ -27,3 +27,5 @@
   signingkey = F15F62CBA236362C
   email = tatu.argillander@kouralabs.com
   name = Tatu Argillander
+[submodule]
+	recurse = true
