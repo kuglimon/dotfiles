@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+aws sso login --profile "$(rg '\[profile (.+)\]' ~/.aws/config -r '$1' | fzf --header 'SSO login to selected ENV')"
