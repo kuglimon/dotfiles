@@ -20,6 +20,11 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+vim.cmd([[
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+]])
+
 -- Lua based snippets and the integration plugin for cmp. What I use this plugin
 -- is to generate snippets through LSP clients - for example function signatures
 -- when autocompleting code. There's supposed to be some community made snippets
@@ -36,5 +41,8 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 vim.cmd([[
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 ]])
+
+-- Debugging support through DAP
+Plug 'mfussenegger/nvim-dap'
 
 vim.call('plug#end')

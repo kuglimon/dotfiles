@@ -9,9 +9,20 @@ require('options')
 require('key_bindings')
 require('syntax')
 require('autocompletion')
+require('debugging')
+
+-- nvim.cmd([[
+-- if exists('g:started_by_firenvim')
+--   set laststatus=0 " no status bar
+--   set guifont=monospace:h14 " font size
+--   set nonu " no numbers
+--   set norelativenumber "no numbers
+-- endif
+-- ]])
 
 -- Plugin specific configurations
--- require('fzf')
+-- require('plugins/firenvim')
+require('fzf')
 -- require('vimwiki')
 -- require('polytest')
 
