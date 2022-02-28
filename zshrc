@@ -16,7 +16,7 @@ git_prompt_info() {
   if [[ -n $current_branch ]]; then
     printf '%s' "%{$fg_bold[blue]%}git:("
 
-    if [[ $(git diff --stat) != '' ]]; then
+    if [[ $(git diff --stat 2> /dev/null) != '' ]]; then
       printf '%s' "%{$fg[red]%}"
     else
       printf '%s' "%{$fg[green]%}"
