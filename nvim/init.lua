@@ -10,6 +10,7 @@ require('key_bindings')
 require('syntax')
 require('autocompletion')
 require('debugging')
+require('autocommands')
 
 -- nvim.cmd([[
 -- if exists('g:started_by_firenvim')
