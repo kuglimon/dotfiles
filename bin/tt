@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ -n "$TMUX" ]; then
+ echo "Already in TMUX"
+ exit 0
+fi
+
+tmux attach -t $(tmux list-sessions -F '#{session_name}' | fzf)
