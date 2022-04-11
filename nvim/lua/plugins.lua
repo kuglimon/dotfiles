@@ -32,6 +32,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 
+-- For commenting code
+Plug 'vim-scripts/tComment'
+
 -- Provides an in-memory language server. This is used to allow tools without
 -- their own language server to talk with NeoVim.
 Plug 'jose-elias-alvarez/null-ls.nvim'
