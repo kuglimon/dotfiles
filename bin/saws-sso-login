@@ -1,3 +1,18 @@
 #!/usr/bin/env zsh
 
-aws sso login --profile "$(rg '\[profile (.+)\]' ~/.aws/config -r '$1' | fzf --header 'SSO login to selected ENV')"
+profile="$(rg '\[profile (.+)\]' ~/.aws/config -r '$1' | fzf --header 'SSO login to selected ENV')"
+exit_code=$?
+
+case $exit_code in
+  1)
+    echo "Could not find matching profile"
+    exit 1
+    ;;
+  130)
+    echo "Canceling..."
+    exit 1
+    ;;
+  0)
+    aws sso login --profile "$profile"
+    ;;
+esac
