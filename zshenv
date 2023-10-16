@@ -22,6 +22,9 @@ export PATH="$HOME/development/golang/bin:$PATH"
 
 # Use bat for man if available
 if type "bat" > /dev/null; then
+  # 2023.16.10 I had to add this, otherwise manpages would show shell color
+  # codes within the documentation.
+  export MANROFFOPT="-c"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
