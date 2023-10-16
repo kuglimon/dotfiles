@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Installs all my dotfiles for this operating system.
+# Installs all my dotfiles and software.
 
 set -e
 
@@ -35,10 +35,6 @@ if ! if_osx && ! if_linux ; then
   echo "No dotfiles have been changed!"
   exit 1
 fi
-
-# Install vundle for vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Running dotfiles from $(pwd)\n"
 
@@ -107,8 +103,25 @@ if if_linux ; then
   mkdirp $HOME/.config/alacritty
   symlink "$(pwd)/alacritty/alacritty.yml"  $HOME/.config/alacritty/alacritty.yml
 
+  echo "Dotfiles configured"
+
+  echo "Installing packages"
+
+  # Install missing packages and don't cache sudo credentials, as that would
+  # likely fuck up more stuff later on.
+  sudo -k pacman --needed -S neovim
+
   echo "Setup done for Linux\n"
 fi
+
+# Configure neovim
+# Install plug for neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# We might not have correct aliases in place yet, hence nvim. Tells Plug to
+# install/update plugins.
+nvim +PlugUpdate +qall
 
 # TODO: This should install these packages I need as well:
 #         pyright
