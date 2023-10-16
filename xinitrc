@@ -8,7 +8,7 @@ setxkbmap -option caps:escape
 # know if this really works - it fixed playback once so I guess it's science
 # now. We're doing this on every boot so I don't have to waste a second of my
 # life figuring out why I pay for a service which doesn't work.
-rm ~/.config/spotify/Users/**/local-files.bnk
+rm -rf ~/.config/spotify/Users/**/local-files.bnk
 
 eval $(ssh-agent)
 
