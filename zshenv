@@ -1,10 +1,6 @@
 # use vim as the visual editor
 source "$HOME/development/personal/dotfiles/zsh/functions/is_os"
 
-# Finally swap over to neovim
-alias vim="nvim"
-alias vi="nvim"
-
 export VISUAL=vim
 export EDITOR=$VISUAL
 
