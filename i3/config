@@ -6,9 +6,7 @@
 #
 
 # i3 config file (v4)
-#
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -16,9 +14,11 @@ set $mod Mod4
 font pango: Fira Mono 10
 
 # Gaps
-gaps outer 5
-gaps inner 15
-gaps top 40 # Height of polybar is 37 + 8
+gaps outer 5px
+gaps inner 15px
+
+# Height of polybar is 37 + 8
+gaps top 40px
 
 # Always show marks
 show_marks yes
@@ -131,7 +131,8 @@ bindsym $mod+Shift+6 move container to workspace $ws-corp
 #exec_always xmodmap -e "clear lock" #disable caps lock switch
 #exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
-set $bg-color 	         #8BE9FD
+set $bg-color            #8BE9FD
+set $border-color        #8BE9FD
 set $inactive-bg-color   #282A36
 set $text-color          #8BE9FD
 set $inactive-text-color #676E7D
@@ -176,9 +177,9 @@ exec_always --no-startup-id $HOME/bin/start-dunst.sh
 exec_always --no-startup-id flameshot
 
 # Startup apps
-# 
+#
 # I work on multiple projects and clients with range of technologies.
-# At first I thought about having separate terminal windows opened 
+# At first I thought about having separate terminal windows opened
 # during startup and then just work on those.
 #
 # But having tried it I don't think this works for nothing else than:
@@ -203,7 +204,7 @@ assign [instance="term-main"] $ws-terminals
 # When working on code one usually goes in to the loop read, code,
 # open up the browser, then try something and go back to coding. Scratch
 # terminal is perfect for this! I stole the idea from Sam Saffrons configs.
-# 
+#
 # An example being you're debugging some build, you browse the web for a
 # solution and it's a missing library. Either you install the library in
 # some development window and now your window output is 100 lines full of
@@ -244,7 +245,7 @@ for_window [class="Spotify"] move to workspace $ws-media
 # You have a bunch of windows in different workspaces, you want to
 # jump to the browser, you either:
 #
-#   * alt+tab through a ton of windows, which sucks because you don't 
+#   * alt+tab through a ton of windows, which sucks because you don't
 #     care about seeing 20 other windows
 #   * Go to the workspace you know the window is in and hope
 #     you didn't open anything there which might steal the focus.
@@ -252,7 +253,7 @@ for_window [class="Spotify"] move to workspace $ws-media
 #     is the focused window and is this what I want.
 #
 # Workspaces are just to organize visual clutter, they really
-# serve no other purpose for me. So let's just mark the windows 
+# serve no other purpose for me. So let's just mark the windows
 # which are used the most often! For a quick recap they are as follows:
 #
 # j - main browser
