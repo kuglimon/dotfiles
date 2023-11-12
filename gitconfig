@@ -31,3 +31,5 @@
   name = Tatu Argillander
 [submodule]
 	recurse = true
+[diff]
+	noprefix = true
