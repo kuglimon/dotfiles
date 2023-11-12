@@ -7,7 +7,7 @@
 --
 -- This is why some of these are missing
 
-vim.o.encoding = "utf-8"
+vim.opt.encoding = "utf-8"
 vim.o.backspace = "2" -- Backspace deletes like most programs in insert mode
 vim.o.backup = false
 vim.o.writebackup = false
@@ -41,18 +41,11 @@ vim.o.colorcolumn = "+1"
 vim.o.splitbelow = true
 vim.o.splitright = true
 
--- This should fix clipboard not working when inside tmux but I'm not sure if
--- it's even required anymore. Previously I needed to have some
--- reattach-to-userspace plugin for tmux but I haven't had that in years. No
--- idea if this configuration was to be used together with it. Leaving this in
--- just in case.
-vim.o.clipboard = 'unnamed'
+-- sync clipboard between OS and Neovim
+vim.o.clipboard = 'unnamedplus'
 
 -- Always use vertical diffs
-vim.cmd([[set diffopt+=vertical]])
-
--- FIXME: install dracula
--- vim.cmd("color dracula")
+vim.opt.diffopt:append { 'vertical' }
 
 -- enable smart indentation. This will indent wrapped lines.
 vim.o.breakindent = true

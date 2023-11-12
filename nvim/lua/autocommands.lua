@@ -61,10 +61,8 @@ augroup vimrcEx
   " On save add and commit all vimwiki changes to git. Usually this is pretty
   " darn fast. So I'll just do it on every save.
   autocmd BufWritePost ~/vimwiki/* silent execute "!git add -A && git commit -m \"Auto commit from $HOST of %:t.\" && git push > /dev/null" | redraw!
-augroup END
-]])
 
--- remove trailing whitespace on save
-vim.cmd([[
-autocmd BufWritePre * %s/\s\+$//e
+  " remove trailing whitespace on save
+  " autocmd BufWritePre * %s/\s\+$//e
+augroup END
 ]])

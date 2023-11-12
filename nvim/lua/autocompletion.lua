@@ -11,99 +11,133 @@ vim.o.completeopt = 'menuone,noselect'
 -- LSP configuration
 --
 local nvim_lsp = require('lspconfig')
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
--- TODO copy-pasted from somewhere, no idea what the fuck this all does
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+-- LSP settings.
+--  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  -- NOTE: Remember that lua is a real programming language, and as such it is possible
+  -- to define small helper and utility functions so you don't have to repeat yourself
+  -- many times.
+  --
+  -- In this case, we create a function that lets us more easily define mappings specific
+  -- for LSP related items. It sets the mode, buffer and description for us each time.
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+  end
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- on mac this is opt-shift-l
+  nmap('ﬂ', vim.lsp.buf.format, 'Format')
 
+  -- refactoring crap
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]efactor [N]ame')
+  nmap('<leader>ra', vim.lsp.buf.code_action, '[R]efactor [A]ction')
+
+  -- LSP based movements
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('gD', vim.lsp.buf.type_definition, 'Type [D]efinition')
+
+  -- neovim diagnostic bindings
+  -- I started this with dj and dk but I kept butter fingering it to delete all
+  -- the time and that was just fucking annoying. Rather move a line by accident
+  -- than delete a line
+  nmap('<leader>j', vim.diagnostic.goto_next, 'Diagnostic [J]Next')
+  nmap('<leader>k', vim.diagnostic.goto_prev, 'Diagnostic [K]Previous')
+  nmap('<leader>ll', "<cmd>Telescope diagnostics<cr>", 'Telescope list diagnostics')
+
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  -- See `:help K` for why this keymap
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 end
 
-local servers = { 'terraformls', 'jedi_language_server', 'solargraph', 'tsserver' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
+-- Enable the following language servers
+-- Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+--
+-- Add any additional override configuration in the following tables. They will be passed to
+-- the `settings` field of the server config. You must look up that documentation yourself.
+local servers = {
+  bashls = {},
+  terraformls = {},
+  rust_analyzer = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+}
+
+-- Setup neovim lua configuration
+require('neodev').setup()
+
+-- Setup mason so it can manage external tooling
+require('mason').setup()
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require('mason-lspconfig')
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
     }
-  }
-end
+  end,
+}
 
 -- TODO remove this once my configuration works
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 
+-- nvim-cmp setup
+local cmp = require('cmp')
 local luasnip = require('luasnip')
-luasnip.config.setup({})
 
-local cmp = require'cmp'
+luasnip.config.setup {}
 
--- I just copy-pasted this from somewhere, I don't even know what most of this
--- shit does...
--- TODO learn the shit
 cmp.setup {
-   snippet = {
-      expand = function(args)
-         luasnip.lsp_expand(args.body)
-      end,
-   },
-   -- formatting = {
-   --    format = function(entry, vim_item)
-   --       local icons = require "plugins.configs.lspkind_icons"
-   --       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-   --
-   --       vim_item.menu = ({
-   --          nvim_lsp = "[LSP]",
-   --          nvim_lua = "[Lua]",
-   --          buffer = "[BUF]",
-   --       })[entry.source.name]
-   --
-   --       return vim_item
-   --    end,
-   -- },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -111,8 +145,8 @@ cmp.setup {
       else
         fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -120,20 +154,17 @@ cmp.setup {
       else
         fallback()
       end
-    end,
+    end, { 'i', 's' }),
   },
-  -- I think these give input to nvim-cmp to provide autocompletion hints. Order
-  -- here is significant if I remember correctly.
-   sources = {
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "buffer" }
-   },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
 }
 
 -- Other diagnostics through null-ls
-require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.diagnostics.shellcheck
-    },
-})
+-- require("null-ls").setup({
+--     sources = {
+--         require("null-ls").builtins.diagnostics.shellcheck
+--     },
+-- })

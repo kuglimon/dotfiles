@@ -1,51 +1,52 @@
 --
 -- Plugins/modules
 --
-local Plug = vim.fn['plug#']
+return require('packer').startup(function(use)
+  use {
+    'dracula/vim',
+    as = 'dracula',
+    config = function()
+      vim.cmd('colorscheme dracula')
+    end
+  }
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+  use { "wbthomason/packer.nvim" }
 
--- Library of NeoVim lua functions, plugins like null-ls require this
-Plug 'nvim-lua/plenary.nvim'
+  -- Telescope uses popup and plenary, plenary used by other plugins as well
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
 
--- Used to configure different LSP clients for NeoVim internal LSP. It has
--- support for multiple languages and can automatically build them.
-Plug 'neovim/nvim-lspconfig'
+  use 'nvim-telescope/telescope.nvim'
 
--- I think these are different sources for autocompletion/suggestions. I'm not
--- sure if I need all of these. Documentation could be improved I guess.
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+  -- this compiles a c port of the fzf algorithm for use with telescope, makes
+  -- search faster
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-vim.cmd([[
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-]])
+  use {
+    "williamboman/mason.nvim", -- mason helps with installing LSP
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",   -- Configurations for Nvim LSP
+  }
 
--- Lua based snippets and the integration plugin for cmp. What I use this plugin
--- is to generate snippets through LSP clients - for example function signatures
--- when autocompleting code. There's supposed to be some community made snippets
--- and I could create my own snippets.
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
+  -- LSP autocomplete
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
 
--- For commenting code
-Plug 'vim-scripts/tComment'
+  -- Additional lua configuration, makes nvim stuff amazing!
+  use { 'folke/neodev.nvim' }
 
--- Provides an in-memory language server. This is used to allow tools without
--- their own language server to talk with NeoVim.
-Plug 'jose-elias-alvarez/null-ls.nvim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'nvim-treesitter/playground' }
 
--- Could not get this to work through Lua.
--- Tree sitter, :TSUpdate signals to install all languages
-vim.cmd([[
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-]])
-
--- Debugging support through DAP
-Plug 'mfussenegger/nvim-dap'
-
-vim.call('plug#end')
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+end)
