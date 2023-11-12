@@ -32,13 +32,18 @@ help() {
 # Otherwise use current directory
 project_path="$(git rev-parse --show-toplevel 2> /dev/null)"
 
+echo "$project_path"
 if [ $? -ne 0 ]; then
   project_path="$(print -P %~)"
 else
-  # Make it relative to home so it'll work on my other machines. I might
-  # have client machines with different names. But at least I can control
+  # TODO: On newer osx this broke, there's no relative-to command Make it
+  # relative to home so it'll work on my other machines. I honestly have no
+  # fucking idea what this was supposed todo... And the comment I left is ass.
+  # I'm just gonna comment this out and later test on the other machines.
+  #
+  # I might have client machines with different names. But at least I can control
   # directory layout
-  project_path="~/$(realpath --relative-to="$HOME" "$project_path")"
+  #project_path="~/$(realpath --relative-to="$HOME" "$project_path")"
 fi
 
 path_name="$(basename "$project_path" | tr . -)"
