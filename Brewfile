@@ -1,4 +1,4 @@
-brew "vim"
+brew "neovim"
 brew "tmux"
 brew "awscli"
 brew "ripgrep"
