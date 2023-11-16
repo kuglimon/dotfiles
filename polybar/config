@@ -12,6 +12,9 @@ monitor = DP-0
 ; your WM to add a gap where the bar will be placed.
 override-redirect = true
 
+; This hides the menubar when applications go full screen
+wm-restack = i3
+
 ; Put the bar at the bottom of the screen
 bottom = false
 
