@@ -1,7 +1,7 @@
 # use vim as the visual editor
 source "$HOME/development/personal/dotfiles/zsh/functions/is_os"
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 # Set GOPATH
