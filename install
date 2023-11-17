@@ -66,10 +66,6 @@ symlink "$(pwd)/rspec"                $HOME/.rspec
 symlink "$(pwd)/tmux"                 $HOME/.config/tmux
 symlink "$(pwd)/tmux.conf"            $HOME/.tmux.conf
 
-# Vim configuration
-symlink "$(pwd)/vimrc"                $HOME/.vimrc
-symlink "$(pwd)/vimrc.bundles"        $HOME/.vimrc.bundles
-
 # NeoVim configuration
 mkdirp  "$HOME/.config/nvim"
 symlink "$(pwd)/nvim/init.lua"        "$HOME/.config/nvim/init.lua"

@@ -1,3 +1,5 @@
+" While I don't use vim anymore, I'll leave this here if there's any some
+" weird reason I don't have Neovim available.
 scriptencoding utf-8
 set encoding=utf-8
 
@@ -20,10 +22,6 @@ set winwidth=100
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-endif
-
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -54,9 +52,6 @@ augroup vimrcEx
   " reset autocommands so sourcing .vimrc multiple times won't work wonky
   autocmd!
 
-  " vimwiki new diary template
-  autocmd BufNewFile ~/vimwiki/diary/*.md :silent 0r !echo "\# `date +'\%Y-\%m-\%d'`"
-
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
@@ -66,7 +61,6 @@ augroup vimrcEx
     \ endif
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.jb setfiletype ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
@@ -84,28 +78,6 @@ augroup vimrcEx
   autocmd FileType go setlocal noexpandtab
   autocmd FileType go setlocal list
   autocmd FileType go setlocal listchars=tab:\ \ ,trail:·,nbsp:·
-
-  " When opening files from wiki change the window location to the file location
-  " I tend to modify wiki entries from all over the place. I never navigate to
-  " the wiki folder and just start editing from there. This is to ease writing
-  " other commands. Since we know that we're always in the wiki directory.
-  autocmd BufEnter ~/vimwiki/* silent lcd %:p:h
-
-  " Fetch changes from git when opening files. This does make opening entries
-  " a tad slower but it's better than having to remember to update them.
-  " And usually I open the diary entry for today and edit that. Rarely am I
-  " opening a bunch of files from wiki.
-  "
-  " This also has the cool upside of letting you know that something has indeed
-  " changed from what you had. Let's say I work on the desktop during the
-  " morning. Then later on during the day I switch to my laptop and open the
-  " diary entry for today through the shortcut. At this point I would get a
-  " message saying that the file I'm editing has changed, do I want to load it.
-  autocmd BufEnter ~/vimwiki/* silent execute "!git fetch && git rebase origin/master" | redraw!
-
-  " On save add and commit all vimwiki changes to git. Usually this is pretty
-  " darn fast. So I'll just do it on every save.
-  autocmd BufWritePost ~/vimwiki/* silent execute "!git add -A && git commit -m \"Auto commit from $HOST of %:t.\" && git push > /dev/null" | redraw!
 augroup END
 
 " Softtabs, 2 spaces
@@ -128,15 +100,6 @@ set number relativenumber
 set nu rnu
 set numberwidth=3
 
-" Use markdown for vimwiki format
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'index': 'README',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-let wiki_1 = {}
-let wiki_1.path = '~/vimwiki/'
-let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.md'
-
 " These bindings are a relic from when I started to learn vim.
 " I left these here in case anyone else decides to copy this config.
 " Initially this really does help learning vim.
@@ -144,20 +107,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" FZF mappings
-" Quickly find in files
-nnoremap <Leader>s :Rg<CR>
-
-" Use FZF like ctrlp
-nnoremap <C-p> :Files<Cr>
-
-" Search vimwiki with fzf
-nnoremap <Leader>n :Files ~/vimwiki<Cr>
-nnoremap <Leader>m :RgWiki <Cr>
-
-" Searches content in my VimWiki
-command! -bang -nargs=* RgWiki call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': '~/vimwiki'}), <bang>0)
 
 " vim-rspec mappings
 nnoremap <Leader><Leader>t :call RunCurrentSpecFile()<CR>
@@ -186,28 +135,6 @@ set diffopt+=vertical
 
 " so pasting in tmux works
 set clipboard=unnamed
-
-let g:rspec_command = "!bundle exec rspec -f d -c {spec}"
-
-" Put this in vimrc or a plugin file of your own.
-" After this is configured, :ALEFix will try and fix your JS code with ESLint.
-" \   'javascript': ['prettier', 'eslint'],
-let g:ale_fixers = {
-\   'rust': ['rustfmt']
-\}
-
-let g:ale_linters = {
-\  'rust': ['analyzer'],
-\  'sh': ['shellcheck'],
-\  'python': ['flake8']
-\}
-
-" Only run ale on save
-let g:ale_fix_on_save = 1
-" Run only the linters we've specified
-"let g:ale_linters_explicit = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
 
 " enable smart indentation. This will indent wrapped lines.
 set nowrap
