@@ -66,6 +66,8 @@ vim.o.incsearch = true -- do incremental searching
 
 vim.o.updatetime = 50
 
+vim.o.completeopt = 'menuone,noselect'
+
 -- Fix the version of node I use with vim. I run a ton of different versions of
 -- node, oldest ones being something like v8. For example pyright doesn't even
 -- work on older versions of node. And many projects are a mix of node and
@@ -76,4 +78,10 @@ vim.o.updatetime = 50
 -- might not have the tools I expect it to have.
 vim.cmd([[
 let $PATH = $HOME . '/.nodenv/versions/14.15.3/bin:' . $HOME . '/.pyenv/versions/vim-3.9.5/bin:'. $PATH
+]])
+
+-- TODO: is this even required anymore
+-- Treat <li> and <p> tags like the block tags they are
+vim.cmd([[
+let g:html_indent_tags = 'li\|p'
 ]])

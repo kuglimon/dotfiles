@@ -38,13 +38,16 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-fzf-native.nvim',
     },
-    init = function()
-      -- require 'config.telescope_setup'
-    end,
     config = function()
-      -- require 'config.telescope'
+      require('plugins.telescope')
     end,
     cmd = 'Telescope',
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
+    },
   },
   {
     'numToStr/Comment.nvim',
@@ -65,8 +68,26 @@ require("lazy").setup({
   { 'folke/neodev.nvim' },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
-  { "neovim/nvim-lspconfig" },
-  { 'nvim-treesitter/nvim-treesitter' },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      'hrsh7th/nvim-cmp'
+    },
+    config = function()
+      require('plugins.lsp')
+    end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground'
+    },
+
+    config = function()
+      require('plugins.treesitter')
+    end,
+  },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
   { 'nvim-treesitter/playground' },
 })

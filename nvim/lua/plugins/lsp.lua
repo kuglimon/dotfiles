@@ -3,9 +3,6 @@
 --
 -- TODO this is not only about autocompletion
 --
--- vim.cmd([[set completeopt=menu,menuone,noselect]])
-
-vim.o.completeopt = 'menuone,noselect'
 
 --
 -- LSP configuration
