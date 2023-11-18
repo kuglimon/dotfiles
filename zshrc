@@ -71,14 +71,10 @@ unsetopt nomatch
 # vi mode
 bindkey -v
 
-# handy keybindings
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
-bindkey "^K" kill-line
-bindkey "^R" history-incremental-search-backward
-bindkey "^P" history-search-backward
-bindkey "^Y" accept-and-hold
-bindkey "^N" insert-last-word
+# CTRL-X CTRL-E edits current command in editor.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Search command history based on the command typed.
 # So for example say you've typed the following:
