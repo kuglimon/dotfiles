@@ -99,8 +99,16 @@ if if_linux ; then
   mkdirp $HOME/.config/alacritty
   symlink "$(pwd)/alacritty/alacritty.yml"  $HOME/.config/alacritty/alacritty.yml
 
-  # Colorscheme for alacritty
-  git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
+  if [ ! -d ~/.config/alacritty/catppuccin ]; then
+    # Colorscheme for alacritty
+    git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
+  else
+    (
+      cd ~/.config/alacritty/catppuccin
+      git fetch
+      git reset --hard '@{u}'
+    )
+  fi
 
   echo "Dotfiles configured"
 
