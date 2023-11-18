@@ -74,7 +74,7 @@ bindkey -v
 # CTRL-X CTRL-E edits current command in editor.
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey '^x^p' edit-command-line
 
 # Search command history based on the command typed.
 # So for example say you've typed the following:
