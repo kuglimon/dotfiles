@@ -4,12 +4,12 @@
 -- I've never used Lua and wanted to learn it.
 
 -- Order of these imports might be significant
+require('key_bindings')
 require('plugins')
 require('options')
-require('key_bindings')
 require('syntax')
 require('autocompletion')
---require('debugging')
+-- require('debugging')
 require('autocommands')
 
 -- Plugin specific configurations
@@ -18,11 +18,10 @@ require('autocommands')
 -- require('vimwiki')
 -- require('polytest')
 
--- vim.cmd([[
--- let g:rspec_command = "!bundle exec rspec -f d -c {spec}"
--- let g:table_mode_corner='|'
--- ]])
-
+vim.cmd([[
+  let g:rspec_command = "!bundle exec rspec -f d -c {spec}"
+  let g:table_mode_corner='|'
+]])
 
 require('telescope').setup {
   defaults = {
@@ -47,6 +46,7 @@ require('telescope').setup {
     -- please take a look at the readme of the extension you want to configure
   }
 }
+
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 

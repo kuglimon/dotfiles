@@ -4,8 +4,6 @@
 -- NeoVim has enabled some of the configurations I used to have:
 --  * filetype plugin indent on
 --  * syntax enable/on
---
--- This is why some of these are missing
 
 vim.opt.encoding = "utf-8"
 vim.o.backspace = "2" -- Backspace deletes like most programs in insert mode
@@ -13,11 +11,12 @@ vim.o.backup = false
 vim.o.writebackup = false
 
 vim.o.swapfile = false -- http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+vim.o.backup = false
+
 vim.o.history = 50
-vim.o.ruler = true -- show the cursor position all the time
-vim.o.showcmd = true -- display incomplete commands
-vim.o.incsearch = true -- do incremental searching
-vim.o.laststatus = 2  -- Always display the status line
+vim.o.ruler = true     -- show the cursor position all the time
+vim.o.showcmd = true   -- display incomplete commands
+vim.o.laststatus = 2   -- Always display the status line
 vim.o.autowrite = true -- Automatically :write before running commands
 vim.o.winwidth = 100
 
@@ -29,7 +28,6 @@ vim.o.expandtab = true
 
 -- Display extra whitespace
 vim.o.list = true
--- TODO: Does this actually work
 vim.o.listchars = [[tab:»·,trail:·,nbsp:·]]
 
 -- Make it obvious where 80 characters is
@@ -41,6 +39,11 @@ vim.o.colorcolumn = "+1"
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- turn hybrid line numbers on
+vim.o.number = true
+vim.o.rnu = true
+vim.o.numberwidth = 3
+
 -- sync clipboard between OS and Neovim
 vim.o.clipboard = 'unnamedplus'
 
@@ -49,6 +52,19 @@ vim.opt.diffopt:append { 'vertical' }
 
 -- enable smart indentation. This will indent wrapped lines.
 vim.o.breakindent = true
+
+-- Enable wrapping. I keep going flipping this on and of.
+vim.o.wrap = false
+vim.o.breakindent = true
+
+-- Always leave some padding above and below the cursor. It took me like 10
+-- years to find this! Always hated how it worked by default.
+vim.o.scrolloff = 8
+
+vim.o.hlsearch = false
+vim.o.incsearch = true -- do incremental searching
+
+vim.o.updatetime = 50
 
 -- Fix the version of node I use with vim. I run a ton of different versions of
 -- node, oldest ones being something like v8. For example pyright doesn't even

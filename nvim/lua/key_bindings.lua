@@ -36,3 +36,35 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 ]])
+
+-- Move visual selections
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Keep cursor position when joining
+vim.keymap.set("n", "J", "mzJ`z")
+
+-- Keep cursor centered when moving pages
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Keep cursor centered when searching
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Paste but keep the original yanked stuff after. God, I don't even know how
+-- I lived so long without this.
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+-- Yank to clipboard
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set("n", "Q", "<nop>")
+
+-- Find and replace on the current word under the cursor
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Toggling between files is ctrl+6 in Finnish layout
+
+-- This doesn't work but would be godlike. Search and replace over a selection.
+-- vim.keymap.set("v", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

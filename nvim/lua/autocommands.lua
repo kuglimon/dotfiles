@@ -63,6 +63,6 @@ augroup vimrcEx
   autocmd BufWritePost ~/vimwiki/* silent execute "!git add -A && git commit -m \"Auto commit from $HOST of %:t.\" && git push > /dev/null" | redraw!
 
   " remove trailing whitespace on save
-  " autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s/\s\+$//e
 augroup END
 ]])
