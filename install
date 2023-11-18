@@ -116,7 +116,7 @@ if if_linux ; then
 
   # Install missing packages and don't cache sudo credentials, as that would
   # likely fuck up more stuff later on.
-  sudo -k pacman --needed -S neovim
+  sudo -k pacman -S --needed - < pkglist.txt
 
   echo "Setup done for Linux\n"
 fi
