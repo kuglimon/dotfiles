@@ -90,31 +90,9 @@ bindkey "^N" insert-last-word
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
-# load rbenv if available
-if which rbenv &>/dev/null ; then
-  eval "$(rbenv init - --no-rehash zsh)"
-fi
-
-# load nodenv if available
-if which nodenv &>/dev/null ; then
-  eval "$(nodenv init -)"
-fi
-
-# load pyenv if available
-if which pyenv &>/dev/null ; then
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  # only setup path if pyenv is available
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-
-  # load pyenv virtualenv plugin if available
-  if pyenv virtualenv --version &>/dev/null ; then
-    eval "$(pyenv virtualenv-init -)"
-  fi
-fi
+# This replaces: rbenv, nodenv, pyenv. Pyenv especially has been a constant
+# fucking source of pain.
+eval "$(rtx activate zsh)"
 
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass
