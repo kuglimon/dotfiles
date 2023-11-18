@@ -93,7 +93,6 @@ if if_linux ; then
   symlink "$(pwd)/polybar/config"           $HOME/.config/polybar/config
   symlink "$(pwd)/polybar/launch.sh"        $HOME/.config/polybar/launch.sh
 
-  # mkdirp $HOME/.config/rofi
   symlink "$(pwd)/rofi"         $HOME/.config/rofi
 
   mkdirp $HOME/.config/alacritty
