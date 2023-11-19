@@ -110,6 +110,7 @@ set $ws-ide "3:  Tools"
 set $ws-chat "4:  Chats"
 set $ws-media "5:  Media"
 set $ws-gaming "6:  Gaming"
+set $ws-present "7: 󱠏 Present"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws-browser
@@ -118,6 +119,7 @@ bindsym $mod+3 workspace $ws-ide
 bindsym $mod+4 workspace $ws-chat
 bindsym $mod+5 workspace $ws-media
 bindsym $mod+6 workspace $ws-gaming
+bindsym $mod+7 workspace $ws-present
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws-browser
@@ -126,6 +128,7 @@ bindsym $mod+Shift+3 move container to workspace $ws-ide
 bindsym $mod+Shift+4 move container to workspace $ws-chat
 bindsym $mod+Shift+5 move container to workspace $ws-media
 bindsym $mod+Shift+6 move container to workspace $ws-gaming
+bindsym $mod+Shift+7 move container to workspace $ws-present
 
 # Keys
 #exec_always xmodmap -e "clear lock" #disable caps lock switch
@@ -238,6 +241,11 @@ bindsym $mod+i [class="firefox-private"] scratchpad show
 exec --no-startup-id spotify
 for_window [class="Spotify"] move to workspace $ws-media
 
+exec --no-startup-id steam
+assign [title="Steam" class="steam"] $ws-gaming
+assign [title="Friends List" class="steam"] $ws-gaming
+for_window [title="Friends List" class="steam"] resize set width 900
+
 # Automatic marks
 #
 # Mark windows I often use so I don't have to jump around workspaces.
@@ -281,6 +289,8 @@ for_window [class="firefox-main"] mark "j"
 for_window [instance="term-main"] mark "k"
 for_window [class="discord"] mark "l"
 for_window [class="Spotify"] mark "ö"
+for_window [title="Steam" class="steam"] mark "o"
+for_window [title="Friends List" class="steam"] mark "i"
 
 # Make sure browser is the first window we see
 for_window [class="firefox-main"] focus
