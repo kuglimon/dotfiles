@@ -32,10 +32,10 @@ augroup vimrcEx
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
-  " Don't show tabs in go files
-  autocmd FileType go setlocal noexpandtab
-  autocmd FileType go setlocal list
-  autocmd FileType go setlocal listchars=tab:\ \ ,trail:·,nbsp:·
+  " Don't show tabs in go or lua files
+  autocmd FileType go,lua setlocal noexpandtab
+  autocmd FileType go,lua setlocal list
+  autocmd FileType go,lua setlocal listchars=tab:\ \ ,trail:·,nbsp:·
 
   " remove trailing whitespace on save
   autocmd BufWritePre * %s/\s\+$//e
