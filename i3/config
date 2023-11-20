@@ -244,7 +244,6 @@ for_window [class="Spotify"] move to workspace $ws-media
 exec --no-startup-id steam
 assign [title="Steam" class="steam"] $ws-gaming
 assign [title="Friends List" class="steam"] $ws-gaming
-for_window [title="Friends List" class="steam"] resize set width 900
 
 # Automatic marks
 #
