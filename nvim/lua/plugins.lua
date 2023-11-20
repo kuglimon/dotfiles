@@ -90,4 +90,13 @@ require("lazy").setup({
   },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
   { 'nvim-treesitter/playground' },
+  {
+    dir = '~/development/personal/git-worktree.nvim'
+  },
+  {
+    'justinmk/vim-sneak',
+    init = function()
+      require('plugins.sneak')
+    end,
+  },
 })
