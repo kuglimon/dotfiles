@@ -4,4 +4,7 @@
 bin/helm
 bin/saws*
 
+# For now ignore my local version of tmuxinator
+bin/tmuxinator
+
 vim/bundle/
