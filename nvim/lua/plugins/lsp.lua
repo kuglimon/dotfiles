@@ -133,7 +133,14 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    }
+    },
+    ['<C-k>'] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   },
   -- The order here matters. First item has highest priority.
   sources = {
