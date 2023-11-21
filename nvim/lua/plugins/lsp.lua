@@ -135,9 +135,13 @@ cmp.setup {
       select = true,
     }
   },
+  -- The order here matters. First item has highest priority.
   sources = {
+    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
+    { name = 'path' },
     { name = 'luasnip' },
+    { name = 'buffer',  keyword_length = 3 },
   },
 }
 

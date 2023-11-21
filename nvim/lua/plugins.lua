@@ -56,11 +56,21 @@ require("lazy").setup({
     end
   },
   { 'L3MON4D3/LuaSnip' },
+  -- The actual completion plugin. Dependencies provide connection to different
+  -- sources. What these actualy do:
+  --
+  -- nvim-cmp: 'Framework' for plugins
+  -- nvim-cmp-lsp: Completions from LSP
+  -- nvim-cmp-lua: Completions for Neovim Lua with natural 20 roll for int
+  -- nvim-path: Completions from file paths
+  -- nvim-buffer: Completions from current buffer
+  -- cmp_luasnip: Snippets
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip'
     },
