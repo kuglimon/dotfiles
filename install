@@ -82,7 +82,6 @@ if if_linux ; then
   echo "Setting up Linux"
 
   symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
-  symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
 
   mkdirp $HOME/.config/i3
   symlink "$(pwd)/i3/config"                $HOME/.config/i3/config
