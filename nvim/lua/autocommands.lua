@@ -33,7 +33,7 @@ augroup vimrcEx
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Don't show tabs in go or lua files
-  autocmd FileType go,lua setlocal noexpandtab
+  autocmd FileType go setlocal noexpandtab
   autocmd FileType go,lua setlocal list
   autocmd FileType go,lua setlocal listchars=tab:\ \ ,trail:·,nbsp:·
 
