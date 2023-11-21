@@ -82,6 +82,7 @@ if if_linux ; then
   echo "Setting up Linux"
 
   symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
+  symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
 
   mkdirp $HOME/.config/i3
   symlink "$(pwd)/i3/config"                $HOME/.config/i3/config
@@ -108,6 +109,8 @@ if if_linux ; then
       git reset --hard '@{u}'
     )
   fi
+
+  sudo -k cp "$(pwd)/X11/50-mouse-acceleration.conf" "/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
 
   echo "Dotfiles configured"
 
