@@ -18,12 +18,12 @@
 # tiled layout for services (usually databases, webservers and logs),
 # window for editor and one for just messing around.
 
+# TODO: Just include this whole functionality in rojekti.
 help() {
   echo "tat - tmuxinator helper utility 6000"
   echo
   echo "usage: tat"
   echo '  tat         # open current $PWD/git-root project'
-  echo '  tat edit    # open current layout file in $EDITOR'
   echo
   exit 1
 }
@@ -49,20 +49,12 @@ fi
 path_name="$(basename "$project_path" | tr . -)"
 session_name="$path_name"
 
-# Check if we have any arguments to parse
-if [ -n "$1" ]; then
-  if [ "$1" = "edit" ]; then
-    $EDITOR ~/.config/tmuxinator/${session_name}.yml
-    exit 0
-  else
-    help
-  fi
-fi
-
 project_exists() {
   tmuxinator list -n | grep -w "$session_name$" > /dev/null
 }
 
+# TODO: I'm pretty sure this is something tmuxinator already had builtin and I
+# just missed it. If not then add it to rojekti.
 create_project() {
   # Copy the base layout to a new project
   # Use the -n option in case there's a bug and we try
