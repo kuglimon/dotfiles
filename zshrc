@@ -93,8 +93,8 @@ eval "$(rtx activate zsh)"
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass
 # cd alias. You can just type the name and they're tab
-# completable due to cdablevars!
-hash -d dotfiles=~/development/personal/dotfiles/master
+# completable when cdablevars is enabled.
+hash -d dotfiles=~/development/personal/dotfiles.git/master
 hash -d layouts=~/development/personal/layouts
 
 hash -d development=~/development
