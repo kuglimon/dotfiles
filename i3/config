@@ -245,6 +245,11 @@ exec --no-startup-id steam
 assign [title="Steam" class="steam"] $ws-gaming
 assign [title="Friends List" class="steam"] $ws-gaming
 
+# TODO: Everything launched from Term workspace should be floating. I wonder if
+#       that is possible?
+# Start PoB fork as floating
+for_window [class="path-of-building"] floating enable
+
 # Automatic marks
 #
 # Mark windows I often use so I don't have to jump around workspaces.
