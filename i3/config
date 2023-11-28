@@ -249,6 +249,7 @@ assign [title="Friends List" class="steam"] $ws-gaming
 #       that is possible?
 # Start PoB fork as floating
 for_window [class="path-of-building"] floating enable
+for_window [class="pico8"] move to workspace $ws-ide
 
 # Automatic marks
 #
