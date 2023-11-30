@@ -4,6 +4,7 @@ automake
 bat
 btrfs-progs
 discord
+devtools
 docker
 docker-compose
 dunst
