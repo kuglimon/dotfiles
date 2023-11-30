@@ -2,6 +2,7 @@ alacritty
 autoconf
 automake
 bat
+base-devel
 btrfs-progs
 discord
 devtools
