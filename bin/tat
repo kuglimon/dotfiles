@@ -1,13 +1,14 @@
 #!/usr/bin/env zsh
 #
-# Starts a tmuxinator layout from the pwd.
+# Starts a rojekti layout from the pwd.
 #
 # Project is selected based on directory contents, if we're
 # in a git repo then the git root is used as the project name
 # and setup. Otherwise pwd is used.
 #
-# This is safe to call from inside tmux, it'll just change to
-# that session.
+# TODO(tatu): This is busted on git worktrees, FIX
+#
+# This is safe to call from inside tmux, it'll switch sessions.
 #
 # If someone else happens to read these I use a private repository
 # for these layouts as they contain client names and such. If you
@@ -17,6 +18,8 @@
 # machines. My base layout just contains stuff I usually need,
 # tiled layout for services (usually databases, webservers and logs),
 # window for editor and one for just messing around.
+#
+# TODO(tatu): Rename config directories for rojekti
 
 # TODO: Just include this whole functionality in rojekti.
 help() {
@@ -50,10 +53,10 @@ path_name="$(basename "$project_path" | tr . -)"
 session_name="$path_name"
 
 project_exists() {
-  tmuxinator list -n | grep -w "$session_name$" > /dev/null
+  rojekti list -n | grep -w "$session_name$" > /dev/null
 }
 
-# TODO: I'm pretty sure this is something tmuxinator already had builtin and I
+# TODO: I'm pretty sure this is something rojekti already had builtin and I
 # just missed it. If not then add it to rojekti.
 create_project() {
   # Copy the base layout to a new project
@@ -84,11 +87,8 @@ create_if_needed_and_attach() {
     create_project
   fi
 
-  # tmuxinator handles calls from inside tmux so
-  # we can just swap to the other session.
-  # If the session doesn't exist it'll create
-  # one as well. Easypeasylemonskveesy.
-  tmuxinator start $session_name
+  # This works inside tmux session. Easypeasylemonskveesy.
+  rojekti start $session_name
 }
 
 create_if_needed_and_attach
