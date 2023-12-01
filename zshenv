@@ -1,5 +1,5 @@
 # use vim as the visual editor
-source "$HOME/development/personal/dotfiles.git/master/zsh/functions/is_os"
+source "$HOME/.zsh/functions/is_os"
 
 export VISUAL=nvim
 export EDITOR=$VISUAL

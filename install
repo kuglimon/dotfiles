@@ -71,8 +71,8 @@ mkdirp  "$HOME/.config/nvim"
 symlink "$(pwd)/nvim/init.lua"        "$HOME/.config/nvim/init.lua"
 symlink "$(pwd)/nvim/lua"             "$HOME/.config/nvim/lua"
 
-mkdirp  "$HOME/.zsh/functions"
-symlink "$(pwd)/zsh/functions/is_os"  $HOME/.zsh/functions/is_os
+mkdirp  "$HOME/.zsh"
+symlink "$(pwd)/zsh/functions"        $HOME/.zsh/functions
 symlink "$(pwd)/zshenv"               $HOME/.zshenv
 symlink "$(pwd)/zshrc"                $HOME/.zshrc
 echo "Setup done for common configuration\n"
