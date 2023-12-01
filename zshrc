@@ -94,7 +94,7 @@ eval "$(rtx activate zsh)"
 # These are SO much better than just having some crappy ass
 # cd alias. You can just type the name and they're tab
 # completable when cdablevars is enabled.
-hash -d dotfiles=~/development/personal/dotfiles.git/master
+hash -d dotfiles=~/development/personal/dotfiles
 hash -d layouts=~/development/personal/layouts
 
 hash -d development=~/development
