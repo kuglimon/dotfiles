@@ -1,32 +1,28 @@
 #!/usr/bin/env zsh
 #
-# Starts a rojekti layout from the pwd.
+# Starts a rojekti layout from the pwd based on some custom heuristics.
 #
-# Project is selected based on directory contents, if we're
-# in a git repo then the git root is used as the project name
-# and setup. Otherwise pwd is used.
-#
-# TODO(tatu): This is busted on git worktrees, FIX
+# Project name is selected based on following heuristics:
+# * Uses PWD directory name if not in git repo
+# * Uses git root directory name if in git repo
 #
 # This is safe to call from inside tmux, it'll switch sessions.
 #
-# If someone else happens to read these I use a private repository
-# for these layouts as they contain client names and such. If you
-# want to use this script then just create some base layout in
-# ~/.config/tmuxinator/base.yml and work from that. I'd save that
-# to a repository and symlink, so you can share layouts between
-# machines. My base layout just contains stuff I usually need,
-# tiled layout for services (usually databases, webservers and logs),
-# window for editor and one for just messing around.
+# If someone else happens to read these I use a private repository for these
+# layouts as they contain client names and such. If you want to use this script
+# then just create some base layout in ~/.config/rojekti/base.yml and work from
+# that. I'd save that to a repository and symlink, so you can share layouts
+# between machines. My base layout just contains stuff I usually need, tiled
+# layout for services (usually databases, webservers and logs), window for
+# editor and one for just messing around.
 #
-# TODO(tatu): Rename config directories for rojekti
+# Up to a point this works with 'tmuxinator', if you just s/rojekti/tmuxinator.
 
-# TODO: Just include this whole functionality in rojekti.
 help() {
-  echo "tat - tmuxinator helper utility 6000"
+  echo "tat - rojekti helper utility 6000"
   echo
   echo "usage: tat"
-  echo '  tat         # open current $PWD/git-root project'
+  echo '  tat         # open current $PWD/git-root/git-worktree project'
   echo
   exit 1
 }
@@ -35,60 +31,13 @@ help() {
 # Otherwise use current directory
 project_path="$(git rev-parse --show-toplevel 2> /dev/null)"
 
-echo "$project_path"
+# Use PWD if not in repo
 if [ $? -ne 0 ]; then
   project_path="$(print -P %~)"
-else
-  # TODO: On newer osx this broke, there's no relative-to command Make it
-  # relative to home so it'll work on my other machines. I honestly have no
-  # fucking idea what this was supposed todo... And the comment I left is ass.
-  # I'm just gonna comment this out and later test on the other machines.
-  #
-  # I might have client machines with different names. But at least I can control
-  # directory layout
-  #project_path="~/$(realpath --relative-to="$HOME" "$project_path")"
 fi
 
 path_name="$(basename "$project_path" | tr . -)"
 session_name="$path_name"
 
-project_exists() {
-  rojekti list -n | grep -w "$session_name$" > /dev/null
-}
-
-# TODO: I'm pretty sure this is something rojekti already had builtin and I
-# just missed it. If not then add it to rojekti.
-create_project() {
-  # Copy the base layout to a new project
-  # Use the -n option in case there's a bug and we try
-  # to create a project even though one exists already.
-  # This way we don't override the existing configuration.
-  cp -n ~/.config/tmuxinator/base.yml ~/.config/tmuxinator/${session_name}.yml
-
-  sed "s|name: .*|name: $session_name|g" \
-    ~/.config/tmuxinator/${session_name}.yml > \
-    ~/.config/tmuxinator/${session_name}.yml.tmp
-
-  sed "s|root: .*|root: $project_path|g" \
-    ~/.config/tmuxinator/${session_name}.yml.tmp > \
-    ~/.config/tmuxinator/${session_name}.yml.tmp2
-
-  mv ~/.config/tmuxinator/${session_name}.yml.tmp2 \
-     ~/.config/tmuxinator/${session_name}.yml
-
-  rm ~/.config/tmuxinator/${session_name}.yml.*
-
-  # Open the file up for edit
-  $EDITOR ~/.config/tmuxinator/${session_name}.yml
-}
-
-create_if_needed_and_attach() {
-  if ! project_exists; then
-    create_project
-  fi
-
-  # This works inside tmux session. Easypeasylemonskveesy.
-  rojekti start $session_name
-}
-
-create_if_needed_and_attach
+# This works inside tmux session. Easypeasylemonskveesy.
+rojekti start $session_name
