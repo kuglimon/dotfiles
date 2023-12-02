@@ -4,7 +4,4 @@
 bin/helm
 bin/saws*
 
-# I don't have packaging for OSX, still locally installing it
-bin/rojekti
-
 vim/bundle/
