@@ -127,38 +127,13 @@ if if_linux ; then
   echo "Setup done for Linux\n"
 fi
 
-# TODO: This should install these packages I need as well:
-#         pyright
-#         terraformls
-#         neovim
-#         tfenv
-#         pyenv
-#         jenv
-#         nodenv
-#         node MAKE sure to update init.lua if you change this!
-#         gem install solargraph
-#         gem install solargraph-standardrb
-#         npm i -g bash-language-server
-#         npm install -g typescript typescript-language-server
-#         pip install -U 'python-lsp-server[all]'
-#         pyenv virtualenv 3.9.5 vim-3.9.5
-#         pyenv activate vim-3.9.5
-#         gem install debug
-#         pip install debugpy
-#
-# Kubernetes:
-#         brew install kind
-
-# macOS specific setup. Only tested on Catalina
 if if_osx; then
   echo "Setting up macOS"
 
-  # TODO install these
-  # brew install hashicorp/tap/terraform-ls
+  echo "Installing packages from Brewfile"
+  brew bundle install
 
-  # TODO install default packages for node js
-  #      many of the tools I use need some packages
-  echo "Setup done for macOS\n"
+  echo "  ${OK}Setup done for macOS\n$NC"
 fi
 
 echo "${OK}All done!$NC"
