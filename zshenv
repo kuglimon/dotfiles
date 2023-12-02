@@ -12,7 +12,7 @@ if if_osx; then
 fi
 
 # ensure dotfiles bin directory is loaded first
-export PATH="$HOME/.local/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # load binaries in GOPATH
 export PATH="$HOME/development/golang/bin:$PATH"
