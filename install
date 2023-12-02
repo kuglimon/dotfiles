@@ -46,11 +46,12 @@ mkdirp $HOME/development/work
 mkdirp $HOME/development/work/clients
 mkdirp $HOME/development/work/internal
 
+mkdirp $HOME/.local
 mkdirp $HOME/.config
 
 symlink "$(pwd)/aliases"              $HOME/.aliases
 
-symlink "$(pwd)/bin"                  $HOME/bin
+symlink "$(pwd)/bin"                  $HOME/.local/bin
 
 symlink "$(pwd)/git_template"         $HOME/.git_template
 
