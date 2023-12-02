@@ -1,3 +1,6 @@
+tap "uncertainschrodinger/tap"
+
+brew "rojekti"
 brew "neovim"
 brew "tmux"
 brew "awscli"
