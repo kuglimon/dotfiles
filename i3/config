@@ -176,7 +176,7 @@ bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 exec_always --no-startup-id feh --bg-scale $HOME/Images/wallhaven-9mxz8k.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/bin/start-dunst.sh
+exec_always --no-startup-id $HOME/.local/bin/start-dunst.sh
 exec_always --no-startup-id flameshot
 
 # Startup apps

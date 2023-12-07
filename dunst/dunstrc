@@ -226,7 +226,7 @@
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
-    # parameter, an application may close the notification sent before the 
+    # parameter, an application may close the notification sent before the
     # user defined timeout.
     ignore_dbusclose = false
 
@@ -318,4 +318,4 @@
     summary = "*" # this is the filter criterion applied to the message, see below
     # urgency = critical # those attributes could be used to set details of the message in the script called below
     # format = "" # could be used to alter the popup text, see below
-    script = ~/bin/dunst-urgent-notification.sh # this is the script that is called, see below
+    script = ~/.local/bin/dunst-urgent-notification.sh # this is the script that is called, see below
