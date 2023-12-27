@@ -1,4 +1,6 @@
 tap "uncertainschrodinger/tap"
+tap "homebrew/cask-fonts"
+
 
 brew "rojekti"
 brew "neovim"
@@ -9,4 +11,5 @@ brew "fzf"
 brew "tree"
 brew "bat"
 
+cask "font-fira-mono-nerd-font"
 cask "alacritty"

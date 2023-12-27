@@ -364,6 +364,12 @@
         "options": {
           "full_name": "alacritty"
         }
+      },
+      "font-fira-mono-nerd-font": {
+        "version": "3.1.1",
+        "options": {
+          "full_name": "font-fira-mono-nerd-font"
+        }
       }
     }
   },
