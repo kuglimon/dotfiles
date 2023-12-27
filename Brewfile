@@ -8,3 +8,5 @@ brew "ripgrep"
 brew "fzf"
 brew "tree"
 brew "bat"
+
+cask "alacritty"
