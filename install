@@ -112,6 +112,8 @@ if if_linux ; then
 
   sudo -k cp "$(pwd)/X11/50-mouse-acceleration.conf" "/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
 
+  symlink "$(pwd)/alacritty/linux.yml"  $HOME/.config/alacritty/override.yml
+
   echo "Dotfiles configured"
 
   echo "Installing packages"
@@ -129,6 +131,8 @@ fi
 
 if if_osx; then
   echo "Setting up macOS"
+
+  symlink "$(pwd)/alacritty/osx.yml"  $HOME/.config/alacritty/override.yml
 
   echo "Installing packages from Brewfile"
   brew bundle install

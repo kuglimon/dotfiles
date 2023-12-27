@@ -1,7 +1,8 @@
 import:
   - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
-#  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
-#  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+  - ~/.config/alacritty/override.yml
+# - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+# - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
 # - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
 
 window:
@@ -28,7 +29,5 @@ font:
   normal:
     family: FiraMono Nerd Font Mono
     style: Bold
-
-  size: 11
 
 dynamic_title: true
