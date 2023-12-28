@@ -1,22 +1,17 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
-# Starts a rojekti layout from the pwd based on some custom heuristics.
+# Starts a 'rojekti' layout from PWD based on following heuristics:
 #
-# Project name is selected based on following heuristics:
-# * Uses PWD directory name if not in git repo
-# * Uses git root directory name if in git repo
+# * Use PWD directory name as session name if not in git repo
+# * In git repo use root as session name if in root directory
+# * In git repo try child directories as session name if not in root
 #
 # This is safe to call from inside tmux, it'll switch sessions.
 #
-# If someone else happens to read these I use a private repository for these
-# layouts as they contain client names and such. If you want to use this script
-# then just create some base layout in ~/.config/rojekti/base.yml and work from
-# that. I'd save that to a repository and symlink, so you can share layouts
-# between machines. My base layout just contains stuff I usually need, tiled
-# layout for services (usually databases, webservers and logs), window for
-# editor and one for just messing around.
+# I recommend storing layouts to git and sync them between machines.
 #
-# Up to a point this works with 'tmuxinator', if you just s/rojekti/tmuxinator.
+# TODO(tatu): This does not work in monorepos if started from root but
+#             repository has projects in child directories.
 
 help() {
   echo "tat - rojekti helper utility 6000"
@@ -27,17 +22,29 @@ help() {
   exit 1
 }
 
-# Check if we're in a git project, use git root if we are
-# Otherwise use current directory
+# check if we have a git root
 project_path="$(git rev-parse --show-toplevel 2> /dev/null)"
 
-# Use PWD if not in repo
+# Use PWD if not in a git repository. Inside git repository test each directory
+# for project until we hit root. This is requred for monorepository support
+# where we have a root but might launch sessions from different directories.
 if [ $? -ne 0 ]; then
   project_path="$(print -P %~)"
+elif [[ -n "${PWD#"$project_path"}" ]]; then # already in root if empty
+  project_path=${PWD#"$project_path"}
+  projects=$(rojekti list)
+
+  export IFS="/"
+  for directory in $project_path; do
+    # Not empty and matches project listing
+    if [[ -n $directory && $projects == *"$directory"* ]]; then
+      project_path=${PWD#"$directory"}
+      break
+    fi
+  done
 fi
 
-path_name="$(basename "$project_path" | tr . -)"
-session_name="$path_name"
+session_name="$(basename "$project_path" | tr . -)"
 
 # This works inside tmux session. Easypeasylemonskveesy.
 rojekti start $session_name
