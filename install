@@ -79,7 +79,7 @@ symlink "$(pwd)/zshrc"                $HOME/.zshrc
 echo "Setup done for common configuration\n"
 
 mkdirp $HOME/.config/alacritty
-symlink "$(pwd)/alacritty/alacritty.yml"  $HOME/.config/alacritty/alacritty.yml
+symlink "$(pwd)/alacritty/alacritty.toml"  $HOME/.config/alacritty/alacritty.toml
 
 if [ ! -d ~/.config/alacritty/catppuccin ]; then
   # Colorscheme for alacritty
@@ -112,7 +112,7 @@ if if_linux ; then
 
   sudo -k cp "$(pwd)/X11/50-mouse-acceleration.conf" "/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
 
-  symlink "$(pwd)/alacritty/linux.yml"  $HOME/.config/alacritty/override.yml
+  symlink "$(pwd)/alacritty/linux.toml"  $HOME/.config/alacritty/override.toml
 
   echo "Dotfiles configured"
 
@@ -132,7 +132,7 @@ fi
 if if_osx; then
   echo "Setting up macOS"
 
-  symlink "$(pwd)/alacritty/osx.yml"  $HOME/.config/alacritty/override.yml
+  symlink "$(pwd)/alacritty/osx.toml"  $HOME/.config/alacritty/override.toml
 
   echo "Installing packages from Brewfile"
   brew bundle install

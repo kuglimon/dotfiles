@@ -1,0 +1,24 @@
+import = [
+  "~/.config/alacritty/override.toml",
+  "~/.config/alacritty/catppuccin/catppuccin-mocha.toml"
+]
+
+[font]
+size = 11
+
+[font.normal]
+family = "FiraMono Nerd Font Mono"
+style = "Bold"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+class = "Alacritty"
+title = "Terminal"
+dynamic_title = true
+
+[window.padding]
+x = 8
+y = 8
