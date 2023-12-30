@@ -1,7 +1,6 @@
 tap "uncertainschrodinger/tap"
 tap "homebrew/cask-fonts"
 
-
 brew "rojekti"
 brew "neovim"
 brew "tmux"
