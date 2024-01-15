@@ -7,7 +7,6 @@ btrfs-progs
 discord
 devtools
 docker
-docker-compose
 dunst
 feh
 firefox
