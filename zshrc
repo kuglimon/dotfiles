@@ -88,7 +88,7 @@ bindkey "^[[B" history-beginning-search-forward
 
 # This replaces: rbenv, nodenv, pyenv. Pyenv especially has been a constant
 # fucking source of pain.
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass

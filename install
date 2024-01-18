@@ -124,7 +124,7 @@ if if_linux ; then
 
   # Some of the AUR packages I use:
   # - spotify
-  # - rtx
+  # - mise
 
   echo "Setup done for Linux\n"
 fi
