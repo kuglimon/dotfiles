@@ -96,6 +96,11 @@ fi
 if if_linux ; then
   echo "Setting up Linux"
 
+  # First install missing packages to have all configuration directories created
+  # with correct permissions and don't cache sudo credentials, as that would
+  # likely fuck up more stuff later on.
+  sudo -k pacman -S --needed - < pkglist.txt
+
   symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
 
   mkdirp $HOME/.config/i3
@@ -117,10 +122,6 @@ if if_linux ; then
   echo "Dotfiles configured"
 
   echo "Installing packages"
-
-  # Install missing packages and don't cache sudo credentials, as that would
-  # likely fuck up more stuff later on.
-  sudo -k pacman -S --needed - < pkglist.txt
 
   # Some of the AUR packages I use:
   # - spotify
