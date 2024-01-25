@@ -96,6 +96,8 @@ fi
 if if_linux ; then
   echo "Setting up Linux"
 
+  # TODO: Enable multilib
+
   # First install missing packages to have all configuration directories created
   # with correct permissions and don't cache sudo credentials, as that would
   # likely fuck up more stuff later on.
