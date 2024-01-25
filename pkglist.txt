@@ -29,5 +29,6 @@ rofi
 steam
 tmux
 tree
+xorg-xinit
 zsh
 zsh-completions
