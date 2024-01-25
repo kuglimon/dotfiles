@@ -23,7 +23,6 @@ nemo
 nemo-share
 neovim
 newsboat
-nnn
 polybar
 ripgrep
 rofi
