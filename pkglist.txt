@@ -1,11 +1,11 @@
 alacritty
 autoconf
 automake
-bat
 base-devel
+bat
 btrfs-progs
-discord
 devtools
+discord
 docker
 dunst
 feh
@@ -19,6 +19,8 @@ i3-wm
 jq
 keepassxc
 make
+nemo
+nemo-share
 neovim
 newsboat
 nnn
