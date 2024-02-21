@@ -37,7 +37,10 @@ local on_attach = function(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format()
+        -- this should use biome for formatting instead of vtsls on js/ts sources
+        vim.lsp.buf.format {
+          filter = function(formatter) return formatter.name ~= "vtsls" end
+        }
       end,
     })
   end
@@ -80,6 +83,8 @@ local servers = {
   bashls = {},
   terraformls = {},
   rust_analyzer = {},
+  vtsls = {},
+  biome = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
