@@ -14,6 +14,7 @@ flameshot
 fzf
 gcc
 git
+git-crypt
 gucharmap
 i3-wm
 jq
