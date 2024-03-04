@@ -1,9 +1,9 @@
-# Dotfiles
+<div align="center">
+  <img alt="My desktop" src="docs/assets/desktop.png" />
 
-My dotfiles for Mac and Linux.
-
-This documentation serves as a reminder for me when I decide to come back to
-these in another decade.
+  # dotfiles
+  My dotfiles for Mac and Linux (Arch btw)
+</div>
 
 ## Requirements
 
