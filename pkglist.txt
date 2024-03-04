@@ -18,6 +18,7 @@ git
 git-crypt
 gucharmap
 i3-wm
+imagemagick
 jq
 keepassxc
 make
