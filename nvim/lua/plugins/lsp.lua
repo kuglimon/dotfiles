@@ -31,18 +31,10 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        -- this should use biome for formatting instead of vtsls on js/ts sources
-        vim.lsp.buf.format {
-          filter = function(formatter) return formatter.name ~= "vtsls" end
-        }
-      end,
-    })
+  -- FIXME: config should support per LSP on_attach rather than iffing it here
+  if client.name == "vtsls" then
+    -- disable vtsls linting and let biome handle it
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   -- on mac this is opt-shift-l
