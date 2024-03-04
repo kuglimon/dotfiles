@@ -109,4 +109,5 @@ require("lazy").setup({
       require('plugins.sneak')
     end,
   },
+  { "nvimtools/none-ls.nvim" },
 })

@@ -37,6 +37,17 @@ local on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format {}
+      end,
+    })
+  end
+
   -- on mac this is opt-shift-l
   nmap('ﬂ', vim.lsp.buf.format, 'Format')
 
@@ -149,9 +160,11 @@ cmp.setup {
   },
 }
 
+local null_ls = require("null-ls")
+
 -- Other diagnostics through null-ls
--- require("null-ls").setup({
---     sources = {
---         require("null-ls").builtins.diagnostics.shellcheck
---     },
--- })
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.biome,
+  },
+})
