@@ -22,3 +22,8 @@ if type "nvim" > /dev/null; then
   alias vim='nvim'
   alias vi='nvim'
 fi
+
+# I've gotten so used to typing open on macs
+if if_linux; then
+  alias open='xdg-open'
+fi
