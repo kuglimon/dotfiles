@@ -16,6 +16,7 @@ fzf
 gcc
 git
 git-crypt
+go
 gucharmap
 i3-wm
 imagemagick
