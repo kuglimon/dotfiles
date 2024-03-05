@@ -104,9 +104,13 @@ require("lazy").setup({
     dir = '~/development/personal/git-worktree.nvim'
   },
   {
-    'justinmk/vim-sneak',
+    -- EasyMotion/Sneak alternative. Allows for searching based on two
+    -- characters like in sneak but can search globaly in windows with 'g'
+    -- prefix
+    'ggandor/leap.nvim',
     init = function()
-      require('plugins.sneak')
+      -- require('plugins.leap')
+      require('leap').create_default_mappings()
     end,
   },
   { "nvimtools/none-ls.nvim" },
