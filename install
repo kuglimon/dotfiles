@@ -96,6 +96,33 @@ fi
 if if_linux ; then
   echo "Setting up Linux"
 
+  mkdirp "$HOME/aur/"
+
+  echo "Setting up yay"
+
+  # Setup yay, helper for aur packages. I went a long time without using this
+  # but some packages depend on other aur packages and managing all of those by
+  # hand is madness.
+  if [ ! -d ~/aur/yay ]; then
+    (
+      # Clone and install yay
+      git clone https://aur.archlinux.org/yay.git ~/aur/yay
+      cd ~/aur/yay
+      makepkg -si
+
+      # Create a database for development packages. These are packages that
+      # don't have versions but are rather always built from source. Master
+      # tracking releases for lack of a better term.
+      yay -Y --gendb
+
+      # Always update development packages. Packages like Pob tend to update
+      # often and have to be updated through aur.
+      yay -Y --devel --save
+    )
+  fi
+
+  echo "Yay setup done"
+
   # TODO: Enable multilib
 
   # First install missing packages to have all configuration directories created
