@@ -68,3 +68,11 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- This doesn't work but would be godlike. Search and replace over a selection.
 -- vim.keymap.set("v", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- EXPERIMENTAL
+--
+-- These are keymappings I'm testing, might go away, might forget they exist
+-- after 200ms.
+
+-- C-6 is such a pain in the to type on a regular keyboard
+vim.keymap.set("n", "<leader>a", "<C-6>", { desc = "Alternate between buffers" })
