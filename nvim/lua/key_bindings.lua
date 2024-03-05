@@ -64,6 +64,8 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Find and replace on the current word under the cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 -- Toggling between files is ctrl+6 in Finnish layout
 
 -- This doesn't work but would be godlike. Search and replace over a selection.

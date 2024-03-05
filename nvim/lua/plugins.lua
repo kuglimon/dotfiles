@@ -138,5 +138,11 @@ require("lazy").setup({
         org_default_notes_file = '~/orgfiles/refile.org',
       })
     end,
+  },
+  {
+    'stevearc/oil.nvim',
+    init = function()
+      require("oil").setup()
+    end
   }
 })
