@@ -12,6 +12,7 @@ dunst
 feh
 firefox
 flameshot
+fuse3
 fzf
 gcc
 git
@@ -29,6 +30,7 @@ neovim
 newsboat
 otf-firamono-nerd
 polybar
+rclone
 ripgrep
 rofi
 steam
