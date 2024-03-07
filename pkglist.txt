@@ -15,6 +15,7 @@ flameshot
 fuse3
 fzf
 gcc
+ghostscript
 git
 git-crypt
 go
