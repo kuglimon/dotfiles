@@ -86,6 +86,9 @@ bindkey '^x^p' edit-command-line
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+bindkey "^k" history-beginning-search-backward
+bindkey "^j" history-beginning-search-forward
+
 # This replaces: rbenv, nodenv, pyenv. Pyenv especially has been a constant
 # fucking source of pain.
 eval "$(mise activate zsh)"
