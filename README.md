@@ -61,23 +61,3 @@ configuration on macOS.
 For any configuration where possible at the end they should load a file with
 suffix `.local`. I might have custom configuration, which should not end up in
 `git`. Like client specific env variables in `.zshenv.local`.
-
-## Random ramblings
-
-Collection random notes I need to store somewhere else.
-
-### Backups
-
-`btrfs` because the second a lagging kernel update breaks my work machine ZFS
-flies out of the window. I don't have the time to setup another machine yet.
-
-Some settings I set before I forget:
-
-```bash
-# Mount with compression, update fstab?
-sudo mount -o compress=zlib:10 /dev/nvme0n1p1 /backup
-
-# Due to single drive configuration
-sudo btrfs balance start -dconvert=dup /backup
-btrfs filesystem df /backup
-```
