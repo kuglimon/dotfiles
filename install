@@ -128,7 +128,9 @@ if if_linux ; then
   # First install missing packages to have all configuration directories created
   # with correct permissions and don't cache sudo credentials, as that would
   # likely fuck up more stuff later on.
-  sudo -k pacman -Sy --needed - < pkglist.txt
+  if [ -f "pkglist-$(hostnamectl hostname).txt" ]; then
+    sudo -k pacman -Sy --needed - < "pkglist-$(hostnamectl hostname).txt"
+  fi
 
   symlink "$(pwd)/xinitrc"                  $HOME/.xinitrc
 
