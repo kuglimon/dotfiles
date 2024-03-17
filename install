@@ -157,9 +157,16 @@ if if_linux ; then
 
   echo "Installing packages"
 
-  # Some of the AUR packages I use:
+  # TODO(tatu): Automate later
+  # Installed through AUR:
   # - spotify
   # - mise
+  # - makemkv
+  # - mise
+  # - path-of-building-community-git
+  # - rojekti
+  # - ruby-build
+  # - spotify
 
   echo "Setup done for Linux\n"
 fi
