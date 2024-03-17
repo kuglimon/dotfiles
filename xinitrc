@@ -3,6 +3,12 @@ setxkbmap -layout fi
 # Bind esc to capslock
 setxkbmap -option caps:escape
 
+# HACK(tatu): NAS machine always runs on the other display, just rotate it once.
+# I'm too lazy to figure out a nicer solution than iffing here.
+if [[ "$(hostnamectl hostname)" == "watermedia" ]]; then
+  xrandr -o left
+fi
+
 # Spotify and I seem to have a disagreement whether playing only the first six
 # seconds of a song constitutes to a pleasant playback experience. I don't even
 # know if this really works - it fixed playback once so I guess it's science
