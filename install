@@ -55,6 +55,9 @@ symlink "$(pwd)/bin"                  $HOME/.local/bin
 
 symlink "$(pwd)/git_template"         $HOME/.git_template
 
+mkdirp  "$HOME/.ssh"
+symlink "$(pwd)/ssh/config"           $HOME/.ssh/config
+
 symlink "$(pwd)/gemrc"                $HOME/.gemrc
 
 symlink "$(pwd)/gitconfig"            $HOME/.gitconfig
