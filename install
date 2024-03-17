@@ -95,7 +95,7 @@ else
   )
 fi
 
-# Linux specific setup, only tested on Arch linux
+# Linux specific setup, only works on Arch linux
 if if_linux ; then
   echo "Setting up Linux"
 
