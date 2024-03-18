@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+#
+# When updating zfs-linux tends to end up in a situation where it cannot be
+# updated due to kernel updates, especially if you forget to update the system
+# often. The solution being just to remove `zfs-linux` apply updates with new
+# kernel and reinstall `zfs-linux`.
+#
+# This script is meant to be run after installing `zfs-linux` and re-enable all
+# services. Eases heart attack symptomps when you realise your whole pool is
+# gone after update.
+
+sudo systemctl enable zfs-import-cache.service
+sudo systemctl enable zfs.target
+sudo systemctl enable zfs-import.target
+sudo systemctl enable zfs-mount.service
