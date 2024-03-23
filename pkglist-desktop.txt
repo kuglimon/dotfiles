@@ -1,3 +1,4 @@
+
 alacritty
 autoconf
 automake
@@ -31,6 +32,7 @@ neovim
 newsboat
 otf-firamono-nerd
 polybar
+pulsemixer
 rclone
 ripgrep
 rofi
