@@ -30,6 +30,6 @@ ripgrep
 rofi
 tmux
 tree
-zfs-linux
+zfs-linux-lts
 zsh
 zsh-completions
