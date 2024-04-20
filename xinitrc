@@ -1,8 +1,3 @@
-setxkbmap -layout fi
-
-# Bind esc to capslock
-setxkbmap -option caps:escape
-
 # HACK(tatu): NAS machine always runs on the other display, just rotate it once.
 # I'm too lazy to figure out a nicer solution than iffing here.
 if [[ "$(hostnamectl hostname)" == "watermedia" ]]; then
