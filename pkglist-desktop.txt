@@ -1,4 +1,3 @@
-
 alacritty
 autoconf
 automake
@@ -9,6 +8,7 @@ devtools
 discord
 docker
 docker-buildx
+dosfstools
 dunst
 feh
 firefox
