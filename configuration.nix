@@ -61,7 +61,7 @@
   # services.xserver.enable = true;
 
 
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -92,6 +92,7 @@
       feh
       fuse3
       fzf
+      gcc
       ghostscript
       git
       git-crypt
@@ -100,11 +101,14 @@
       jq
       neovim
       newsboat
+      nodejs_latest
       pulsemixer
+      nodejs
       rclone
       ripgrep
       tmux
       tree
+      unzip
       zsh
       zsh-completions
     ];
