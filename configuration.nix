@@ -10,6 +10,11 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # Configure Arch Linux dualboot with NixOS.
   boot.loader.efi.canTouchEfiVariables = true;
 
