@@ -78,8 +78,30 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     packages = with pkgs; [
-      tree
+      bat
+      btrfs-progs
+      docker
+      docker-buildx
+      dosfstools
+      dunst
+      feh
+      fuse3
+      fzf
+      ghostscript
+      git
+      git-crypt
+      go
+      imagemagick
+      jq
       neovim
+      newsboat
+      pulsemixer
+      rclone
+      ripgrep
+      tmux
+      tree
+      zsh
+      zsh-completions
     ];
   };
 
