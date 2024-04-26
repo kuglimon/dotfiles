@@ -30,3 +30,34 @@ sudo mount -o compress=zlib:10 /dev/nvme0n1p1 /backup
 sudo btrfs balance start -dconvert=dup /backup
 btrfs filesystem df /backup
 ```
+
+## NixOS notes
+
+### Update safety
+
+Updating and making changes feels so good. I know I can always get back to a
+working state. First time ever it feels good to update system packages and
+configuration. Docker, ansible, none of that shit ever solved this. It was more
+of 'I have a snapshot of something that works on specific set of systems'.
+
+### home-manager and dotfiles
+
+Editing dotfiles is ass when using home-manager. Yeah, they are supposed to be
+deterministic. But I keep tinkering with these DAILY. `nixos-rebuild` with just
+a line of change in a lua config is BEYOND FUCKING SLOW. I need to figure out
+how to symlink these, ain't no fucking way I'm waiting 5 seconds for 50 byte
+diff to apply.
+
+Plus this throws away decades of muscle memory. Everyone either symlinks their
+dotfiles OR edits them in-place. Without even looking I'm guessing 99% of the
+worlds documentation relies on this.
+
+But still, determinism is nice, generations make a man fully erect... Maybe
+there's some middle ground to be had.
+
+I have a faint memory that it was possible to temporarily symlink these.
+Following workflow would be acceptable:
+
+* Swap to symlinks
+* Edit away
+* Commit and revert back to determinism
