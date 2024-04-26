@@ -241,7 +241,9 @@ bindsym $mod+i [class="firefox-private"] scratchpad show
 exec --no-startup-id spotify
 for_window [class="Spotify"] move to workspace $ws-media
 
-exec --no-startup-id steam
+# on nvidia without '-system-composer' enabling GPU acceleration will result in
+# black screen on store.
+exec --no-startup-id steam -system-composer
 assign [title="Steam" class="steam"] $ws-gaming
 assign [title="Friends List" class="steam"] $ws-gaming
 
