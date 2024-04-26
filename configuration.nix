@@ -106,6 +106,8 @@
       nodejs
       rclone
       ripgrep
+      cargo
+      rustc
       tmux
       tree
       unzip

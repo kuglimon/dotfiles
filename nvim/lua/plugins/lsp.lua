@@ -85,6 +85,7 @@ end
 local servers = {
   bashls = {},
   terraformls = {},
+  nil_ls = {},
   rust_analyzer = {},
   vtsls = {},
   biome = {},
