@@ -12,8 +12,12 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
+      "discord"
       "nvidia-settings"
+      "nvidia-x11"
+      "spotify"
+      "steam"
+      "steam-original"
     ];
 
   nix.settings.experimental-features = [
@@ -114,15 +118,19 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     packages = with pkgs; [
+      alacritty
       bash
       bat
       btrfs-progs
       cargo
+      discord
       docker
       docker-buildx
       dosfstools
       dunst
       feh
+      firefox
+      flameshot
       fuse3
       fzf
       gcc
@@ -136,10 +144,14 @@
       newsboat
       nodejs
       nodejs_latest
+      polybar
       pulsemixer
       rclone
       ripgrep
+      rofi
       rustc
+      spotify
+      steam
       tmux
       tree
       unzip
