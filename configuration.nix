@@ -10,6 +10,12 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -61,6 +67,9 @@
   services.xserver = {
     enable = true;
     autorun = false;
+
+    # TODO(tatu): Should move this, hardware dependent
+    videoDrivers = ["nvidia"];
 
     windowManager.i3 = {
       enable = true;

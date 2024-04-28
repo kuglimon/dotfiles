@@ -37,4 +37,32 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # I'm not sure why I even need to enable stuff like this.
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+
+    # I don't have free enery to spend on 100w idle GPU. This can cause issues
+    # with sleep/hibernate but who the fuck uses that on linux, plain boot is
+    # plenty fast.
+    powerManagement.enable = true;
+    # TODO(tatu): Doesn't work, complains about off-load
+    # powerManagement.finegrained = true;
+
+    # NVidia open source kernel module is not stable, don't use it, yet.
+    open = false;
+
+    # Enables 'nvidia-settings' command/app.
+    nvidiaSettings = true;
+
+    # Install nvidia production drivers. I don't even know why I use production
+    # drivers, it seems like they're the latest.
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
 }
