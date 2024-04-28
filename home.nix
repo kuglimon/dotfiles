@@ -51,6 +51,22 @@
   home.file.".zshrc".source = ./zshrc;
 
   home.file.".config/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
+  home.file.".config/alacritty/override.toml".source = ./alacritty/linux.toml;
+
+  home.file.".xinitrc".source = ./xinitrc;
+  home.file.".config/i3/config".source = ./i3/config;
+
+  home.file.".config/polybar" = {
+    source = ./polybar;
+    recursive = true;
+  };
+
+  home.file.".config/rofi" = {
+    source = ./rofi;
+    recursive = true;
+  };
+
+  home.file.".config/dunst/dunstrc".source = ./dunst/dunstrc;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

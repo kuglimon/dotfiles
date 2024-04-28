@@ -58,14 +58,36 @@
   # };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    autorun = false;
 
+    windowManager.i3 = {
+      enable = true;
+    };
 
+    displayManager = {
+      # Login to vtty. I don't want a graphical user login, it's just useless
+      # crap. When there's an issue with the system it's almost always due to
+      # the GUI. It's super rare in linux nowadays, but why would I waste my
+      # life on a solution that opens the path to failure when I can have a path
+      # where it cannot ever exist?
+      startx.enable = true;
 
+    };
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+    xkb = {
+      # Enable Finnish layout
+      layout = "fi";
+
+      # Map capslock to escape
+      options = "caps:escape";
+    };
+  };
+
+  services.displayManager = {
+    defaultSession = "none+i3";
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
