@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.username = "kuglimon";
@@ -77,4 +77,33 @@
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
+
+  # Only the profiles are created here while the systemwide configuration
+  # handles the rest. These profiles should match anyways. 'default-release' is
+  # the default profile and 'private' is for sandbox browser for webdev testing.
+  #
+  # Two profiles are needed because firefox sets the X11 windows class name on
+  # profile basis and we create special keybinds for default-release and private
+  # profiles. If I remember correctly one could not pass class for default,
+  # hence 'default-release' was used. I have no memory why I named it release,
+  # probably copy-pasta from some unrelated article.
+  #
+  # For further reference check 'i3/config' and 'configuration.nix'.
+  programs.firefox = {
+    enable = true;
+
+    profiles = {
+      default-release = {
+        id = 0;
+        name = "default-release";
+        isDefault = true;
+      };
+
+      private = {
+        id = 1;
+        name = "private";
+        isDefault = false;
+      };
+    };
+  };
 }

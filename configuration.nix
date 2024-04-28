@@ -133,7 +133,6 @@
       dosfstools
       dunst
       feh
-      firefox
       flameshot
       fuse3
       fzf
@@ -172,6 +171,100 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  # Install extensions for all profiles. This seemed like a way simpler solution
+  # since I have no idea what the hell NUR even is at this point. Randomly
+  # adding in a bunch of user managed repositories sure doesn't sound safe.
+  #
+  # home-manager managed extensions require you to manually enable them after
+  # installation. Systemwide ones will work just fine.
+  programs.firefox = {
+    enable = true;
+
+    policies = {
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      # DNSOverHTTPS = true;
+
+      # Preferences are poorly documented, best bet is to try to google and/or
+      # search them from 'about:config'. You can also try searching the html
+      # elements in the preferences page and then search them from firefox
+      # sources.
+      #
+      # Many of the settings are from:
+      #   https://github.com/arkenfox/user.js/blob/master/user.js
+      #
+      # XXX(tatu): These are prone to break. Just the damn dark mode setting has
+      # seen three different user preferences during three years. These will
+      # also fail silently, I'm not sure if there's a way to check if a
+      # preference exists.
+      # XXX(tatu): These values are just some random ass strings and integers
+      # scattered around firefox codebase. They can change at will and I'm
+      # guessing there's no guarantee that they'll ever stay stable. Good luck.
+      Preferences = {
+        "browser.contentblocking.category" = "strict";
+
+        # This should enable dark-mode everywhere and let websites know dark
+        # pages are preferred.
+        "browser.theme.toolbar-theme" = 0;
+        "browser.theme.content-theme" = 0;
+        "devtools.theme" = "dark";
+
+        # Enables middle click scrolling
+        "general.autoScroll" = true;
+
+        # Restore previously closed tabs on startup
+        "browser.startup.page" = 3;
+
+        # Highlight all matches on searches
+        "findbar.highlightAll" = true;
+
+        # XXX(tatu): Nobel prize winning guess that this might not work on osx.
+        # Always show scroll bars
+        "widget.gtk.overlay-scrollbars.enabled" = true;
+
+        # Don't show a warning when visiting 'about:config'
+        "browser.aboutConfig.showWarning" = true;
+
+        # Don't show any sponsored content
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+        # Clearing default sites, just in-case Mozilla puts some other content
+        # there. This does not block my own additions.
+        "browser.newtabpage.activity-stream.default.sites" = "";
+
+        # Disable addon recommendations (uses google analytics).
+        "extensions.getAddons.showPane" = false;
+
+        # Disable recommended extensions and themes pane
+        "extensions.htmlaboutaddons.recommendations.enabled" = false;
+
+        # Don't send telemetry data
+        "datareporting.healthreport.uploadEnabled" = false;
+
+        # FIXME(tatu): Parsing these settings by hand is ass. Maybe make a nix
+        # pkgs that parses these and exposes all the values? This might even
+        # enable LSP over them.
+      };
+
+      ExtensionSettings = {
+        # Block all other addons except the ones defined here
+        "*".installation_mode = "blocked";
+        # uBlock Origin:
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Vimium:
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
