@@ -105,8 +105,10 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     packages = with pkgs; [
+      bash
       bat
       btrfs-progs
+      cargo
       docker
       docker-buildx
       dosfstools
@@ -123,12 +125,11 @@
       jq
       neovim
       newsboat
+      nodejs
       nodejs_latest
       pulsemixer
-      nodejs
       rclone
       ripgrep
-      cargo
       rustc
       tmux
       tree
