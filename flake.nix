@@ -12,16 +12,18 @@
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ 
+      modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.kuglimon = import ./home.nix;
+          home-manager.users.kuglimon = { ... } :{
+            imports = [./home.nix];
+          };
         }
-      ]; 
+      ];
     };
   };
 }
