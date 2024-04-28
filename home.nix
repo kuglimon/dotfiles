@@ -31,6 +31,12 @@
   home.file.".psqlrc".source = ./psqlrc;
   home.file.".rspec".source = ./rspec;
 
+  home.file.".local/bin" = {
+    source = ./bin;
+    recursive = true;
+    executable = true;
+  };
+
   home.file.".tmux.conf".source = ./tmux.conf;
   home.file.".config/tmux" = {
     source = ./tmux;
