@@ -11,6 +11,4 @@ MONITOR=$(xrandr --query | grep " connected" | cut -d' ' -f1)
 export MONITOR
 
 # Launch Polybar, using default config location ~/.config/polybar/config
-polybar example &
-
-echo "Polybar launched..."
+polybar -r system &
