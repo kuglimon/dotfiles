@@ -62,7 +62,7 @@
   home.file.".xinitrc".source = ./xinitrc;
   home.file.".config/i3/config".source = ./i3/config;
 
-  home.file.".config/polybar/config".source = ./polybar/config;
+  home.file.".config/polybar/config.ini".source = ./polybar/config.ini;
   home.file.".config/polybar/launch.sh" = {
     source = ./polybar/launch.sh;
     executable = true;
