@@ -91,7 +91,8 @@ bindkey "^j" history-beginning-search-forward
 
 # This replaces: rbenv, nodenv, pyenv. Pyenv especially has been a constant
 # fucking source of pain.
-eval "$(mise activate zsh)"
+# FIXME(tatu): probably don't need any of this crap with nixos
+# eval "$(mise activate zsh)"
 
 # Named directories for directories I use all the time.
 # These are SO much better than just having some crappy ass
