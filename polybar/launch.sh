@@ -8,6 +8,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Find connected monitor
 MONITOR=$(xrandr --query | grep " connected" | cut -d' ' -f1)
+export MONITOR
 
 # Launch Polybar, using default config location ~/.config/polybar/config
 polybar example &
