@@ -148,7 +148,7 @@
       newsboat
       nodejs
       nodejs_latest
-      polybar
+      (polybar.override { i3Support = true; })
       pulsemixer
       rclone
       ripgrep
