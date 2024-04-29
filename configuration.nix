@@ -136,6 +136,7 @@
       flameshot
       fuse3
       fzf
+      gamescope
       gcc
       ghostscript
       git
@@ -144,6 +145,7 @@
       imagemagick
       jq
       killall
+      mangohud
       neovim
       newsboat
       nodejs
