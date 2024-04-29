@@ -143,6 +143,7 @@
       go
       imagemagick
       jq
+      killall
       neovim
       newsboat
       nodejs
