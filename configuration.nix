@@ -73,6 +73,16 @@
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";
 
+  # TODO(tatu): Why does NixOS recommend enabling this?
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
