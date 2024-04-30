@@ -8,7 +8,7 @@
 ## Requirements
 
 * zsh
-* mac or arch linux
+* mac or arch linux or NixOS
 
 ## Architecture
 
@@ -61,3 +61,8 @@ configuration on macOS.
 For any configuration where possible at the end they should load a file with
 suffix `.local`. I might have custom configuration, which should not end up in
 `git`. Like client specific env variables in `.zshenv.local`.
+
+#### NixOS
+
+In parallel I'm testing and dual booting NixOS. Dotfiles might be broken on
+arch.
