@@ -159,6 +159,7 @@
     createHome = true;
     packages = with pkgs; [
       alacritty
+      alacritty-theme
       bash
       bat
       btrfs-progs

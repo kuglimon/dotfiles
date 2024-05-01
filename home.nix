@@ -58,6 +58,7 @@
 
   home.file.".config/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
   home.file.".config/alacritty/override.toml".source = ./alacritty/linux.toml;
+  home.file.".config/alacritty/catppuccin/catppuccin-mocha.toml".source = "${pkgs.alacritty-theme}/catppuccin_mocha.toml";
 
   home.file.".xinitrc".source = ./xinitrc;
   home.file.".config/i3/config".source = ./i3/config;
