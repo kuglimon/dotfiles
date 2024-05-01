@@ -128,6 +128,10 @@
       # Map capslock to escape
       options = "caps:escape";
     };
+
+    excludePackages = with pkgs; [
+      xterm
+    ];
   };
 
   services.displayManager = {
