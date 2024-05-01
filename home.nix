@@ -73,6 +73,11 @@
     recursive = true;
   };
 
+  home.file."Images" = {
+    source = ./wallpapers;
+    recursive = true;
+  };
+
   home.file.".config/dunst/dunstrc".source = ./dunst/dunstrc;
 
   home.stateVersion = "23.11";
