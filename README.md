@@ -66,3 +66,7 @@ suffix `.local`. I might have custom configuration, which should not end up in
 
 In parallel I'm testing and dual booting NixOS. Dotfiles might be broken on
 arch.
+
+### License
+
+Wallpapers are not made by me. I have already forgotten where I got them from.
