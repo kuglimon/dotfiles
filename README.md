@@ -2,13 +2,23 @@
   <img alt="My desktop" src="docs/assets/desktop.png" />
 
   # dotfiles
-  My dotfiles for Mac and Linux (Arch btw)
+  My dotfiles for Mac and Linux (NixOS btw)
 </div>
 
 ## Requirements
 
 * zsh
-* mac or arch linux or NixOS
+* mac or NixOS
+
+## Current state
+
+I'm testing NixOS, thus this repository is in a bit of a mess now. The dotfiles
+should just work and maybe even the install script.
+
+The NixOS configuration is something you probably should not copy. No thought
+has been put on the configs nor the structure, I just wanted to get something
+working first. They do create a running system, given you change the bootloader
+and hardware config.
 
 ## Architecture
 
