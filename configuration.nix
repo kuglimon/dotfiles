@@ -28,6 +28,17 @@
     "flakes"
   ];
 
+  # These are based on Arch Linux defaults:
+  #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches"   = 524288;
+    "fs.inotify.max_user_instances" = 1024;
+
+    # Games are known to exhaust this:
+    #   https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/5GU7ZUFI25T2IRXIQ62YYERQKIPE3U6E/
+    "vm.max_map_count"  = 1048576;
+  };
+
   # Configure Arch Linux dualboot with NixOS.
   boot.loader.efi.canTouchEfiVariables = true;
 
