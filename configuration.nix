@@ -184,6 +184,7 @@
       go
       imagemagick
       jq
+      keepassxc
       killall
       mangohud
       neovim
