@@ -112,4 +112,13 @@
       };
     };
   };
+
+  xsession = {
+    enable = true;
+    pointerCursor = {
+      # size = 40;
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+    };
+  };
 }
