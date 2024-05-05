@@ -37,10 +37,33 @@
         "type": "github"
       }
     },
+    "rojekti": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "rojekti",
+        "lastModified": 1714904193,
+        "narHash": "sha256-x/kBHAMGQNCyW7cbmdU7uwkYXx+8EwCZoI1Sb9FJSek=",
+        "owner": "UncertainSchrodinger",
+        "repo": "molokki",
+        "rev": "57e7975431bfe90edf09653f580ba9c6e6f07cf9",
+        "type": "github"
+      },
+      "original": {
+        "dir": "rojekti",
+        "owner": "UncertainSchrodinger",
+        "repo": "molokki",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rojekti": "rojekti"
       }
     }
   },
