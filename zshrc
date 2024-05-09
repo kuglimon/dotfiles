@@ -28,8 +28,19 @@ git_prompt_info() {
 
 setopt prompt_subst
 
+# Add a visible que on what context my shell environment is currently. These
+# values are:
+#
+# ➜ - normal shell
+# 󱄅 - nix develop / nix-shell
+PROMPT_ENV='➜'
+
+if [[ ! -z ${IN_NIX_SHELL+x} ]]; then
+  PROMPT_ENV='󱄅'
+fi
+
 # prints an arrow ➜, red if the last command failed green if ok
-PROMPT='%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
+PROMPT='%(?:%{$fg_bold[green]%}$PROMPT_ENV :%{$fg_bold[red]%}$PROMPT_ENV )'
 
 # current dir from $HOME
 PROMPT+='%{$fg_bold[cyan]%}%1d%{$reset_color%}'
