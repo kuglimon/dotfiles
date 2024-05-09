@@ -13,6 +13,7 @@
 [commit]
   template = ~/.gitmessage
   verbose = true
+  gpgsign = true
 [fetch]
   prune = true
 [rebase]
