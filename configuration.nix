@@ -216,6 +216,7 @@
       tmux
       tree
       unzip
+      xclip
       zsh
       zsh-completions
 
