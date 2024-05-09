@@ -18,7 +18,7 @@
 [rebase]
   autosquash = true
 [user]
-  signingkey = F15F62CBA236362C
+  signingkey = D843D30B42CA0E2D
   email = tatu.argillander@kouralabs.com
   name = Tatu Argillander
 [submodule]
