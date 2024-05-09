@@ -20,8 +20,10 @@
   autosquash = true
 [user]
   signingkey = D843D30B42CA0E2D
-  email = tatu.argillander@kouralabs.com
+  email = taatelio@gmail.com
   name = Tatu Argillander
+[includeIf "gitdir:~/development/work/"]
+    path = ~/.gitconfig-work
 [submodule]
   recurse = true
 [diff]

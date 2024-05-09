@@ -25,6 +25,7 @@
 
   home.file.".git_template".source = ./git_template;
   home.file.".gitconfig".source = ./gitconfig;
+  home.file.".gitconfig-work".source = ./gitconfig-work;
   home.file.".gitignore".source = ./gitignore;
   home.file.".gitmessage".source = ./gitmessage;
 
