@@ -174,7 +174,10 @@
     packages = with pkgs; [
       alacritty
       alacritty-theme
-      bash
+
+      # the 'bash' package is a minimal bash installation meant for scripts and
+      # automation. We want the full package for interactive use.
+      bashInteractive
       bat
       btrfs-progs
       cargo
