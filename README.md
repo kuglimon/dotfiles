@@ -7,37 +7,27 @@
 
 ## Requirements
 
-* zsh
+* Nix
 * mac or NixOS
 
 ## Current state
 
-I'm testing NixOS, thus this repository is in a bit of a mess now. The dotfiles
-should just work and maybe even the install script.
+I'm still in process of testing Nix. Everything is in constant flux.
 
-The NixOS configuration is something you probably should not copy. No thought
-has been put on the configs nor the structure, I just wanted to get something
-working first. They do create a running system, given you change the bootloader
-and hardware config.
+I've tried to split everything into commits with decent messages. It's probably
+best if you shift through the commits to learn more.
 
-## Architecture
+Don't blindly copy this repository and try to install. I will force push from
+time to time and break stuff often.
 
-After trying bunch of different options for provisioning dotfiles I returned
-back to just plain old shell scripting.
-
-Trying to remember how `rcrc` worked and having it installed was not worth it.
-You rarely have to install these from scratch and when you do, you won't
-remember what the hell you did 4 years ago. Same goes for crap like Ansible,
-you'll just fight outdated libraries and try to get system Python to work. All
-this to make a couple of symlinks. You'll rarely come back and update libraries
-for a project like this.
+## Guidelines
 
 Some rules for configuration:
 
 1. Be explicit! If that means copying the same `pwd` command a thousand times
    then so be it.
 
-2. Simple problems should have simple solutions! We're symlinking 20 files not
+2. Simple problems should have simple solutions! We're provisioning machines not
    trying to fly to fucking Mars...
 
 4. Remember that when you need to install these it's usually not because
@@ -50,32 +40,10 @@ Some rules for configuration:
 
    But sadly that is fiction.
 
-### Configuration
+## What did you use before Nix
 
-Configuration should follow the following guidelines.
-
-#### Naming
-
-All files should be named without a leading dot. Files are visible by just
-running `ls`.
-
-#### Platforms
-
-Helper functions exist for asserting current platform: `if_linux` and `if_osx`
-
-Use these to differentiate functionality. There's no need to install i3
-configuration on macOS.
-
-#### Local configuration - `.config.local`
-
-For any configuration where possible at the end they should load a file with
-suffix `.local`. I might have custom configuration, which should not end up in
-`git`. Like client specific env variables in `.zshenv.local`.
-
-#### NixOS
-
-In parallel I'm testing and dual booting NixOS. Dotfiles might be broken on
-arch.
+Just plain ass bash script for symlinking dotfiles. Check commit
+`4f63efd8bc8dbec8913ed7e9fcbe6e89c81f6d10` for the last working version.
 
 ### License
 
