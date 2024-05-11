@@ -143,9 +143,9 @@
       options = "caps:escape";
     };
 
-    # I'm still tron if I should just use the nix options or my old
+    # I'm still unsure if I should just use the nix options or my old
     # configuration files.
-    extraConfig = builtins.readFile ./X11/50-mouse-acceleration.conf;
+    extraConfig = builtins.readFile ../../dotfiles/X11/50-mouse-acceleration.conf;
 
     excludePackages = with pkgs; [
       xterm

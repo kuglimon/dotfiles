@@ -21,14 +21,14 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./machines/kuglimon-desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
           home-manager.users.kuglimon = { ... } :{
-            imports = [./home.nix];
+            imports = [./machines/kuglimon-desktop/home.nix];
           };
         }
       ];

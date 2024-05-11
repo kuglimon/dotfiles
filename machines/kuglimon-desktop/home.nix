@@ -17,70 +17,70 @@
   # * You cannot help your coworkers
   # * Likely you'll never really learn from mistakes
   # * Googling for configuration is multiple layers
-  home.file.".aliases".source = ./aliases;
+  home.file.".aliases".source = ../../dotfiles/aliases;
 
-  home.file.".ssh/config".source = ./ssh/config;
+  home.file.".ssh/config".source = ../../dotfiles/ssh/config;
 
-  home.file.".gemrc".source = ./gemrc;
+  home.file.".gemrc".source = ../../dotfiles/gemrc;
 
-  home.file.".git_template".source = ./git_template;
-  home.file.".gitconfig".source = ./gitconfig;
-  home.file.".gitconfig-work".source = ./gitconfig-work;
-  home.file.".gitignore".source = ./gitignore;
-  home.file.".gitmessage".source = ./gitmessage;
+  home.file.".git_template".source = ../../dotfiles/git_template;
+  home.file.".gitconfig".source = ../../dotfiles/gitconfig;
+  home.file.".gitconfig-work".source = ../../dotfiles/gitconfig-work;
+  home.file.".gitignore".source = ../../dotfiles/gitignore;
+  home.file.".gitmessage".source = ../../dotfiles/gitmessage;
 
-  home.file.".psqlrc".source = ./psqlrc;
-  home.file.".rspec".source = ./rspec;
+  home.file.".psqlrc".source = ../../dotfiles/psqlrc;
+  home.file.".rspec".source = ../../dotfiles/rspec;
 
   home.file.".local/bin" = {
-    source = ./bin;
+    source = ../../dotfiles/bin;
     recursive = true;
     executable = true;
   };
 
-  home.file.".tmux.conf".source = ./tmux.conf;
+  home.file.".tmux.conf".source = ../../dotfiles/tmux.conf;
   home.file.".config/tmux" = {
-    source = ./tmux;
+    source = ../../dotfiles/tmux;
     recursive = true;
   };
 
-  home.file.".config/nvim/init.lua".source = ./nvim/init.lua;
+  home.file.".config/nvim/init.lua".source = ../../dotfiles/nvim/init.lua;
   home.file.".config/nvim/lua" = {
-    source = ./nvim/lua;
+    source = ../../dotfiles/nvim/lua;
     recursive = true;
   };
 
   home.file.".zsh/functions" = {
-    source = ./zsh/functions;
+    source = ../../dotfiles/zsh/functions;
     recursive = true;
   };
-  home.file.".zshenv".source = ./zshenv;
-  home.file.".zshrc".source = ./zshrc;
+  home.file.".zshenv".source = ../../dotfiles/zshenv;
+  home.file.".zshrc".source = ../../dotfiles/zshrc;
 
-  home.file.".config/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
-  home.file.".config/alacritty/override.toml".source = ./alacritty/linux.toml;
+  home.file.".config/alacritty/alacritty.toml".source = ../../dotfiles/alacritty/alacritty.toml;
+  home.file.".config/alacritty/override.toml".source = ../../dotfiles/alacritty/linux.toml;
   home.file.".config/alacritty/catppuccin/catppuccin-mocha.toml".source = "${pkgs.alacritty-theme}/catppuccin_mocha.toml";
 
-  home.file.".xinitrc".source = ./xinitrc;
-  home.file.".config/i3/config".source = ./i3/config;
+  home.file.".xinitrc".source = ../../dotfiles/xinitrc;
+  home.file.".config/i3/config".source = ../../dotfiles/i3/config;
 
-  home.file.".config/polybar/config.ini".source = ./polybar/config.ini;
+  home.file.".config/polybar/config.ini".source = ../../dotfiles/polybar/config.ini;
   home.file.".config/polybar/launch.sh" = {
-    source = ./polybar/launch.sh;
+    source = ../../dotfiles/polybar/launch.sh;
     executable = true;
   };
 
   home.file.".config/rofi" = {
-    source = ./rofi;
+    source = ../../dotfiles/rofi;
     recursive = true;
   };
 
   home.file."Images" = {
-    source = ./wallpapers;
+    source = ../../dotfiles/wallpapers;
     recursive = true;
   };
 
-  home.file.".config/dunst/dunstrc".source = ./dunst/dunstrc;
+  home.file.".config/dunst/dunstrc".source = ../../dotfiles/dunst/dunstrc;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
