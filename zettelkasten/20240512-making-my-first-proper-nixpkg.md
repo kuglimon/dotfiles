@@ -219,3 +219,24 @@ TODO(tatu): complete writing the guide:
 * I cut corners to just fetch the zip files and use those
 * Stripping cosmopolitan binaries breaks them
   * I tried this and at least `strip --strip-all` breaks cosmo binaries
+
+Current cosmopolitan I got to this point:
+
+```nix
+# FIXME(tatu): This whole package is fucked, it doesn't even build cosmocc,
+# it's just a regular gcc.
+# llamafileOverlays = self: super: {
+#   cosmopolitan = super.cosmopolitan.overrideAttrs {
+#     version = "3.3.6";
+#
+#     buildPhase = ''
+#       make toolchain
+#     '';
+#
+#     installPhase = ''
+#       ls -lah
+#       exit 1
+#     '';
+#   };
+# };
+```

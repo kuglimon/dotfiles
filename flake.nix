@@ -20,10 +20,19 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-darwin, ... }: {
+
+    packages."x86_64-linux" = let
+      legacyPackages = nixpkgs.legacyPackages."x86_64-linux";
+    in
+    rec {
+      cosmocc = legacyPackages.callPackage ./pkgs/cosmocc.nix { };
+      llamafile = legacyPackages.callPackage ./pkgs/llamafile.nix { cosmocc = cosmocc; };
+    };
+
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit self; inherit inputs; };
       modules = [
         ./machines/kuglimon-desktop/configuration.nix
         home-manager.nixosModules.home-manager
