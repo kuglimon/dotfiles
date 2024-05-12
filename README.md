@@ -9,6 +9,7 @@
 
 * Nix
 * mac or NixOS
+    *  only Nvidia and AMD hardware supported on NixOS
 
 ## Current state
 
@@ -22,7 +23,7 @@ time to time and break stuff often.
 
 ## Guidelines
 
-Some rules for configuration:
+Some guidelines for configuration:
 
 1. Be explicit! If that means copying the same `pwd` command a thousand times
    then so be it.
@@ -42,8 +43,13 @@ Some rules for configuration:
 
 ## What did you use before Nix
 
-Just plain ass bash script for symlinking dotfiles. Check commit
-`4f63efd8bc8dbec8913ed7e9fcbe6e89c81f6d10` for the last working version.
+I experimented with rcrc, which I dropped the second I got a new machine and had
+forgotten how it worked. Before that or after, almost years ago, I used
+[laptop](https://github.com/thoughtbot/laptop).
+
+Eventually I migrated to plain ass bash script for symlinking dotfiles. Check
+commit `4f63efd8bc8dbec8913ed7e9fcbe6e89c81f6d10` for the last working version
+of that.
 
 ### License
 
