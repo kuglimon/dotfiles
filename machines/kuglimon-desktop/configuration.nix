@@ -21,6 +21,8 @@
       "spotify"
       "steam"
       "steam-original"
+      "cuda_nvcc"
+      "cuda_cudart"
     ];
 
   nix.settings.experimental-features = [
@@ -226,6 +228,9 @@
       xclip
       zsh
       zsh-completions
+
+      cudaPackages.cuda_nvcc
+      cudaPackages.cuda_cudart
 
       # Not sure if there's a cleaner way to reference packages from custom
       # repositories.
