@@ -5,3 +5,6 @@ bin/helm
 bin/saws*
 
 vim/bundle/
+
+# Ignore nix-build links
+pkgs/**/result
