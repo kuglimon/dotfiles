@@ -141,5 +141,6 @@ require("lazy").setup({
     init = function()
       require("oil").setup()
     end
-  }
+  },
+  { "tpope/vim-fugitive" },
 })
