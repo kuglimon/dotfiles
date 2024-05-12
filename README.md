@@ -43,9 +43,10 @@ Some guidelines for configuration:
 
 ## What did you use before Nix
 
-I experimented with rcrc, which I dropped the second I got a new machine and had
-forgotten how it worked. Before that or after, almost years ago, I used
-[laptop](https://github.com/thoughtbot/laptop).
+Over 10 years ago, I used
+[laptop](https://github.com/UncertainSchrodinger/laptop). During or after which,
+I experimented with rcrc. I dropped it after I got a new machine and had
+forgotten how it worked.
 
 Eventually I migrated to plain ass bash script for symlinking dotfiles. Check
 commit `4f63efd8bc8dbec8913ed7e9fcbe6e89c81f6d10` for the last working version
@@ -53,4 +54,4 @@ of that.
 
 ### License
 
-Wallpapers are not made by me. I have already forgotten where I got them from.
+Wallpapers are not made by me. I have already forgotten where I got them.
