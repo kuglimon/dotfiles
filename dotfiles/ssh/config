@@ -20,7 +20,13 @@ Host github.com
   User git
   Hostname github.com
   PreferredAuthentications publickey
-  IdentityFile ~/.ssh/github_rsa
+  IdentityFile ~/.ssh/github_ed25519
+
+Host hf.co
+  User git
+  Hostname hf.co
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/hf_ed25519
 
 Host jelly.home
   User jelly
