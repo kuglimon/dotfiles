@@ -10,8 +10,8 @@
 
   nix.gc = {
     automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 14d";
+    interval.Day = 1;
+    options = "--delete-older-than 1d";
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
