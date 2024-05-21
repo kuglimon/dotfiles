@@ -171,6 +171,7 @@
       tree
       unzip
       xclip
+      zfs
       zsh
       zsh-completions
 

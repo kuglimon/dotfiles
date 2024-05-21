@@ -36,6 +36,14 @@
 
   swapDevices = [];
 
+  # XXX(tatu): this confusing as hell, this installs the kernel module.
+  # Shouldn't I just list this above where kernel modules are defined?
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
+  # ZFS needs this. Generated with 'head -c4 /dev/urandom | od -A none -t x4'.
+  networking.hostId = "cf37e8cd";
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
