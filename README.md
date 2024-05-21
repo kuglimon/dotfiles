@@ -5,11 +5,11 @@
   My dotfiles for Mac and Linux (NixOS btw)
 </div>
 
-## Requirements
+## Supported hardware
 
-* Nix
-* mac or NixOS
-    *  only Nvidia and AMD hardware supported on NixOS
+* Intel or Nvidia GPU
+* Intel or AMD CPU
+* mac x86-64
 
 ## Current state
 
@@ -45,8 +45,8 @@ Some guidelines for configuration:
 
 Over 10 years ago, I used
 [laptop](https://github.com/UncertainSchrodinger/laptop). During or after which,
-I experimented with rcrc. I dropped it after I got a new machine and had
-forgotten how it worked.
+I experimented with [rcm](https://github.com/thoughtbot/rcm). I dropped it after
+I got a new machine and had forgotten how it worked.
 
 Eventually I migrated to plain ass bash script for symlinking dotfiles. Check
 commit `4f63efd8bc8dbec8913ed7e9fcbe6e89c81f6d10` for the last working version
