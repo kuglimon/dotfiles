@@ -47,6 +47,23 @@
       ];
     };
 
+    nixosConfigurations.watermedia = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit self; inherit inputs; };
+      modules = [
+        ./machines/watermedia-elitedesk/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.kuglimon = { ... } :{
+            imports = [./machines/watermedia-elitedesk/home.nix];
+          };
+        }
+      ];
+    };
+
     darwinConfigurations.lorien = nix-darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
