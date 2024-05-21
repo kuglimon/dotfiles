@@ -38,8 +38,8 @@
   # Configure Arch Linux dualboot with NixOS.
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   console.keyMap = "fi";
 
