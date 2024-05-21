@@ -3,6 +3,10 @@
 First tip is to read other peoples nix configs and nix code. It's far easier
 than any of the documentation available in my opinion.
 
+[Matthew Croughan - What Nix Can Do (Docker Can't) - SCaLE
+20x](https://www.youtube.com/watch?v=6Le0IbPRzOE). This is where my Nix journey
+started. I watched this video and migrated my main desktop the next day.
+
 [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/introduction/).
 Great for learning about Nix language and Flakes. Contains other topics as well.
 
