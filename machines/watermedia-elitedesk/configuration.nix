@@ -10,9 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  # Switch to latest from the default LTS kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
