@@ -52,24 +52,8 @@
   # Configure Arch Linux dualboot with NixOS.
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.extraEntries = ''
-    menuentry 'Arch Linux' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-58c19a90-bbdc-4f28-9224-0521322e7739' {
-      # load_video
-      set gfxpayload=keep
-      insmod gzio
-      insmod part_gpt
-      insmod fat
-      search --no-floppy --fs-uuid --set=root A836-5A29
-      echo	'Loading Linux linux ...'
-      linux	/vmlinuz-linux root=UUID=58c19a90-bbdc-4f28-9224-0521322e7739 rw rootflags=subvol=@arch  loglevel=3 quiet
-      echo	'Loading initial ramdisk ...'
-      initrd	/initramfs-linux.img
-    }
-  '';
-
-  console.keyMap = "fi";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "desktop"; # Define your hostname.
   networking.nameservers = [
