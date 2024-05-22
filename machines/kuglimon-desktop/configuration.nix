@@ -47,6 +47,8 @@
     "vm.max_map_count"  = 1048576;
   };
 
+  boot.loader.timeout = 0;
+
   # Configure Arch Linux dualboot with NixOS.
   boot.loader.efi.canTouchEfiVariables = true;
 
