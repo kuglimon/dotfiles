@@ -8,3 +8,6 @@ vim/bundle/
 
 # Ignore nix-build links
 pkgs/**/result
+
+# ISO builds end up here
+result
