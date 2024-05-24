@@ -21,6 +21,26 @@ best if you shift through the commits to learn more.
 Don't blindly copy this repository and try to install. I will force push from
 time to time and break stuff often.
 
+## Usage
+
+Update NixOS system:
+
+```bash
+sudo nixos-rebuild switch --flake .
+```
+
+Update macOS system:
+
+```bash
+darwin-rebuild switch --flake .
+```
+
+Build bootable ISO at `./result`:
+
+```bash
+nix build .#nixosConfigurations.sheridan.config.system.build.isoImage
+```
+
 ## Guidelines
 
 Some guidelines for configuration:
