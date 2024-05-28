@@ -21,8 +21,29 @@
       "spotify"
       "steam"
       "steam-original"
+
       "cuda_nvcc"
       "cuda_cudart"
+      "cuda-merged"
+      "cuda_cuobjdump"
+      "cuda_gdb"
+      "cuda_nvdisasm"
+      "cuda_nvprune"
+      "cuda_cccl"
+      "cuda_cupti"
+      "cuda_cuxxfilt"
+      "cuda_nvml_dev"
+      "cuda_nvrtc"
+      "cuda_nvtx"
+      "cuda_profiler_api"
+      "cuda_sanitizer_api"
+      "libcublas"
+      "libcufft"
+      "libcurand"
+      "libcusolver"
+      "libnvjitlink"
+      "libcusparse"
+      "libnpp"
     ];
 
   nix.settings.experimental-features = [
@@ -217,6 +238,7 @@
 
       cudaPackages.cuda_nvcc
       cudaPackages.cuda_cudart
+      cudaPackages.cudatoolkit
 
       # Not sure if there's a cleaner way to reference packages from custom
       # repositories.
