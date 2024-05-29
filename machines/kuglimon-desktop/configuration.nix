@@ -44,6 +44,9 @@
       "libnvjitlink"
       "libcusparse"
       "libnpp"
+
+      # For samsung printers
+      "samsung-UnifiedLinuxDriver"
     ];
 
   nix.settings.experimental-features = [
@@ -359,6 +362,29 @@
   };
 
   programs.git.lfs.enable = true;
+
+  # Make mah printer work
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.samsung-unified-linux-driver_4_01_17 ];
+  };
+
+  # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
+  # now.
+  # hardware.printers = {
+  #   ensurePrinters = [
+  #     {
+  #       name = "Samsung_M2070_Series";
+  #       location = "Home";
+  #       deviceUri = "usb://Samsung/M2070%20Series?serial=ZF5RB8KH3B010TN&interface=1";
+  #       model = "drv:///sample.drv/generic.ppd";
+  #       ppdOptions = {
+  #         PageSize = "A4";
+  #       };
+  #     }
+  #   ];
+  #   ensureDefaultPrinter = "Samsung_M2070_Series";
+  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
