@@ -114,12 +114,13 @@
     };
   };
 
-  xsession = {
-    enable = true;
-    pointerCursor = {
-      # size = 40;
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
-    };
+  home.pointerCursor = {
+    # size = 40;
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors";
+
+    x11.enable = true;
   };
+
+  xsession.enable = true;
 }
