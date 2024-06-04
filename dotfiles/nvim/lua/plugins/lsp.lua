@@ -101,7 +101,10 @@ local servers = {
 require('neodev').setup()
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+require('mason').setup({
+  -- prefer system path as mason installed tools won't work well in nixos
+  PATH = "append"
+})
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require('mason-lspconfig')

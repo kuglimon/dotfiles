@@ -199,6 +199,7 @@
       rclone
       ripgrep
       rofi
+      rust-analyzer
       rustc
       spotify
       steam
