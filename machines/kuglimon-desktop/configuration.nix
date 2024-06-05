@@ -201,6 +201,7 @@
       rofi
       rust-analyzer
       rustc
+      rustfmt
       spotify
       steam
       tmux
