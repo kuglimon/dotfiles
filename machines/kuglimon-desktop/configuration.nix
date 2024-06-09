@@ -12,12 +12,16 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "discord"
-      "nvidia-settings"
-      "nvidia-x11"
       "spotify"
       "steam"
       "steam-original"
 
+      # nvidia drivers
+      "libXNVCtrl"
+      "nvidia-settings"
+      "nvidia-x11"
+
+      # cuda crap
       "cuda_nvcc"
       "cuda_cudart"
       "cuda-merged"
