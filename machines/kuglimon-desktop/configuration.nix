@@ -161,7 +161,11 @@
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"     # Enable ‘sudo’ for the user.
+      "libvirtd"  # Enables virt-manager to connect to kvm?
+    ];
+
     createHome = true;
     packages = with pkgs; [
       alacritty
@@ -200,6 +204,7 @@
       nodejs_latest
       (polybar.override { i3Support = true; })
       pulsemixer
+      qemu
       rclone
       ripgrep
       rofi
@@ -342,6 +347,9 @@
     enable = true;
     drivers = [ pkgs.samsung-unified-linux-driver_4_01_17 ];
   };
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
   # now.
