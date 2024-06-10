@@ -349,6 +349,7 @@
   };
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
   programs.virt-manager.enable = true;
 
   # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
