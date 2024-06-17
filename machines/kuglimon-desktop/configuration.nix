@@ -15,6 +15,7 @@
       "spotify"
       "steam"
       "steam-original"
+      "steam-run"
 
       # nvidia drivers
       "libXNVCtrl"
@@ -211,7 +212,6 @@
       rustc
       rustfmt
       spotify
-      steam
       tmux
       tree
       unzip
@@ -236,6 +236,11 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
 
   # Install extensions for all profiles. This seemed like a way simpler solution
   # since I have no idea what the hell NUR even is at this point. Randomly
