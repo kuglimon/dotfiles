@@ -198,7 +198,6 @@
       keepassxc
       killall
       mangohud
-      neovim
       newsboat
       nodejs
       nodejs_latest
