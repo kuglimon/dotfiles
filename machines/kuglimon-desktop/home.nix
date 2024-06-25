@@ -82,6 +82,13 @@
 
   home.file.".config/dunst/dunstrc".source = ../../dotfiles/dunst/dunstrc;
 
+  # Mangohud frame limiting goes crazy on the new Fallout 4 update, limiting fps
+  # to 60 causes the game to run at like 15fps. This config fixes that.
+  #
+  # To use this add the following for Fallout 4 launch options:
+  #   MANGOHUD_CONFIG=fps_limit=60 DXVK_CONFIG_FILE=/home/kuglimon/.config/game_hacks/fallout4.conf mangohud %command%
+  home.file.".config/game_hacks/fallout4.conf".source = ../../dotfiles/game_hacks/fallout4.conf;
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
