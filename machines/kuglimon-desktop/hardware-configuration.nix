@@ -61,7 +61,7 @@
   hardware.nvidia = {
     modesetting.enable = true;
 
-    # I don't have free enery to spend on 100w idle GPU. This can cause issues
+    # I don't have free energy to spend on 100w idle GPU. This can cause issues
     # with sleep/hibernate but who the fuck uses that on linux, plain boot is
     # plenty fast.
     powerManagement.enable = true;
