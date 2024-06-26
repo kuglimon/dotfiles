@@ -51,11 +51,11 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # I'm not sure why I even need to enable stuff like this.
-  hardware.opengl = {
+  # Enables hardware rendering. This used to be called 'hardware.opengl' which
+  # was SUPER confusing.
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   hardware.nvidia = {
