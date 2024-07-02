@@ -35,12 +35,6 @@ Update macOS system:
 darwin-rebuild switch --flake .
 ```
 
-Build bootable ISO at `./result`:
-
-```bash
-nix build .#nixosConfigurations.sheridan.config.system.build.isoImage
-```
-
 ## Guidelines
 
 Some guidelines for configuration:

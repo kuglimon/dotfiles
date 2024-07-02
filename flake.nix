@@ -47,23 +47,6 @@
       ];
     };
 
-    nixosConfigurations.sheridan = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit self; inherit inputs; };
-      modules = [
-        ./machines/sheridan-virtualbox/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.users.kuglimon = { ... } :{
-            imports = [./machines/sheridan-virtualbox/home.nix];
-          };
-        }
-      ];
-    };
-
     nixosConfigurations.watermedia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit self; inherit inputs; };
