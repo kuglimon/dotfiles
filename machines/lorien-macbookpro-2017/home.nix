@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 
 {
   home.stateVersion = "23.11";
@@ -72,4 +72,23 @@
 
   # FIXME(tatu): Do I really have to create this shit manually on osx?
   home.file.".gnupg/.keep".source = builtins.toFile "keep" "";
+
+  programs.firefox = {
+    enable = true;
+    package = self.packages.${pkgs.system}.firefox-darwin;
+
+    profiles = {
+      default-release = {
+        id = 0;
+        name = "default-release";
+        isDefault = true;
+      };
+
+      private = {
+        id = 1;
+        name = "private";
+        isDefault = false;
+      };
+    };
+  };
 }

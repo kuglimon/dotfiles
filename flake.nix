@@ -34,6 +34,13 @@
       llamafile = legacyPackages.callPackage ./pkgs/llamafile.nix { cosmocc = cosmocc; };
     };
 
+    packages."x86_64-darwin" = let
+      legacyPackages = nixpkgs.legacyPackages."x86_64-darwin";
+    in
+    rec {
+      firefox-darwin = legacyPackages.callPackage ./modules/firefox-darwin { };
+    };
+
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit self; inherit inputs; };
@@ -70,10 +77,12 @@
 
     darwinConfigurations.lorien = nix-darwin.lib.darwinSystem {
       system = "x86_64-darwin";
+      specialArgs = { inherit self; inherit inputs; };
       modules = [
         ./machines/lorien-macbookpro-2017/configuration.nix
 	      home-manager.darwinModules.home-manager
         {
+          home-manager.extraSpecialArgs = { inherit self; };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 

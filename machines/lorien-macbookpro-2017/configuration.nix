@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ self, config, lib, pkgs, ... }:
 
 {
   services.nix-daemon.enable = true;
@@ -68,6 +68,8 @@
       (keepassxc.override { botan3 = pkgs.botan2; })
       discord
       spotify
+
+      self.packages.${pkgs.system}.firefox-darwin
     ];
   };
 
