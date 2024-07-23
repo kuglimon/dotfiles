@@ -55,20 +55,17 @@
     ];
   };
 
-  fonts = {
-    fontDir.enable = true;
-
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = ["FiraMono"]; })
-    ];
-  };
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = ["FiraMono"]; })
+  ];
 
   environment = {
     shells = [ pkgs.zsh pkgs.bashInteractive ];
     systemPackages = with pkgs; [
       # GUI apps
       alacritty
-      keepassxc
+      # botan3 doesn't compile on my old intel macbook, botan2 does
+      (keepassxc.override { botan3 = pkgs.botan2; })
       discord
       spotify
     ];
