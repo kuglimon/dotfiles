@@ -13,7 +13,13 @@
 
 ## Current state
 
-I'm still in process of testing Nix. Everything is in constant flux.
+Linux/NixOS is stable and is my daily driver.
+
+Darwin side is hit and miss. I've pretty much stopped using macs after
+transitioning to Linux and the current laptops will be the last Apple products I
+own. The config does work, but as I tend to update all channels at the same time
+they might be broken. If you start using nix on macs, then understand that what
+you get is vastly subpar experience of the real thing.
 
 I've tried to split everything into commits with decent messages. It's probably
 best if you shift through the commits to learn more.
