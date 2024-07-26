@@ -227,6 +227,9 @@
       # repositories.
       inputs.rojekti.packages.${system}.default
       self.packages.${pkgs.system}.llamafile
+
+      # le geims
+      path-of-building
     ];
   };
 
