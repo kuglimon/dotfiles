@@ -74,8 +74,8 @@
     # Enables 'nvidia-settings' command/app.
     nvidiaSettings = true;
 
-    # Install nvidia production drivers. I don't even know why I use production
-    # drivers, it seems like they're the latest.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # stable is the 'feature' version listed on nvidia site. This is the one
+    # Arch Linux installs, hence we'll use this as well.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }
