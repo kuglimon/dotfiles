@@ -36,8 +36,7 @@
 
     packages."x86_64-darwin" = let
       legacyPackages = nixpkgs.legacyPackages."x86_64-darwin";
-    in
-    rec {
+    in {
       firefox-darwin = legacyPackages.callPackage ./modules/firefox-darwin { };
     };
 
