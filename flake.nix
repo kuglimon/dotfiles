@@ -44,6 +44,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit self; inherit inputs; };
       modules = [
+        ./modules/gaming
         ./machines/kuglimon-desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {

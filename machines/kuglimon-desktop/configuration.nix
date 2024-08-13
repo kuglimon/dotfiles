@@ -159,6 +159,9 @@
     defaultSession = "none+i3";
   };
 
+  # Includes steam, path of building, and all the other jazz
+  bundles.gaming.enable = true;
+
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
     isNormalUser = true;
@@ -227,9 +230,6 @@
       # repositories.
       inputs.rojekti.packages.${system}.default
       self.packages.${pkgs.system}.llamafile
-
-      # le geims
-      path-of-building
     ];
   };
 
