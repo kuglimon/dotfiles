@@ -13,6 +13,11 @@
     builtins.elem (lib.getName pkg) [
       "discord"
       "spotify"
+
+      # FIXME(tatu): These should be set on the gaming modules but it doesn't
+      # work. If I move these it'll start complaining about the samsung drivers.
+      # Which leads me to believe the module configuration overrides this
+      # completely rather than merging.
       "steam"
       "steam-original"
       "steam-run"
@@ -190,7 +195,6 @@
       flameshot
       fuse3
       fzf
-      gamescope
       gcc
       ghostscript
       git
@@ -201,7 +205,6 @@
       jq
       keepassxc
       killall
-      mangohud
       newsboat
       nodejs
       nodejs_latest
@@ -239,11 +242,6 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
 
   # Install extensions for all profiles. This seemed like a way simpler solution
   # since I have no idea what the hell NUR even is at this point. Randomly

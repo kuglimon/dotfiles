@@ -1,4 +1,7 @@
 # le geims
+#
+# XXX(tatu): Check host specific configuration for allowUnfreePredicate. Stuff
+# like steam is still defined there which is kind of ass.
 { lib, config, options, pkgs, ... }:
 
 {
@@ -13,8 +16,15 @@
     # configurable.
     users.users.kuglimon = {
       packages = with pkgs; [
+        gamescope
+        mangohud
         path-of-building
       ];
+    };
+
+    programs.steam = {
+      enable = true;
+      gamescopeSession.enable = true;
     };
   };
 }
