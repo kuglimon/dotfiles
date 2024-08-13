@@ -9,7 +9,8 @@
   };
 
   config = lib.mkIf config.bundles.gaming.enable {
-    # FIXME(tatu): Different systems have different users, this should be configurable.
+    # FIXME(tatu): Different systems have different users, this should be
+    # configurable.
     users.users.kuglimon = {
       packages = with pkgs; [
         path-of-building
