@@ -9,13 +9,17 @@ augroup vimrcEx
   " reset autocommands so sourcing .vimrc multiple times won't work wonky
   autocmd!
 
+  " TODO I've recently found this annoying as fuck. Especially during git
+  "      commits. My default commit also shows the diffs below making the
+  "      commit window quite tall.
+  "
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+  " autocmd BufReadPost *
+  "   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+  "   \   exe "normal g`\"" |
+  "   \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
