@@ -12,6 +12,17 @@ require('telescope').setup {
     }
   },
   pickers = {
+    -- This modifies regular git file find to:
+    --  * Only show files starting from CWD, not git root
+    --  * show untracked files
+    --
+    --  Searching files based on CWD in monorepos is a lot nicer. Still on the
+    --  fence if this needs to be a global configuration or something done per
+    --  project.
+    git_files = {
+      use_git_root = false,
+      show_untracked = true
+    },
   },
   extensions = {
     file_browser = {
