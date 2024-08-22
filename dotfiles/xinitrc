@@ -11,6 +11,4 @@ fi
 # life figuring out why I pay for a service which doesn't work.
 rm -rf ~/.config/spotify/Users/**/local-files.bnk
 
-eval $(ssh-agent)
-
 exec i3
