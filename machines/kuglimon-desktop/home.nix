@@ -29,6 +29,8 @@
   home.file.".gitignore".source = ../../dotfiles/gitignore;
   home.file.".gitmessage".source = ../../dotfiles/gitmessage;
 
+  home.file.".gnupg/gpg-agent.conf".source = ../../dotfiles/gnupg/gpg-agent.conf;
+
   home.file.".psqlrc".source = ../../dotfiles/psqlrc;
   home.file.".rspec".source = ../../dotfiles/rspec;
 
