@@ -219,7 +219,18 @@ assign [instance="term-main"] $ws-terminals
 # removes the step completely.
 exec --no-startup-id alacritty --class scratch-term
 for_window [instance="scratch-term"] floating enable, move to scratchpad
-bindsym $mod+p [instance="scratch-term"] scratchpad show
+
+# Keepassxc should always be available. One might think having it in the
+# scratchpad would be nice, which is true, but that completely breaks stuff like
+# auto-complete and 'secret service integration'. In scratchpad you first have
+# to make the app visible and then the automation will work, which is kind of
+# fucking stupid - to enable automation please provide manual input.
+#
+# I don't know why the fuck I have to have assign and for_window for this to
+# work. Too tired to figure out this shit now.
+exec --no-startup-id keepassxc
+assign [class="KeePassXC"] $ws-ide
+for_window [class="KeePassXC"] move to workspace $ws-ide
 
 exec --no-startup-id discord
 assign [class="discord"] $ws-chat
@@ -294,8 +305,8 @@ for_window [class="firefox-main"] mark "j"
 for_window [instance="term-main"] mark "k"
 for_window [class="discord"] mark "l"
 for_window [class="Spotify"] mark "ö"
+for_window [class="KeePassXC"] mark "u"
 for_window [title="Steam" class="steam"] mark "o"
 for_window [title="Friends List" class="steam"] mark "i"
 
-# Make sure browser is the first window we see
 for_window [class="firefox-main"] focus
