@@ -219,6 +219,7 @@ assign [instance="term-main"] $ws-terminals
 # removes the step completely.
 exec --no-startup-id alacritty --class scratch-term
 for_window [instance="scratch-term"] floating enable, move to scratchpad
+bindsym $mod+p [instance="scratch-term"] scratchpad show
 
 # Keepassxc should always be available. One might think having it in the
 # scratchpad would be nice, which is true, but that completely breaks stuff like
