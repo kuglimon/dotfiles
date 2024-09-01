@@ -185,6 +185,7 @@
       bashInteractive
       bat
       btrfs-progs
+      calibre
       cargo
       discord
       docker
