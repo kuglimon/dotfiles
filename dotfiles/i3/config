@@ -257,6 +257,19 @@ exec --no-startup-id steam
 assign [title="Steam" class="steam"] $ws-gaming
 assign [title="Friends List" class="steam"] $ws-gaming
 
+# Move all steam launched games and apps to present space. They're always full
+# screen apps. Otherwise there's an idiotic flow of launching a game and then
+# moving it to a workspace. I don't know why the fuck I put up with this
+# bullshit for so long - I must have lost a special part of my brain at some
+# point.
+#
+# NOTE that this does not work with Linux native games. They tend to set more
+# proper window classes, which makes them ass in this case. For now I just tend
+# to enable compatibility on all games.
+#
+# FIXME(tatu): How to handle native games where the class could be anything?
+assign [class="^steam_app_\d+$"] $ws-present
+
 # TODO: Everything launched from Term workspace should be floating. I wonder if
 #       that is possible?
 # Start PoB fork as floating
