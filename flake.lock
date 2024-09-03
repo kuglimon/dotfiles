@@ -64,11 +64,11 @@
       },
       "locked": {
         "dir": "rojekti",
-        "lastModified": 1724254117,
-        "narHash": "sha256-oO/wgqgt3vX4hNPGq9CazEzz6X3Qat/zGWbBr2m7p2k=",
+        "lastModified": 1725389532,
+        "narHash": "sha256-FkdKG655pJzUYxooQbB0CrI/l3rtYTcYcxF9SkCUyP0=",
         "owner": "UncertainSchrodinger",
         "repo": "molokki",
-        "rev": "4e031530d2d997832458e71ebe73fb644b3b0a52",
+        "rev": "7e885512621e2f6732b1202a3df30988d671c3c4",
         "type": "github"
       },
       "original": {
