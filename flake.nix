@@ -32,7 +32,6 @@
     rec {
       cosmocc = legacyPackages.callPackage ./pkgs/cosmocc.nix { };
       llamafile = legacyPackages.callPackage ./pkgs/llamafile.nix { cosmocc = cosmocc; };
-      battlenet = legacyPackages.callPackage ./pkgs/battlenet-installer.nix { };
     };
 
     packages."x86_64-darwin" = let
