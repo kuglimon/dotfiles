@@ -239,6 +239,9 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+
+    # For mounting Android MTP drives
+    jmtpfs
   ];
 
   programs.zsh.enable = true;
