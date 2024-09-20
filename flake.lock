@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726440980,
-        "narHash": "sha256-ChhIrjtdu5d83W+YDRH+Ec5g1MmM0xk6hJnkz15Ot7M=",
+        "lastModified": 1726785354,
+        "narHash": "sha256-SLorVhoorZwjM1aS04bBX4fufEXIfkMdAGkj9bu2QAQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a9c9cc6e50f7cbd2d58ccb1cd46a1e06e9e445ff",
+        "rev": "1786e2afdbc48e9038f7cff585069736e1d0ed44",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726188813,
-        "narHash": "sha256-Vop/VRi6uCiScg/Ic+YlwsdIrLabWUJc57dNczp0eBc=",
+        "lastModified": 1726742753,
+        "narHash": "sha256-QclpWrIFIg/yvWRiOUaMp1WR+TGUE9tb7RE31xHlxWc=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "21fe31f26473c180390cfa81e3ea81aca0204c80",
+        "rev": "c03f85fa42d68d1056ca1740f3113b04f3addff2",
         "type": "github"
       },
       "original": {
@@ -64,11 +64,11 @@
       },
       "locked": {
         "dir": "rojekti",
-        "lastModified": 1725905639,
-        "narHash": "sha256-6Bi8jYVF9ifhm08LOSK9FJw9cTPCdJwKCR1+gwvxuGU=",
+        "lastModified": 1726764968,
+        "narHash": "sha256-g5vN012X/KMvxG+Hcli0KV6E/C7JAsaERVZ0+FSRjkM=",
         "owner": "UncertainSchrodinger",
         "repo": "molokki",
-        "rev": "80b7104a7fcd1d72b50ef8b1ae3a7c46e9f3adc0",
+        "rev": "b6d5c60fc21d0dd7fd8f646752e443ea8bf30b56",
         "type": "github"
       },
       "original": {
