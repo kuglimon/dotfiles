@@ -14,6 +14,10 @@
     options = "--delete-older-than 1d";
   };
 
+  # Sequoia changed some users or something. This setting is safe on this
+  # machine as it doesn't support that version.
+  ids.uids.nixbld = 300;
+
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "discord"
