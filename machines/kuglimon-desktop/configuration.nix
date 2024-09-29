@@ -201,7 +201,6 @@
       git
       git-crypt
       git-lfs
-      go
       imagemagick
       jq
       keepassxc
