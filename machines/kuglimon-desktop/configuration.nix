@@ -207,8 +207,6 @@
       keepassxc
       killall
       newsboat
-      nodejs
-      nodejs_latest
       (polybar.override { i3Support = true; })
       pulsemixer
       qemu
@@ -238,7 +236,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    (neovim.override { withNodeJs = true; })
 
     # For mounting Android MTP drives
     jmtpfs
