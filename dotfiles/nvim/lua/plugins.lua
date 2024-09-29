@@ -44,12 +44,6 @@ require("lazy").setup({
     cmd = 'Telescope',
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
-    },
-  },
-  {
     'numToStr/Comment.nvim',
     init = function()
       require('Comment').setup()
