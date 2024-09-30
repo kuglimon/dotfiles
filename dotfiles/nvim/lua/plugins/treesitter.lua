@@ -6,39 +6,6 @@
 --
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {
-    "bash",
-    "css",
-    "gitattributes",
-    "gitcommit",
-    "gitignore",
-    "go",
-    "hcl",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "make",
-    "markdown_inline",
-    "python",
-    "ruby",
-    "rust",
-    "typescript",
-    "vim",
-    "nix",
-    "yaml"
-  },
-
-  -- Install languages synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = false,
-
-  -- These are mainly parsers which caused errors during install
-  ignore_install = { "t32", "smali" },
-
   highlight = {
     -- `false` will disable the whole extension
     enable = true,

@@ -212,7 +212,6 @@
       rclone
       ripgrep
       rofi
-      rust-analyzer
       rustc
       rustfmt
       spotify
@@ -235,7 +234,79 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (neovim.override { withNodeJs = true; })
+    # Big boi config
+    (
+      let
+        wrappedNeovim = neovim.override {
+          withNodeJs = true;
+          configure = {
+            customRC = ''
+              luafile ~/.config/nvim/init.lua
+            '';
+            # XXX(tatu): The fuck is this package name supposed to be?
+            packages.myVimPackage = with pkgs.vimPlugins; {
+              start = [
+                catppuccin-nvim
+                fugitive
+                popup-nvim
+                plenary-nvim
+                telescope-fzf-native-nvim
+                telescope-nvim
+                comment-nvim
+                luasnip
+                nvim-cmp
+
+                # Completions from current buffer
+                cmp-buffer
+
+                # LSP completions
+                cmp-nvim-lsp
+
+                # Completions for Neovim Lua with natural 20 roll for int
+                cmp-nvim-lua
+
+                # Path based completions
+                cmp-path
+
+                # Completions from snippets
+                cmp_luasnip
+                neodev-nvim
+                nvim-lspconfig
+                (nvim-treesitter.withAllGrammars)
+                nvim-treesitter-textobjects
+                playground
+
+                # EasyMotion/Sneak alternative. Allows for searching based on two
+                # characters like in sneak but can search globaly in windows with 'g'
+                # prefix
+                leap-nvim
+                none-ls-nvim
+                oil-nvim
+              ];
+            };
+          };
+        };
+      in
+      pkgs.writeShellApplication {
+          name = "nvim";
+          runtimeInputs = [
+            rust-analyzer
+            # For js LSP
+            biome
+
+            # already contains shellcheck
+            bash-language-server
+            terraform-ls
+            nil
+            lua-language-server
+
+            # vtsls is not packaged, yet
+          ];
+          text = ''
+            ${wrappedNeovim}/bin/nvim "$@"
+          '';
+      }
+    )
 
     # For mounting Android MTP drives
     jmtpfs

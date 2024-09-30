@@ -15,14 +15,15 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
+-- This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
+  -- NOTE: Remember that lua is a real programming language, and as such it is
+  -- possible to define small helper and utility functions so you don't have to
+  -- repeat yourself many times.
   --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
+  -- In this case, we create a function that lets us more easily define mappings
+  -- specific for LSP related items. It sets the mode, buffer and description
+  -- for us each time.
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -77,11 +78,11 @@ local on_attach = function(client, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 end
 
--- Enable the following language servers
--- Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+-- List of installed language servers and their configurations. Please make sure
+-- any system specific configurations are installed through nix.
 --
--- Add any additional override configuration in the following tables. They will be passed to
--- the `settings` field of the server config. You must look up that documentation yourself.
+-- TODO(tatu): Move this configuration to nix and generate a lua file from nix?
+--             This would keep the related code closer together.
 local servers = {
   bashls = {},
   terraformls = {},
@@ -100,31 +101,13 @@ local servers = {
 -- Setup neovim lua configuration
 require('neodev').setup()
 
--- Setup mason so it can manage external tooling
-require('mason').setup({
-  -- prefer system path as mason installed tools won't work well in nixos
-  PATH = "append"
-})
-
--- Ensure the servers above are installed
-local mason_lspconfig = require('mason-lspconfig')
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
-
--- TODO remove this once my configuration works
--- vim.lsp.set_log_level("debug")
+for server, settings in pairs(servers) do
+  nvim_lsp[server].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = settings
+  }
+end
 
 -- nvim-cmp setup
 local cmp = require('cmp')
