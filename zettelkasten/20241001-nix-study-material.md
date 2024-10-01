@@ -21,15 +21,9 @@ Imagine someone starting programming and you tell them to read the C++ reference
 and supporting research papers. Like, fuck man, I just want to print 'hello
 world'. Not apply for a phd.
 
-[Nix reference manual](https://nixos.org/manual/nix/stable/introduction). ONLY
-USE THIS AS THE LAST RESORT. This reads like some scientific paper. It's often
-really hard to read and follow. As a newbie, I get the feeling that this is for
-the developers of Nix. It feels like every time someone in the forums points to
-this documentation the explanation they give doesn't actually clear up anything,
-just introduces more terms and implementation details.
-
-For the nix community: please stop providing implementation details as example,
-we believe it's a good system, but this doesn't help us use it.
+[Nix reference manual](https://nixos.org/manual/nix/stable/introduction).
+Especially useful is the 'Languages and frameworks'. I don't know why I used to
+think this was bad, it's good.
 
 [Mitchell Hashimotos nix config](https://github.com/mitchellh/nixos-config).
 Simple setup (in a good way) for nix-darwin and building VM images. Contains an
