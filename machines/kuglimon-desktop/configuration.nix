@@ -230,6 +230,7 @@
       # repositories.
       inputs.rojekti.packages.${system}.default
       self.packages.${pkgs.system}.llamafile
+      self.packages.${pkgs.system}.vtsls
     ];
   };
 
@@ -301,6 +302,7 @@
             lua-language-server
 
             # vtsls is not packaged, yet
+            # self.packages.${pkgs.system}.vtsls
           ];
           text = ''
             ${wrappedNeovim}/bin/nvim "$@"
