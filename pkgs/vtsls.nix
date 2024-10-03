@@ -4,7 +4,6 @@
   fetchFromGitHub,
   nodejs_20,
   git,
-  less,
   pnpm_8
 }:
 
@@ -20,6 +19,13 @@ stdenv.mkDerivation (finalAttrs: rec {
     deepClone = true;
     fetchSubmodules = true;
     leaveDotGit = true;
+    # .git is not stable with using submodules, sha changes between runs
+    postFetch = ''
+      pushd $out
+      git rev-parse HEAD:packages/service/vscode > ./packages/service/HEAD.txt
+      rm -rf .git
+      popd
+    '';
   };
 
   nativeBuildInputs = [
