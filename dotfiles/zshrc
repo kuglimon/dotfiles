@@ -9,44 +9,8 @@ colors
 # enable colored output from ls, etc
 export CLICOLOR=1
 
-# modify the prompt to contain git branch name if applicable
-git_prompt_info() {
-  current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-
-  if [[ -n $current_branch ]]; then
-    printf '%s' "%{$fg_bold[blue]%}git:("
-
-    if [[ $(git diff --stat 2> /dev/null) != '' ]]; then
-      printf '%s' "%{$fg[red]%}"
-    else
-      printf '%s' "%{$fg[green]%}"
-    fi
-
-    printf '%s' "$current_branch%{$reset_color%}) "
-  fi
-}
-
-setopt prompt_subst
-
-# Add a visible que on what context my shell environment is currently. These
-# values are:
-#
-# ➜ - normal shell
-# 󱄅 - nix develop / nix-shell
-PROMPT_ENV='➜'
-
-if [[ ! -z ${IN_NIX_SHELL+x} ]]; then
-  PROMPT_ENV='󱄅'
-fi
-
-# prints an arrow ➜, red if the last command failed green if ok
-PROMPT='%(?:%{$fg_bold[green]%}$PROMPT_ENV :%{$fg_bold[red]%}$PROMPT_ENV )'
-
-# current dir from $HOME
-PROMPT+='%{$fg_bold[cyan]%}%1d%{$reset_color%}'
-
-# current git branch if we're in a repository
-PROMPT+=' $(git_prompt_info)'
+# Enable starship prompt
+eval "$(starship init zsh)"
 
 # history settings
 setopt hist_ignore_all_dups inc_append_history

@@ -59,6 +59,8 @@
   home.file.".zshenv".source = ../../dotfiles/zshenv;
   home.file.".zshrc".source = ../../dotfiles/zshrc;
 
+  home.file.".config/starship.toml".source = ../../dotfiles/starship.toml;
+
   home.file.".config/alacritty/alacritty.toml".source = ../../dotfiles/alacritty/alacritty.toml;
   home.file.".config/alacritty/override.toml".source = ../../dotfiles/alacritty/linux.toml;
   home.file.".config/alacritty/catppuccin/catppuccin-mocha.toml".source = "${pkgs.alacritty-theme}/catppuccin_mocha.toml";

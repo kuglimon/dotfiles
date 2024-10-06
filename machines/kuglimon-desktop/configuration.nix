@@ -219,8 +219,16 @@
       tree
       unzip
       xclip
+
+      # I didn't configure these using program.zsh nor program.starship as I'm
+      # not a fan of having another layer of abstraction on top of the
+      # configuration.
+      #
+      # I want to find my .zshrc in $HOME and have a starship.toml
+      # configuration, not some bespoke nix configuration.
       zsh
       zsh-completions
+      starship
 
       cudaPackages.cuda_nvcc
       cudaPackages.cuda_cudart
