@@ -39,6 +39,7 @@
       legacyPackages = nixpkgs.legacyPackages."x86_64-darwin";
     in {
       firefox-darwin = legacyPackages.callPackage ./modules/firefox-darwin { };
+      vtsls = legacyPackages.callPackage ./pkgs/vtsls.nix { };
     };
 
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
