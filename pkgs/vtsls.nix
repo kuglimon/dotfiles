@@ -15,17 +15,8 @@ stdenv.mkDerivation (finalAttrs: rec {
     owner = "yioneko";
     repo = "vtsls";
     rev = "server-v${version}";
-    sha256 = "sha256-I84A2QUKL81oM30s6nF7LvV5YWuhCuEX/iirpyFMdQo=";
-    deepClone = true;
+    sha256 = "sha256-HCi9WLh4IEfhgkQNUVk6IGkQfYagg805Rix78zG6xt0=";
     fetchSubmodules = true;
-    leaveDotGit = true;
-    # .git is not stable with using submodules, sha changes between runs
-    postFetch = ''
-      pushd $out
-      git rev-parse HEAD:packages/service/vscode > ./packages/service/HEAD.txt
-      rm -rf .git
-      popd
-    '';
   };
 
   nativeBuildInputs = [
@@ -63,9 +54,18 @@ stdenv.mkDerivation (finalAttrs: rec {
     git config --global user.name nixbld
     git config --global user.email nixbld@example.com
 
+    # This is the sha for submodule packages/service/vscode. Unsure if there's a
+    # better way to get this.
+    echo "65d85f4cd0b4220fe8bb494898e001c7ad20e59b" > ./packages/service/HEAD
+
+    # Requires a git repository during build
+    git init packages/service/vscode
+
     # Depends on the @vtsls/language-service workspace
     # '--workspace-concurrency=1' helps debug failing builds.
     pnpm --filter "@vtsls/language-server..." build
+
+    rm -rf packages/service/vscode/.git
 
     runHook postBuild
   '';
@@ -89,3 +89,4 @@ stdenv.mkDerivation (finalAttrs: rec {
     platforms = platforms.all;
   };
 })
+
