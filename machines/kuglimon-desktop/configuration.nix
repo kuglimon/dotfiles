@@ -27,6 +27,10 @@
       "nvidia-settings"
       "nvidia-x11"
 
+      # For debugging failing nix builds
+      cntr
+
+
       # cuda crap
       "cuda_nvcc"
       "cuda_cudart"
@@ -319,6 +323,19 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   programs.virt-manager.enable = true;
+
+  users.defaultUserShell = pkgs.zsh;
+
+  programs.git.lfs.enable = true;
+
+  # If GPG complains about missing pinentry then try rebooting the machine.
+  # There's likely some configuration error, too lazy to debug it now.
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
+    enableSSHSupport = true;
+  };
 
   # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
   # now.

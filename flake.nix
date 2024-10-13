@@ -75,6 +75,7 @@
       specialArgs = { inherit self; inherit inputs; };
       modules = [
         ./machines/lorien-macbookpro-2017/configuration.nix
+        ./modules/development
 	      home-manager.darwinModules.home-manager
         {
           home-manager.extraSpecialArgs = { inherit self; };

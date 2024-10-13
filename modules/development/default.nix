@@ -37,9 +37,6 @@
         unzip
         xclip
 
-        # For debugging failing nix builds
-        cntr
-
         # I didn't configure these using program.zsh nor program.starship as I'm
         # not a fan of having another layer of abstraction on top of the
         # configuration.
@@ -129,18 +126,6 @@
       )
     ];
 
-    users.defaultUserShell = pkgs.zsh;
     programs.zsh.enable = true;
-
-    programs.git.lfs.enable = true;
-
-    # If GPG complains about missing pinentry then try rebooting the machine.
-    # There's likely some configuration error, too lazy to debug it now.
-    services.pcscd.enable = true;
-    programs.gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-curses;
-      enableSSHSupport = true;
-    };
   };
 }
