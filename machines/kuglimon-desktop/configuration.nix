@@ -167,6 +167,9 @@
   # Includes steam, path of building, and all the other jazz
   bundles.gaming.enable = true;
 
+  # All my development needs
+  bundles.development.enable = true;
+
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
     isNormalUser = true;
@@ -177,61 +180,25 @@
 
     createHome = true;
     packages = with pkgs; [
-      alacritty
-      alacritty-theme
-
       # the 'bash' package is a minimal bash installation meant for scripts and
       # automation. We want the full package for interactive use.
       bashInteractive
-      bat
       btrfs-progs
       calibre
-      cargo
       discord
-      docker
-      docker-buildx
       dosfstools
       dunst
       feh
       flameshot
-      fuse3
-      fzf
-      gcc
       ghostscript
-      git
-      git-crypt
-      git-lfs
-      imagemagick
-      jq
       keepassxc
-      killall
       newsboat
       (polybar.override { i3Support = true; })
       pulsemixer
       qemu
       rclone
-      ripgrep
       rofi
-      rustc
-      rustfmt
       spotify
-      tmux
-      tree
-      unzip
-      xclip
-
-      # For debugging failing nix builds
-      cntr
-
-      # I didn't configure these using program.zsh nor program.starship as I'm
-      # not a fan of having another layer of abstraction on top of the
-      # configuration.
-      #
-      # I want to find my .zshrc in $HOME and have a starship.toml
-      # configuration, not some bespoke nix configuration.
-      zsh
-      zsh-completions
-      starship
 
       cudaPackages.cuda_nvcc
       cudaPackages.cuda_cudart
@@ -245,87 +212,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Big boi config
-    (
-      let
-        wrappedNeovim = neovim.override {
-          withNodeJs = true;
-          configure = {
-            customRC = ''
-              luafile ~/.config/nvim/init.lua
-            '';
-            # XXX(tatu): The fuck is this package name supposed to be?
-            packages.myVimPackage = with pkgs.vimPlugins; {
-              start = [
-                catppuccin-nvim
-                fugitive
-                popup-nvim
-                plenary-nvim
-                telescope-fzf-native-nvim
-                telescope-nvim
-                comment-nvim
-                luasnip
-                nvim-cmp
-
-                # Completions from current buffer
-                cmp-buffer
-
-                # LSP completions
-                cmp-nvim-lsp
-
-                # Completions for Neovim Lua with natural 20 roll for int
-                cmp-nvim-lua
-
-                # Path based completions
-                cmp-path
-
-                # Completions from snippets
-                cmp_luasnip
-                neodev-nvim
-                nvim-lspconfig
-                (nvim-treesitter.withAllGrammars)
-                nvim-treesitter-textobjects
-                playground
-
-                # EasyMotion/Sneak alternative. Allows for searching based on two
-                # characters like in sneak but can search globaly in windows with 'g'
-                # prefix
-                leap-nvim
-                none-ls-nvim
-                oil-nvim
-              ];
-            };
-          };
-        };
-      in
-      pkgs.writeShellApplication {
-          name = "nvim";
-          runtimeInputs = [
-            rust-analyzer
-            # For js LSP
-            biome
-
-            # already contains shellcheck
-            bash-language-server
-            terraform-ls
-            nil
-            lua-language-server
-
-            # vtsls is not packaged, yet
-            self.packages.${pkgs.system}.vtsls
-          ];
-          text = ''
-            ${wrappedNeovim}/bin/nvim "$@"
-          '';
-      }
-    )
-
     # For mounting Android MTP drives
     jmtpfs
   ];
-
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
   # Install extensions for all profiles. This seemed like a way simpler solution
   # since I have no idea what the hell NUR even is at this point. Randomly
@@ -420,17 +309,6 @@
       };
     };
   };
-
-  # If GPG complains about missing pinentry then try rebooting the machine.
-  # There's likely some configuration error, too lazy to debug it now.
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
-    enableSSHSupport = true;
-  };
-
-  programs.git.lfs.enable = true;
 
   # Make mah printer work
   services.printing = {

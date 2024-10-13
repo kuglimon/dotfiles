@@ -4,8 +4,8 @@
   home.username = "kuglimon";
   home.homeDirectory = "/home/kuglimon";
 
-  # Home-manager has programs that can configure all of these through a DSL,
-  # but I think that's ultimately bad for you.
+  # Home-manager has programs that can configure all of these through a DSL, but
+  # I think that's ultimately bad for you.
   #
   # You should learn how to use the underlying tools and how to configure them,
   # it similar to using GUI apps for terminal apps. There are a crap ton of
