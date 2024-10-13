@@ -49,15 +49,7 @@
         ./modules/development
         ./modules/gaming
         ./machines/kuglimon-desktop/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.users.kuglimon = { ... } :{
-            imports = [./machines/kuglimon-desktop/home.nix];
-          };
-        }
+        ./modules/home-manager
       ];
     };
 
