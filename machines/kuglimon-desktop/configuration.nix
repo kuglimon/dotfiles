@@ -6,6 +6,10 @@
       ./hardware-configuration.nix
     ];
 
+  home-manager.users.kuglimon = { ... } :{
+    imports = [./home.nix];
+  };
+
   # Switch to latest from the default LTS kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
