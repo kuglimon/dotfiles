@@ -41,27 +41,7 @@ Update macOS system:
 darwin-rebuild switch --flake .
 ```
 
-## Guidelines
-
-Some guidelines for configuration:
-
-1. Be explicit! If that means copying the same `pwd` command a thousand times
-   then so be it.
-
-2. Simple problems should have simple solutions! We're provisioning machines not
-   trying to fly to fucking Mars...
-
-4. Remember that when you need to install these it's usually not because
-   it's a sunny afternoon and you have all the time in the world. You'll
-   install these when there are deadlines coming and your laptop decided
-   to kill itself.
-
-   So make these scripts with this in mind. When all you have is time, then
-   you could make these in assembly and still have fun.
-
-   But sadly that is fiction.
-
-## What did you use before Nix
+## What did you use before Nix?
 
 Over 10 years ago, I used
 [laptop](https://github.com/UncertainSchrodinger/laptop). During or after which,
