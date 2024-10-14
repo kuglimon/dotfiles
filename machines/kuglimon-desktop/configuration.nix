@@ -27,10 +27,6 @@
       "nvidia-settings"
       "nvidia-x11"
 
-      # For debugging failing nix builds
-      cntr
-
-
       # cuda crap
       "cuda_nvcc"
       "cuda_cudart"
@@ -203,6 +199,9 @@
       rclone
       rofi
       spotify
+
+      # For debugging failing nix builds
+      cntr
 
       cudaPackages.cuda_nvcc
       cudaPackages.cuda_cudart
