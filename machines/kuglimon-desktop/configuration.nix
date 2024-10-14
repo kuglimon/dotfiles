@@ -1,13 +1,23 @@
 { self, inputs, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  # TODO(tatu): maybe is should just drop home-manager completely. I use it for
+  # like firefox profiles and that's it. There's probably another way to install
+  # dotfiles without it.
+  imports = with inputs; [
       ./hardware-configuration.nix
-    ];
+      home-manager.nixosModules.home-manager
+  ];
+
+  # home-manager options
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
 
   home-manager.users.kuglimon = { ... } :{
-    imports = [./home.nix];
+    imports = [
+      ../../modules/home-manager/common
+      ./home.nix
+    ];
   };
 
   # Switch to latest from the default LTS kernel

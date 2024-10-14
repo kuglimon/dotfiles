@@ -49,7 +49,6 @@
         ./modules/development
         ./modules/gaming
         ./machines/kuglimon-desktop/configuration.nix
-        ./modules/home-manager
       ];
     };
 
