@@ -2,7 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
-  nodejs_20,
+  nodejs_22,
   git,
   pnpm_8,
 }:
@@ -20,12 +20,12 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
-    nodejs_20
+    nodejs_22
     git
     pnpm_8.configHook
   ];
 
-  buildInputs = [ nodejs_20 ];
+  buildInputs = [ nodejs_22 ];
 
   pnpmWorkspace = "@vtsls/language-server";
 
