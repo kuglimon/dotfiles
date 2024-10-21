@@ -110,6 +110,9 @@
               # For js LSP
               biome
 
+              # nix formatter
+              alejandra
+
               # already contains shellcheck
               bash-language-server
               terraform-ls

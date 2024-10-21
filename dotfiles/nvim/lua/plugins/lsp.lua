@@ -86,7 +86,22 @@ end
 local servers = {
   bashls = {},
   terraformls = {},
-  nil_ls = {},
+  nil_ls = {
+    ["nil"] = {
+      formatting = { command = { "alejandra" } },
+      nix = {
+        flake = {
+          -- calls `nix flake archive` to put a flake and its output to store
+          -- otherwise we'll get errors of completion
+          autoArchive = false,
+          -- auto eval flake inputs for improved completion.
+          -- FIXME(tatu): enabling tthis says nix runs out of memory and I'm on
+          --              a 64GB system, lefuck
+          autoEvalInputs = false,
+        },
+      },
+    },
+  },
   rust_analyzer = {},
   vtsls = {},
   biome = {},
