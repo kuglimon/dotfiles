@@ -1,19 +1,23 @@
-{ self, inputs, lib, pkgs, ... }:
-
 {
+  self,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
   # TODO(tatu): maybe is should just drop home-manager completely. I use it for
   # like firefox profiles and that's it. There's probably another way to install
   # dotfiles without it.
   imports = with inputs; [
-      ./hardware-configuration.nix
-      home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
+    home-manager.nixosModules.home-manager
   ];
 
   # home-manager options
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users.kuglimon = { ... } :{
+  home-manager.users.kuglimon = {...}: {
     imports = [
       ../../modules/home-manager/common
       ./home.nix
@@ -84,12 +88,12 @@
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
   boot.kernel.sysctl = {
-    "fs.inotify.max_user_watches"   = 524288;
+    "fs.inotify.max_user_watches" = 524288;
     "fs.inotify.max_user_instances" = 1024;
 
     # Games are known to exhaust this:
     #   https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/5GU7ZUFI25T2IRXIQ62YYERQKIPE3U6E/
-    "vm.max_map_count"  = 1048576;
+    "vm.max_map_count" = 1048576;
   };
 
   boot.loader.timeout = 0;
@@ -115,7 +119,7 @@
     wait = "background";
 
     extraConfig = ''
-    noarp
+      noarp
     '';
   };
 
@@ -133,7 +137,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = ["FiraMono"]; })
+    (nerdfonts.override {fonts = ["FiraMono"];})
   ];
 
   # Enable the X11 windowing system.
@@ -155,7 +159,6 @@
       # life on a solution that opens the path to failure when I can have a path
       # where it cannot ever exist?
       startx.enable = true;
-
     };
 
     xkb = {
@@ -189,8 +192,8 @@
   users.users.kuglimon = {
     isNormalUser = true;
     extraGroups = [
-      "wheel"     # Enable ‘sudo’ for the user.
-      "libvirtd"  # Enables virt-manager to connect to kvm?
+      "wheel" # Enable ‘sudo’ for the user.
+      "libvirtd" # Enables virt-manager to connect to kvm?
     ];
 
     createHome = true;
@@ -208,7 +211,7 @@
       ghostscript
       keepassxc
       newsboat
-      (polybar.override { i3Support = true; })
+      (polybar.override {i3Support = true;})
       pulsemixer
       qemu
       rclone
@@ -331,7 +334,7 @@
   # Make mah printer work
   services.printing = {
     enable = true;
-    drivers = [ pkgs.samsung-unified-linux-driver_4_01_17 ];
+    drivers = [pkgs.samsung-unified-linux-driver_4_01_17];
   };
 
   virtualisation.libvirtd.enable = true;
@@ -386,4 +389,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

@@ -6,7 +6,6 @@
   git,
   pnpm_8,
 }:
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "vtsls";
   version = "0.2.6";
@@ -25,12 +24,13 @@ stdenv.mkDerivation (finalAttrs: {
     pnpm_8.configHook
   ];
 
-  buildInputs = [ nodejs_22 ];
+  buildInputs = [nodejs_22];
 
   pnpmWorkspace = "@vtsls/language-server";
 
   pnpmDeps = pnpm_8.fetchDeps {
-    inherit (finalAttrs)
+    inherit
+      (finalAttrs)
       pnpmWorkspace
       pname
       src
@@ -40,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   # Patches to get submodule sha from file instead of 'git submodule status'
-  patches = [ ./vtsls-build-patch.patch ];
+  patches = [./vtsls-build-patch.patch];
 
   # Skips manual confirmations during build
   CI = true;

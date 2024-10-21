@@ -1,10 +1,9 @@
 {
   stdenv,
   fetchFromGitHub,
-
   gnumake,
   unzip,
-  cosmocc
+  cosmocc,
 }:
 stdenv.mkDerivation rec {
   pname = "llamafile";
@@ -21,7 +20,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-j7iPq1H3eB++aEMp2lbhMSO90t3DLFqgDQ4dseS9v7E=";
   };
 
-  makeFlags = [ "PREFIX=${placeholder "out"}" "COSMOCC=${cosmocc}" ];
+  makeFlags = ["PREFIX=${placeholder "out"}" "COSMOCC=${cosmocc}"];
 
   buildInputs = [
     unzip

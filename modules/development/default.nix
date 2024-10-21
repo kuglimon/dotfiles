@@ -1,7 +1,11 @@
 # My development setup. Built for machines with a GUI.
-{ self, lib, config, pkgs, ... }:
-
 {
+  self,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     bundles.development = {
       enable = lib.mkEnableOption "Enables development tools";
@@ -106,7 +110,7 @@
             };
           };
         in
-        pkgs.writeShellApplication {
+          pkgs.writeShellApplication {
             name = "nvim";
             runtimeInputs = [
               rust-analyzer
@@ -128,7 +132,7 @@
             text = ''
               ${wrappedNeovim}/bin/nvim "$@"
             '';
-        }
+          }
       )
     ];
 

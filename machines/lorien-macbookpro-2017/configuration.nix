@@ -1,6 +1,10 @@
-{ self, config, lib, pkgs, ... }:
-
 {
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.nix-daemon.enable = true;
 
   nix.settings.experimental-features = [
@@ -33,26 +37,26 @@
     home = /Users/kuglimon;
 
     packages = with pkgs; [
-       bash
-       (lib.hiPrio binutils) # This is just so I don't have to install xcode
-       ghostscript
-       gnupg
-       newsboat
-       rclone
+      bash
+      (lib.hiPrio binutils) # This is just so I don't have to install xcode
+      ghostscript
+      gnupg
+      newsboat
+      rclone
     ];
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = ["FiraMono"]; })
+    (nerdfonts.override {fonts = ["FiraMono"];})
   ];
 
   environment = {
-    shells = [ pkgs.zsh pkgs.bashInteractive ];
+    shells = [pkgs.zsh pkgs.bashInteractive];
     systemPackages = with pkgs; [
       # GUI apps
       alacritty
       # botan3 doesn't compile on my old intel macbook, botan2 does
-      (keepassxc.override { botan3 = pkgs.botan2; })
+      (keepassxc.override {botan3 = pkgs.botan2;})
       discord
       spotify
 
@@ -106,8 +110,6 @@
           # Show mission control by swiping up with three fingers
           TrackpadThreeFingerVertSwipeGesture = 2;
         };
-
-
       };
     };
 
@@ -124,15 +126,14 @@
     enableSSHSupport = true;
   };
 
-  system.activationScripts.applications.text = pkgs.lib.mkForce (''
+  system.activationScripts.applications.text = pkgs.lib.mkForce ''
     rm -rf /Users/kuglimon/Applications/Nix\ Apps
     mkdir -p /Users/kuglimon/Applications/Nix\ Apps
     for app in ${config.system.build.applications}/Applications/*; do
       src="$(/usr/bin/stat -f%Y "$app")"
       cp -rL "$app" /Users/kuglimon/Applications/Nix\ Apps
     done
-  '');
-
+  '';
 
   # Activate system changes righ away rather than after login
   system.activationScripts.postUserActivation.text = ''

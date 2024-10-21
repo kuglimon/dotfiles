@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     url = "https://github.com/jart/cosmopolitan/releases/download/${version}/cosmocc-${version}.zip";
-    stripRoot=false;
+    stripRoot = false;
     sha256 = "sha256-Fx1nZzWjTNCtRE7/xs6tfPotVtMb4VTEXkwOg+/865o=";
   };
 

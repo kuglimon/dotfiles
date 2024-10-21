@@ -1,14 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ self, inputs, lib, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  self,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -24,12 +27,12 @@
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
   boot.kernel.sysctl = {
-    "fs.inotify.max_user_watches"   = 524288;
+    "fs.inotify.max_user_watches" = 524288;
     "fs.inotify.max_user_instances" = 1024;
 
     # Games are known to exhaust this:
     #   https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/5GU7ZUFI25T2IRXIQ62YYERQKIPE3U6E/
-    "vm.max_map_count"  = 1048576;
+    "vm.max_map_count" = 1048576;
   };
 
   # Configure Arch Linux dualboot with NixOS.
@@ -55,7 +58,7 @@
     wait = "background";
 
     extraConfig = ''
-    noarp
+      noarp
     '';
   };
 
@@ -73,7 +76,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = ["FiraMono"]; })
+    (nerdfonts.override {fonts = ["FiraMono"];})
   ];
 
   # Enable the X11 windowing system.
@@ -95,7 +98,6 @@
       # life on a solution that opens the path to failure when I can have a path
       # where it cannot ever exist?
       startx.enable = true;
-
     };
 
     xkb = {
@@ -132,7 +134,7 @@
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     createHome = true;
     packages = with pkgs; [
       alacritty
@@ -161,7 +163,7 @@
       killall
       neovim
       nodejs_latest
-      (polybar.override { i3Support = true; })
+      (polybar.override {i3Support = true;})
       pulsemixer
       rclone
       ripgrep
@@ -313,4 +315,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

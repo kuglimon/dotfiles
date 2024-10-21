@@ -2,9 +2,13 @@
 #
 # XXX(tatu): Check host specific configuration for allowUnfreePredicate. Stuff
 # like steam is still defined there which is kind of ass.
-{ lib, config, options, pkgs, ... }:
-
 {
+  lib,
+  config,
+  options,
+  pkgs,
+  ...
+}: {
   options = {
     bundles.gaming = {
       enable = lib.mkEnableOption "Enables gaming, steam etc";

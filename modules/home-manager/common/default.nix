@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Home-manager has programs that can configure all of these through a DSL, but
   # I think that's ultimately bad for you.
   #
