@@ -63,7 +63,6 @@
               packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [
                   catppuccin-nvim
-                  fugitive
                   popup-nvim
                   plenary-nvim
                   telescope-fzf-native-nvim
@@ -98,6 +97,10 @@
                   leap-nvim
                   none-ls-nvim
                   oil-nvim
+
+                  # Lords plugins
+                  fugitive
+                  vim-surround
                 ];
               };
             };
