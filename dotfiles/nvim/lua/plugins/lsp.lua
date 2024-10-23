@@ -88,7 +88,6 @@ local servers = {
   terraformls = {},
   nil_ls = {
     ["nil"] = {
-      formatting = { command = { "alejandra" } },
       nix = {
         flake = {
           -- calls `nix flake archive` to put a flake and its output to store
