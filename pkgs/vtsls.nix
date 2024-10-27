@@ -26,12 +26,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [nodejs_22];
 
-  pnpmWorkspace = "@vtsls/language-server";
+  pnpmWorkspaces = ["@vtsls/language-server"];
 
   pnpmDeps = pnpm_8.fetchDeps {
     inherit
       (finalAttrs)
-      pnpmWorkspace
+      pnpmWorkspaces
       pname
       src
       version
