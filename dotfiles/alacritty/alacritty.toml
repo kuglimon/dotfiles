@@ -1,4 +1,4 @@
-import = [
+general.import = [
   "~/.config/alacritty/override.toml",
   "~/.config/alacritty/catppuccin/catppuccin-mocha.toml"
 ]
