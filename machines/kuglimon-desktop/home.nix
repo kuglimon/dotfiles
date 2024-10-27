@@ -30,6 +30,10 @@
   #   MANGOHUD_CONFIG=fps_limit=60 DXVK_CONFIG_FILE=/home/kuglimon/.config/game_hacks/fallout4.conf mangohud %command%
   home.file.".config/game_hacks/fallout4.conf".source = ../../dotfiles/game_hacks/fallout4.conf;
 
+  # Performance in Last Epoch is ass, maybe this fixes it
+  # WINE_CPU_TOPOLOGY=6:0,1,2,3,4,5 DXVK_CONFIG_FILE=/home/kuglimon/.config/game_hacks/last_epoch.conf mangohud %command%
+  home.file.".config/game_hacks/last_epoch.conf".source = ../../dotfiles/game_hacks/last_epoch.conf;
+
   programs.home-manager.enable = true;
 
   # Only the profiles are created here while the systemwide configuration
