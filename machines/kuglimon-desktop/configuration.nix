@@ -202,7 +202,10 @@
       # automation. We want the full package for interactive use.
       bashInteractive
       btrfs-progs
-      calibre
+
+      # Enable back once tests don't fail and the damn app doesn't register it
+      # as default app for everything.
+      # calibre
       discord
       dosfstools
       dunst
