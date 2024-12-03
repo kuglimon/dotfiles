@@ -71,14 +71,15 @@
     # TODO(tatu): Doesn't work, complains about off-load
     # powerManagement.finegrained = true;
 
-    # NVidia open source kernel module is not stable, don't use it, yet.
-    open = false;
+    # Open source kernel modules are now the default
+    open = true;
 
     # Enables 'nvidia-settings' command/app.
     nvidiaSettings = true;
 
+    # FIXME(tatu): Swapped to beta drivers as stable ones are broken on 6.12
     # stable is the 'feature' version listed on nvidia site. This is the one
     # Arch Linux installs, hence we'll use this as well.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 }

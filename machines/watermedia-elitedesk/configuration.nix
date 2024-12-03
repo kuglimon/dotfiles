@@ -76,7 +76,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraMono"];})
+    nerd-fonts.fira-mono
   ];
 
   # Enable the X11 windowing system.
