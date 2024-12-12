@@ -24,8 +24,6 @@
 
         bat
         cargo
-        docker
-        docker-buildx
         fzf
         git
         git-crypt
