@@ -11,6 +11,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # The whole mac ecosystem is tied to homebrew. It's just easier to to give
+    # up and use homebrew. Macfuse broke me. Maybe if I'd still use macs
+    # fulltime, I'd have the patience to maintain my own packages.
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
