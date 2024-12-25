@@ -130,7 +130,6 @@
     rm -rf /Users/kuglimon/Applications/Nix\ Apps
     mkdir -p /Users/kuglimon/Applications/Nix\ Apps
     for app in ${config.system.build.applications}/Applications/*; do
-      src="$(/usr/bin/stat -f%Y "$app")"
       cp -rL "$app" /Users/kuglimon/Applications/Nix\ Apps
     done
   '';
