@@ -44,6 +44,7 @@
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
     };
 
     # Optional: Enable fully-declarative tap management
@@ -51,6 +52,11 @@
     # With mutableTaps disabled, taps can no longer be added imperatively with
     # `brew tap`.
     mutableTaps = false;
+  };
+
+  homebrew = {
+    enable = true;
+    casks = ["macfuse"];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
