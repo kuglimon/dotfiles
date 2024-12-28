@@ -71,8 +71,8 @@
     # TODO(tatu): Doesn't work, complains about off-load
     # powerManagement.finegrained = true;
 
-    # Open source kernel modules are now the default
-    open = true;
+    # Open Source modules don't support G-Sync, enable once support lands.
+    open = false;
 
     # Enables 'nvidia-settings' command/app.
     nvidiaSettings = true;
