@@ -25,7 +25,9 @@
   };
 
   # Switch to latest from the default LTS kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # nvidia drivers fail to build on 6.13
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg:
