@@ -213,6 +213,7 @@
       dosfstools
       dunst
       feh
+      file
       flameshot
       ghostscript
       keepassxc
