@@ -20,15 +20,18 @@
     # configurable.
     users.users.kuglimon = {
       packages = with pkgs; [
-        gamescope
         mangohud
         path-of-building
       ];
     };
 
+    programs.gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
+
     programs.steam = {
       enable = true;
-      gamescopeSession.enable = true;
     };
   };
 }
