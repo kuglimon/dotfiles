@@ -225,6 +225,9 @@
       rofi
       spotify
 
+      # for reverse engineering
+      ghidra
+
       # For debugging failing nix builds
       cntr
 
