@@ -41,7 +41,7 @@
     # Helper for managing tmux layouts. It's a monorepo and this allows me to
     # pull just one project from a subdirectory.
     rojekti = {
-      url = "github:UncertainSchrodinger/molokki?dir=rojekti";
+      url = "github:UncertainSchrodinger/molokki";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

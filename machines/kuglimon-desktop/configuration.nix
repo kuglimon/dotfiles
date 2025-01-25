@@ -234,7 +234,7 @@
 
       # Not sure if there's a cleaner way to reference packages from custom
       # repositories.
-      inputs.rojekti.packages.${system}.default
+      inputs.rojekti.packages.${system}.rojekti
       self.packages.${pkgs.system}.llamafile
     ];
   };
