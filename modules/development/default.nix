@@ -22,6 +22,9 @@
         alacritty
         alacritty-theme
 
+        # Mostly using for reverse engineering
+        gdb
+
         bat
         cargo
         fzf
