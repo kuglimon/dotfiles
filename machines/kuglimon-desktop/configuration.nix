@@ -105,8 +105,8 @@
 
   networking.hostName = "desktop"; # Define your hostname.
   networking.nameservers = [
-    "9.9.9.9" # quad9
     "1.1.1.1" # cloudflare
+    "9.9.9.9" # quad9, for some reason this keeps timing out all the time
   ];
 
   networking.dhcpcd = {
