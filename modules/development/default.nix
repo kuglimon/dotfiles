@@ -127,8 +127,8 @@
               nil
               lua-language-server
 
-              # vtsls is not packaged, yet
-              self.packages.${pkgs.system}.vtsls
+              # ts LSP
+              vtsls
             ];
             text = ''
               ${wrappedNeovim}/bin/nvim "$@"

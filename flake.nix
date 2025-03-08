@@ -58,14 +58,12 @@
     in rec {
       cosmocc = legacyPackages.callPackage ./pkgs/cosmocc.nix {};
       llamafile = legacyPackages.callPackage ./pkgs/llamafile.nix {cosmocc = cosmocc;};
-      vtsls = legacyPackages.callPackage ./pkgs/vtsls.nix {};
     };
 
     packages."x86_64-darwin" = let
       legacyPackages = nixpkgs.legacyPackages."x86_64-darwin";
     in {
       firefox-darwin = legacyPackages.callPackage ./modules/firefox-darwin {};
-      vtsls = legacyPackages.callPackage ./pkgs/vtsls.nix {};
     };
 
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
