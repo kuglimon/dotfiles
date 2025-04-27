@@ -8,7 +8,8 @@
   options,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     bundles.gaming = {
       enable = lib.mkEnableOption "Enables gaming, steam etc";
@@ -22,6 +23,16 @@
       packages = with pkgs; [
         mangohud
         path-of-building
+
+        # GOTY of all the years
+        (starsector.overrideAttrs (oldAttrs: {
+          version = "0.98a-RC8";
+
+          src = fetchzip {
+            url = "https://f005.backblazeb2.com/file/fractalsoftworks/release/starsector_linux-0.98a-RC8.zip";
+            sha256 = "sha256-W/6QpgKbUJC+jWOlAOEEGStee5KJuLi020kRtPQXK3U=";
+          };
+        }))
       ];
     };
 
