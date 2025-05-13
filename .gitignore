@@ -11,3 +11,6 @@ pkgs/**/result
 
 # ISO builds end up here
 result
+
+# wsl tarbal
+nixos.wsl

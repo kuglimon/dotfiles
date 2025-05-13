@@ -6,6 +6,10 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,13 +27,19 @@
     self,
     nixpkgs,
     home-manager,
+    nixos-wsl,
     ...
-  }: {
-    packages."x86_64-linux" = let
-      legacyPackages = nixpkgs.legacyPackages."x86_64-linux";
-    in rec {
-      cosmocc = legacyPackages.callPackage ./pkgs/cosmocc.nix {};
-      llamafile = legacyPackages.callPackage ./pkgs/llamafile.nix {cosmocc = cosmocc;};
+  }:
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    packages.${system} = rec {
+      cosmocc = pkgs.callPackage ./pkgs/cosmocc.nix {};
+      llamafile = pkgs.callPackage ./pkgs/llamafile.nix {cosmocc = cosmocc;};
+      release-wsl-tarbal = pkgs.callPackage ./pkgs/release-wsl-tarbal.nix {
+        tarballBuilder = self.nixosConfigurations.wsl.config.system.build.tarballBuilder;
+      };
     };
 
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
@@ -62,6 +72,36 @@
             imports = [./machines/watermedia-elitedesk/home.nix];
           };
         }
+      ];
+    };
+
+    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit self;
+        inherit inputs;
+      };
+      modules = [
+        nixos-wsl.nixosModules.default
+        {
+          system.stateVersion = "25.05";
+          wsl.defaultUser = "kuglimon";
+          wsl.enable = true;
+        }
+        ./modules/development
+        ./machines/kuglimon-wsl/configuration.nix
+      ];
+    };
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      buildInputs = [
+        pkgs.gh
+        self.packages.${system}.release-wsl-tarbal
+
+        # FIXME(tatu): Calling binaries from package works locally using 'nix
+        # develop --command' but fails in Github CI. I haven't had the time to
+        # debug why.
+        self.nixosConfigurations.wsl.config.system.build.tarballBuilder
       ];
     };
   };
