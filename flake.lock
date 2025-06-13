@@ -78,16 +78,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1749657191,
-        "narHash": "sha256-QLilaHuhGxiwhgceDWESj9gFcKIdEp7+9lRqNGpN8S4=",
+        "lastModified": 1749821119,
+        "narHash": "sha256-X3WAS322EsebI4ohJcXhKpiyG1v+7wE4VOiXy1pxM/c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "faeab32528a9360e9577ff4082de2d35c6bbe1ce",
+        "rev": "79dfd9aa295e53773aad45480b44c131da29f35b",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "new-pob": {
+      "locked": {
+        "lastModified": 1749795816,
+        "narHash": "sha256-4CI4f3ibpw9EaPavyvosbmHVBB9sv76B3panS7pqnTs=",
+        "owner": "K900",
+        "repo": "nixpkgs",
+        "rev": "8c1bc204d98b4e9edece53886b3a9897b17c40d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "K900",
+        "repo": "nixpkgs",
+        "rev": "8c1bc204d98b4e9edece53886b3a9897b17c40d2",
         "type": "github"
       }
     },
@@ -169,6 +185,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "new-pob": "new-pob",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "rojekti": "rojekti"

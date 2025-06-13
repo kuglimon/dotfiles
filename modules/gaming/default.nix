@@ -5,8 +5,8 @@
 {
   lib,
   config,
-  options,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -22,17 +22,10 @@
     users.users.kuglimon = {
       packages = with pkgs; [
         mangohud
-        path-of-building
+        inputs.new-pob.legacyPackages.x86_64-linux.path-of-building
 
         # GOTY of all the years
-        (starsector.overrideAttrs (oldAttrs: {
-          version = "0.98a-RC8";
-
-          src = fetchzip {
-            url = "https://f005.backblazeb2.com/file/fractalsoftworks/release/starsector_linux-0.98a-RC8.zip";
-            sha256 = "sha256-W/6QpgKbUJC+jWOlAOEEGStee5KJuLi020kRtPQXK3U=";
-          };
-        }))
+        starsector
       ];
     };
 

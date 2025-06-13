@@ -10,6 +10,10 @@
       url = "github:nix-community/NixOS-WSL/main";
     };
 
+    new-pob = {
+      url = "github:K900/nixpkgs/8c1bc204d98b4e9edece53886b3a9897b17c40d2";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
