@@ -109,11 +109,13 @@ local servers = {
 require('neodev').setup()
 
 for server, settings in pairs(servers) do
-  nvim_lsp[server].setup {
+  vim.lsp.enable(server)
+
+  vim.lsp.config(server, {
     capabilities = capabilities,
     on_attach = on_attach,
     settings = settings
-  }
+  })
 end
 
 -- nvim-cmp setup
