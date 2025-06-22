@@ -42,8 +42,7 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  -- on mac this is opt-shift-l
-  nmap('ﬂ', vim.lsp.buf.format, 'Format')
+  nmap('<C-A-l>', vim.lsp.buf.format, 'Format')
 
   -- refactoring crap
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]efactor [N]ame')
