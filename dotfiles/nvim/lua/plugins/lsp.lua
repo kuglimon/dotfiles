@@ -31,7 +31,12 @@ local on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  if client.supports_method("textDocument/formatting") then
+  -- LSP can have dynamic capabilities, which are registered later. This is just
+  -- a hack to get around this. What if we use these before they are available?
+  -- That's a shrug.
+  --
+  -- FIXME(tatu): support dynamic registration
+  if client.supports_method("textDocument/formatting") or client.name == "biome" then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroup,
