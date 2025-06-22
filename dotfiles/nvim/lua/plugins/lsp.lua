@@ -155,10 +155,3 @@ cmp.setup {
 }
 
 local null_ls = require("null-ls")
-
--- Other diagnostics through null-ls
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.biome,
-  },
-})
