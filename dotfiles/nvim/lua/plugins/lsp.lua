@@ -60,6 +60,7 @@ local on_attach = function(client, bufnr)
   -- than delete a line
   nmap('<leader>j', vim.diagnostic.goto_next, 'Diagnostic [J]Next')
   nmap('<leader>k', vim.diagnostic.goto_prev, 'Diagnostic [K]Previous')
+  nmap('<leader>o', vim.diagnostic.open_float, 'Open Diagnostics')
   nmap('<leader>ll', "<cmd>Telescope diagnostics<cr>", 'Telescope list diagnostics')
 
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
