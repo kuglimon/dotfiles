@@ -22,7 +22,7 @@
     users.users.kuglimon = {
       packages = with pkgs; [
         mangohud
-        inputs.new-pob.legacyPackages.x86_64-linux.path-of-building
+        path-of-building
 
         # GOTY of all the years
         starsector
