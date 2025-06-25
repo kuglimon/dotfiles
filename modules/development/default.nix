@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     bundles.development = {
       enable = lib.mkEnableOption "Enables development tools";
@@ -111,29 +112,29 @@
             };
           };
         in
-          pkgs.writeShellApplication {
-            name = "nvim";
-            runtimeInputs = [
-              rust-analyzer
-              # For js LSP
-              biome
+        pkgs.writeShellApplication {
+          name = "nvim";
+          runtimeInputs = [
+            rust-analyzer
+            # For js LSP
+            biome
 
-              # nix formatter
-              alejandra
+            # nix formatter
+            alejandra
 
-              # already contains shellcheck
-              bash-language-server
-              terraform-ls
-              nil
-              lua-language-server
+            # already contains shellcheck
+            bash-language-server
+            terraform-ls
+            nil
+            lua-language-server
 
-              # ts LSP
-              vtsls
-            ];
-            text = ''
-              ${wrappedNeovim}/bin/nvim "$@"
-            '';
-          }
+            # ts LSP
+            vtsls
+          ];
+          text = ''
+            ${wrappedNeovim}/bin/nvim "$@"
+          '';
+        }
       )
     ];
 
