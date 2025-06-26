@@ -43,6 +43,9 @@
         unzip
         xclip
 
+        # Testing out the cursed editor
+        code-cursor
+
         # I didn't configure these using program.zsh nor program.starship as I'm
         # not a fan of having another layer of abstraction on top of the
         # configuration.
