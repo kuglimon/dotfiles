@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # TODO(tatu): maybe is should just drop home-manager completely. I use it for
   # like firefox profiles and that's it. There's probably another way to install
   # dotfiles without it.
@@ -17,17 +18,20 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users.kuglimon = {...}: {
-    imports = [
-      ../../modules/home-manager/common
-      ./home.nix
-    ];
-  };
+  home-manager.users.kuglimon =
+    { ... }:
+    {
+      imports = [
+        ../../modules/home-manager/common
+        ./home.nix
+      ];
+    };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "discord"
       "spotify"
@@ -144,7 +148,7 @@
     autorun = false;
 
     # TODO(tatu): Should move this, hardware dependent
-    videoDrivers = ["nvidia"];
+    videoDrivers = [ "nvidia" ];
 
     windowManager.i3 = {
       enable = true;
@@ -214,7 +218,7 @@
       ghostscript
       keepassxc
       newsboat
-      (polybar.override {i3Support = true;})
+      (polybar.override { i3Support = true; })
       pulsemixer
       qemu
       rclone
@@ -340,7 +344,7 @@
   # Make mah printer work
   services.printing = {
     enable = true;
-    drivers = [pkgs.samsung-unified-linux-driver_4_01_17];
+    drivers = [ pkgs.samsung-unified-linux-driver_4_01_17 ];
   };
 
   virtualisation.docker.enable = true;
