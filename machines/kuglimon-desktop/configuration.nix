@@ -365,6 +365,14 @@
     enableSSHSupport = true;
   };
 
+  services.libinput = {
+    mouse = {
+      # Disable right + left click executing middle click. This is pure cancer
+      # when gaming.
+      middleEmulation = false;
+    };
+  };
+
   # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
   # now.
   # hardware.printers = {
