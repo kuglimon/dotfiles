@@ -102,8 +102,8 @@
     # TODO(tatu): Doesn't work, complains about off-load
     # powerManagement.finegrained = true;
 
-    # Open Source modules don't support G-Sync, enable once support lands.
-    open = false;
+    # Blackwell GPUs require open source kernel modules
+    open = true;
 
     # Enables 'nvidia-settings' command/app.
     nvidiaSettings = true;
