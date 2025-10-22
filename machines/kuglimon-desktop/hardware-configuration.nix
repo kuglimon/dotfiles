@@ -22,7 +22,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/nvme1n1p1";
+    device = "/dev/nvme0n1p1";
     fsType = "btrfs";
     options = [
       "subvol=@nixos-root"
@@ -33,7 +33,7 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/nvme1n1p1";
+    device = "/dev/nvme0n1p1";
     fsType = "btrfs";
     options = [
       "subvol=@home"
@@ -44,7 +44,7 @@
   };
 
   fileSystems."/home/kuglimon/.local/share/Steam" = {
-    device = "/dev/nvme1n1p1";
+    device = "/dev/nvme0n1p1";
     fsType = "btrfs";
     options = [
       "subvol=@steam"
@@ -55,7 +55,7 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/nvme1n1p1";
+    device = "/dev/nvme0n1p1";
     fsType = "btrfs";
     options = [
       "subvol=@nix-store"
