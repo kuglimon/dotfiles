@@ -225,6 +225,8 @@
       rofi
       spotify
 
+      (pkgs.llama-cpp.override { cudaSupport = true; })
+
       # for reverse engineering
       ghidra
 
