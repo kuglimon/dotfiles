@@ -237,10 +237,9 @@
       cudaPackages.cuda_cudart
       cudaPackages.cudatoolkit
 
-      # Not sure if there's a cleaner way to reference packages from custom
-      # repositories.
+      # TODO(tatu): Is there a better way than just referencing inputs? Maybe
+      # there's a way to drop the system at least.
       inputs.rojekti.packages.${system}.rojekti
-      self.packages.${pkgs.system}.llamafile
     ];
   };
 
