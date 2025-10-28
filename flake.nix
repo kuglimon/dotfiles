@@ -53,7 +53,7 @@
         modules = [
           ./modules/development
           ./modules/gaming
-          ./machines/kuglimon-desktop/configuration.nix
+          ./hosts/kuglimon-desktop/configuration.nix
         ];
       };
 
@@ -64,7 +64,7 @@
           inherit inputs;
         };
         modules = [
-          ./machines/watermedia-elitedesk/configuration.nix
+          ./hosts/watermedia-elitedesk/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -73,7 +73,7 @@
             home-manager.users.kuglimon =
               { ... }:
               {
-                imports = [ ./machines/watermedia-elitedesk/home.nix ];
+                imports = [ ./hosts/watermedia-elitedesk/home.nix ];
               };
           }
         ];
@@ -93,7 +93,7 @@
             wsl.enable = true;
           }
           ./modules/development
-          ./machines/kuglimon-wsl/configuration.nix
+          ./hosts/kuglimon-wsl/configuration.nix
         ];
       };
 
