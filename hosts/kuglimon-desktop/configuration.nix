@@ -225,17 +225,13 @@
       rofi
       spotify
 
-      (pkgs.llama-cpp.override { cudaSupport = true; })
+      # (pkgs.llama-cpp.override { cudaSupport = true; })
 
       # for reverse engineering
       ghidra
 
       # For debugging failing nix builds
       cntr
-
-      cudaPackages.cuda_nvcc
-      cudaPackages.cuda_cudart
-      cudaPackages.cudatoolkit
 
       # TODO(tatu): Is there a better way than just referencing inputs? Maybe
       # there's a way to drop the system at least.
