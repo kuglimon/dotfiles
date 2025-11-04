@@ -272,9 +272,10 @@ assign [class="^steam_app_\d+$"] $ws-present
 
 # TODO: Everything launched from Term workspace should be floating. I wonder if
 #       that is possible?
-# Start PoB fork as floating
-for_window [class="path-of-building"] floating enable
 for_window [class="pico8"] move to workspace $ws-ide
+
+# Make sure pob is not floating
+for_window [class="rusty-path-of-building"] floating false
 
 # Automatic marks
 #
