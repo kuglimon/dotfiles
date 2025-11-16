@@ -12,7 +12,6 @@
   # dotfiles without it.
   imports = with inputs; [
     ./hardware-configuration.nix
-    home-manager.nixosModules.home-manager
   ];
 
   # home-manager options
@@ -23,7 +22,7 @@
     { ... }:
     {
       imports = [
-        ../../modules/home-manager/common
+        # ../../modules/home-manager/common
         ./home.nix
       ];
     };

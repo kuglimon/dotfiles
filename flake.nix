@@ -34,6 +34,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      modules = pkgs.lib.filesystem.listFilesRecursive ./modules;
     in
     {
       packages.${system} = rec {
@@ -51,12 +52,9 @@
           inherit inputs;
         };
         modules = [
-          ./modules/development
-          ./modules/gaming
-          ./modules/unfree
-          ./modules/nix
           ./hosts/kuglimon-desktop/configuration.nix
-        ];
+        ]
+        ++ modules;
       };
 
       nixosConfigurations.watermedia = nixpkgs.lib.nixosSystem {
