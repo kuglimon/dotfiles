@@ -22,7 +22,6 @@
     users.users.kuglimon = {
       packages = with pkgs; [
         mangohud
-        # rusty-path-of-building
         rusty-path-of-building
 
         # GOTY of all the years

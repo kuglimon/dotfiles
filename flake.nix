@@ -39,7 +39,6 @@
       packages.${system} = rec {
         cosmocc = pkgs.callPackage ./pkgs/cosmocc.nix { };
         llamafile = pkgs.callPackage ./pkgs/llamafile.nix { cosmocc = cosmocc; };
-        rusty-path-of-building = pkgs.callPackage ./pkgs/rusty-path-of-building.nix { };
         release-wsl-tarbal = pkgs.callPackage ./pkgs/release-wsl-tarbal.nix {
           tarballBuilder = self.nixosConfigurations.wsl.config.system.build.tarballBuilder;
         };
