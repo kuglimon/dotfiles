@@ -54,6 +54,7 @@
           ./modules/development
           ./modules/gaming
           ./modules/unfree
+          ./modules/nix
           ./hosts/kuglimon-desktop/configuration.nix
         ];
       };

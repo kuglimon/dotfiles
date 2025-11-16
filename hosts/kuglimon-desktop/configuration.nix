@@ -41,17 +41,6 @@
     "samsung-unified-linux-driver"
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
   boot.kernel.sysctl = {
