@@ -142,5 +142,7 @@
     ];
 
     programs.zsh.enable = true;
+
+    bundles.unfreePackages = [ "cursor" ];
   };
 }

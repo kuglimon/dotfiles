@@ -53,6 +53,7 @@
         modules = [
           ./modules/development
           ./modules/gaming
+          ./modules/unfree
           ./hosts/kuglimon-desktop/configuration.nix
         ];
       };

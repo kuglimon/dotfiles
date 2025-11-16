@@ -1,5 +1,6 @@
 {
   self,
+  config,
   inputs,
   lib,
   pkgs,
@@ -29,53 +30,16 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-      "spotify"
+  bundles.unfreePackages = [
+    "discord"
+    "spotify"
 
-      # FIXME(tatu): These should be set on the gaming modules but it doesn't
-      # work. If I move these it'll start complaining about the samsung drivers.
-      # Which leads me to believe the module configuration overrides this
-      # completely rather than merging.
-      "steam"
-      "steam-original"
-      "steam-run"
+    # nvidia drivers
+    "nvidia-settings"
+    "nvidia-x11"
 
-      # nvidia drivers
-      "libXNVCtrl"
-      "nvidia-settings"
-      "nvidia-x11"
-
-      # cuda crap
-      "cuda_nvcc"
-      "cuda_cudart"
-      "cuda-merged"
-      "cuda_cuobjdump"
-      "cuda_gdb"
-      "cuda_nvdisasm"
-      "cuda_nvprune"
-      "cuda_cccl"
-      "cuda_cupti"
-      "cuda_cuxxfilt"
-      "cuda_nvml_dev"
-      "cuda_nvrtc"
-      "cuda_nvtx"
-      "cuda_profiler_api"
-      "cuda_sanitizer_api"
-      "libcublas"
-      "libcufft"
-      "libcurand"
-      "libcusolver"
-      "libnvjitlink"
-      "libcusparse"
-      "libnpp"
-
-      # For samsung printers
-      "samsung-UnifiedLinuxDriver"
-    ];
+    "samsung-unified-linux-driver"
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
