@@ -23,7 +23,7 @@
       packages = with pkgs; [
         mangohud
         # rusty-path-of-building
-        (self.packages.${pkgs.system}.rusty-path-of-building.override { waylandSupport = false; })
+        rusty-path-of-building
 
         # GOTY of all the years
         starsector
