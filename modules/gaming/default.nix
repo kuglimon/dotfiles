@@ -14,6 +14,13 @@
   };
 
   config = lib.mkIf config.bundles.gaming.enable {
+    assertions = [
+      {
+        assertion = config.bundles.gui.enable;
+        message = "you probably want to enable gui for gaming";
+      }
+    ];
+
     # FIXME(tatu): Different systems have different users, this should be
     # configurable.
     users.users.kuglimon = {
