@@ -84,6 +84,8 @@
         ];
       };
 
+    console.keyMap = "fi";
+
     users.users.kuglimon = {
       packages = with pkgs; [
         # the 'bash' package is a minimal bash installation meant for scripts and
