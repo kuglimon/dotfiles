@@ -17,6 +17,10 @@
     users.users.kuglimon = {
       isNormalUser = true;
       createHome = true;
+
+      extraGroups = [
+        "wheel" # Enable ‘sudo’ for the user.
+      ];
     };
 
     # Set your time zone.
