@@ -23,6 +23,8 @@
       ];
     };
 
+    users.users.kuglimon.initialPassword = "replaceme";
+
     # Set your time zone.
     time.timeZone = "Europe/Helsinki";
   };
