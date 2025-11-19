@@ -7,7 +7,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -134,7 +135,7 @@
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     packages = with pkgs; [
       alacritty
@@ -163,7 +164,7 @@
       killall
       neovim
       nodejs_latest
-      (polybar.override {i3Support = true;})
+      (polybar.override { i3Support = true; })
       pulsemixer
       rclone
       ripgrep
@@ -180,7 +181,6 @@
       # Not sure if there's a cleaner way to reference packages from custom
       # repositories.
       inputs.rojekti.packages.${system}.default
-      self.packages.${pkgs.system}.llamafile
     ];
   };
 

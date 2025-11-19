@@ -37,9 +37,7 @@
       modules = pkgs.lib.filesystem.listFilesRecursive ./modules;
     in
     {
-      packages.${system} = rec {
-        cosmocc = pkgs.callPackage ./pkgs/cosmocc.nix { };
-        llamafile = pkgs.callPackage ./pkgs/llamafile.nix { cosmocc = cosmocc; };
+      packages.${system} = {
         release-wsl-tarbal = pkgs.callPackage ./pkgs/release-wsl-tarbal.nix {
           tarballBuilder = self.nixosConfigurations.wsl.config.system.build.tarballBuilder;
         };
