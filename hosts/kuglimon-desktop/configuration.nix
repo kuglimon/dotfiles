@@ -29,10 +29,7 @@
   bundles.gui.enable = true;
   bundles.hardware.gpu.nvidia.enable = true;
   bundles.hardware.cpu.amd.enable = true;
-
-  bundles.unfreePackages = [
-    "samsung-unified-linux-driver"
-  ];
+  bundles.hardware.printers.enable = true;
 
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
@@ -119,12 +116,6 @@
     jmtpfs
   ];
 
-  # Make mah printer work
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.samsung-unified-linux-driver_4_01_17 ];
-  };
-
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
@@ -142,23 +133,6 @@
     pinentryPackage = pkgs.pinentry-curses;
     enableSSHSupport = true;
   };
-
-  # Get model with lpinfo -m and automatically add my printer. Too lazy to fix
-  # now.
-  # hardware.printers = {
-  #   ensurePrinters = [
-  #     {
-  #       name = "Samsung_M2070_Series";
-  #       location = "Home";
-  #       deviceUri = "usb://Samsung/M2070%20Series?serial=ZF5RB8KH3B010TN&interface=1";
-  #       model = "drv:///sample.drv/generic.ppd";
-  #       ppdOptions = {
-  #         PageSize = "A4";
-  #       };
-  #     }
-  #   ];
-  #   ensureDefaultPrinter = "Samsung_M2070_Series";
-  # };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
