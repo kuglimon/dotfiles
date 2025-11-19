@@ -32,4 +32,16 @@
   # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
   # on ssd systems and more secure (and volatile!) because it's wiped on reboot.
   boot.tmp.useTmpfs = lib.mkDefault true;
+
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+
+  boot.initrd.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
 }
