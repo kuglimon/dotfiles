@@ -35,10 +35,9 @@
       # Enables 'nvidia-settings' command/app.
       nvidiaSettings = true;
 
-      # FIXME(tatu): Swapped to beta drivers as stable ones are broken on 6.12
-      # stable is the 'feature' version listed on nvidia site. This is the one
-      # Arch Linux installs, hence we'll use this as well.
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      # Latest is the production release, which is the same Arch Linux uses by
+      # default.
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     bundles.unfreePackages = [
