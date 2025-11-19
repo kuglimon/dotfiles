@@ -76,15 +76,17 @@
           inherit inputs;
         };
         modules = [
+          home-manager.nixosModules.home-manager
           nixos-wsl.nixosModules.default
+          # FIXME(tatu): tarballBuilder depends on this?
           {
             system.stateVersion = "25.05";
             wsl.defaultUser = "kuglimon";
             wsl.enable = true;
           }
-          ./modules/development
           ./hosts/kuglimon-wsl/configuration.nix
-        ];
+        ]
+        ++ modules;
       };
 
       devShells.x86_64-linux.default = pkgs.mkShell {

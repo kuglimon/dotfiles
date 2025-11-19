@@ -5,14 +5,7 @@
   ...
 }:
 {
-  # TODO(tatu): Should probably have a separate module for boot
-  boot.loader.timeout = 0;
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
 
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl

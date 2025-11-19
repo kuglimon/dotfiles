@@ -6,13 +6,14 @@
 }:
 {
   options = {
+    bundles.networking.enable = lib.mkEnableOption "Enables custom networking support";
     bundles.networking.hostname = lib.mkOption {
       type = lib.types.str;
       description = "Original home manger state version";
     };
   };
 
-  config = {
+  config = lib.mkIf config.bundles.networking.enable {
     networking.hostName = config.bundles.networking.hostname;
     networking.nameservers = [
       "1.1.1.1" # cloudflare
@@ -26,7 +27,7 @@
     networking.useDHCP = lib.mkDefault true;
 
     networking.dhcpcd = {
-      enable = true;
+      enable = lib.mkDefault true;
 
       # TODO(tatu): I should really configure a static IP or do something about
       # this. DHCP takes like 10 seconds on NixOS. This should make it so that it
