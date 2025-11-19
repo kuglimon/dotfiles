@@ -63,19 +63,10 @@
           inherit inputs;
         };
         modules = [
-          ./hosts/watermedia-elitedesk/configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.kuglimon =
-              { ... }:
-              {
-                imports = [ ./hosts/watermedia-elitedesk/home.nix ];
-              };
-          }
-        ];
+          ./hosts/watermedia-elitedesk/configuration.nix
+        ]
+        ++ modules;
       };
 
       nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
