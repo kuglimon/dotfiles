@@ -2,19 +2,6 @@
   ...
 }:
 {
-  # home-manager options
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
-  home-manager.users.kuglimon =
-    { ... }:
-    {
-      imports = [
-        # ../../modules/home-manager/common
-        ./home.nix
-      ];
-    };
-
   bundles.gui.enable = true;
   bundles.hardware.gpu.nvidia.enable = true;
   bundles.hardware.cpu.amd.enable = true;
@@ -103,4 +90,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
+  bundles.home-manager.stateVersion = "23.11";
 }

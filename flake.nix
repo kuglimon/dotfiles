@@ -52,6 +52,7 @@
           inherit inputs;
         };
         modules = [
+          home-manager.nixosModules.home-manager
           ./hosts/kuglimon-desktop/configuration.nix
         ]
         ++ modules;
