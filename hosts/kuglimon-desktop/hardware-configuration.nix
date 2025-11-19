@@ -17,8 +17,8 @@
     "usb_storage"
     "sd_mod"
   ];
+
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
@@ -76,41 +76,12 @@
 
   swapDevices = [ ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted
+  # networking (the default) this is the recommended approach. When using
+  # systemd-networkd it's still possible to use this option, but it's
+  # recommended to use it in conjunction with explicit per-interface
+  # declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # Enables hardware rendering. This used to be called 'hardware.opengl' which
-  # was SUPER confusing.
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-
-    # I don't have free energy to spend on 100w idle GPU. This can cause issues
-    # with sleep/hibernate but who the fuck uses that on linux, plain boot is
-    # plenty fast.
-    powerManagement.enable = true;
-    # TODO(tatu): Doesn't work, complains about off-load
-    # powerManagement.finegrained = true;
-
-    # Blackwell GPUs require open source kernel modules
-    open = true;
-
-    # Enables 'nvidia-settings' command/app.
-    nvidiaSettings = true;
-
-    # FIXME(tatu): Swapped to beta drivers as stable ones are broken on 6.12
-    # stable is the 'feature' version listed on nvidia site. This is the one
-    # Arch Linux installs, hence we'll use this as well.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
 }

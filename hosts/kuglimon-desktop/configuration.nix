@@ -27,12 +27,10 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   bundles.gui.enable = true;
+  bundles.hardware.gpu.nvidia.enable = true;
+  bundles.hardware.cpu.amd.enable = true;
 
   bundles.unfreePackages = [
-    # nvidia drivers
-    "nvidia-settings"
-    "nvidia-x11"
-
     "samsung-unified-linux-driver"
   ];
 
