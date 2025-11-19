@@ -30,9 +30,6 @@
 
   bundles.hardware.printers.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
-
   # Includes steam, path of building, and all the other jazz
   bundles.gaming.enable = true;
 
@@ -42,35 +39,10 @@
 
   # Still need to set password with 'passwd' after creation.
   users.users.kuglimon = {
-    isNormalUser = true;
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "libvirtd" # Enables virt-manager to connect to kvm?
       "docker"
-    ];
-
-    createHome = true;
-    packages = with pkgs; [
-      # the 'bash' package is a minimal bash installation meant for scripts and
-      # automation. We want the full package for interactive use.
-      bashInteractive
-      btrfs-progs
-
-      # Enable back once tests don't fail and the damn app doesn't register it
-      # as default app for everything.
-      # calibre
-      dosfstools
-      file
-      qemu
-      ghostscript
-      rclone
-
-      # For debugging failing nix builds
-      cntr
-
-      # TODO(tatu): Is there a better way than just referencing inputs? Maybe
-      # there's a way to drop the system at least.
-      inputs.rojekti.packages.${system}.rojekti
     ];
   };
 
