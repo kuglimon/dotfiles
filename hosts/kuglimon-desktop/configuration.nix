@@ -37,11 +37,8 @@
   bundles.development.enable = true;
   bundles.terminal.enable = true;
   bundles.virtualization.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    # For mounting Android MTP drives
-    jmtpfs
-  ];
+  bundles.android.enable = true;
+  bundles.users.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
