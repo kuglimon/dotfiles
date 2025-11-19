@@ -18,5 +18,7 @@
         message = "you have succesfully failed a task by enabling both amd and intel cpu support";
       }
     ];
+
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 }
