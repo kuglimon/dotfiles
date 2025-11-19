@@ -18,6 +18,8 @@
   bundles.android.enable = true;
   bundles.users.enable = true;
 
+  bundles.networking.hostname = "desktop";
+
   fileSystems."/" = {
     device = "/dev/nvme0n1p1";
     fsType = "btrfs";
