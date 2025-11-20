@@ -2,6 +2,7 @@
   ...
 }:
 {
+  bundles.systemd-boot.enable = true;
   bundles.gui.enable = true;
   bundles.hardware.gpu.nvidia.enable = true;
   bundles.hardware.cpu.amd.enable = true;
