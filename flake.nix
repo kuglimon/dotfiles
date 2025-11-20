@@ -78,9 +78,9 @@
         modules = [
           home-manager.nixosModules.home-manager
           nixos-wsl.nixosModules.default
-          # FIXME(tatu): tarballBuilder depends on this?
+          # I don't want to have the WSL as a common module as I'd have to
+          # import it across all configurations.
           {
-            system.stateVersion = "25.05";
             wsl.defaultUser = "kuglimon";
             wsl.enable = true;
           }
