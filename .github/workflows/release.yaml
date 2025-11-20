@@ -13,6 +13,8 @@ jobs:
       - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
       - id: releaseWslTarbal
         run: |
           nix develop --command gh-release-wsl-tarbal
