@@ -7,6 +7,7 @@
   ...
 }:
 {
+  bundles.systemd-boot.enable = true;
   bundles.gui.enable = true;
   bundles.hardware.cpu.intel.enable = true;
   bundles.hardware.printers.enable = true;
@@ -17,6 +18,7 @@
   bundles.users.enable = true;
 
   # FIXME(tatu): Enable configurring in networking
+  bundles.networking.enable = true;
   bundles.networking.hostname = "watermedia";
 
   fileSystems."/" = {
