@@ -18,17 +18,11 @@
       {
         imports = [
           {
-            home.file.".xinitrc".source = ../../dotfiles/xinitrc;
-            home.file.".config/i3/config".source = ../../dotfiles/i3/config;
+            home.file.".config/hypr/hyprland.conf".source = ../../dotfiles/hypr/hyprland.conf;
+            home.file.".config/hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
 
-            home.file.".config/polybar/config.ini".source = ../../dotfiles/polybar/config.ini;
-            home.file.".config/polybar/launch.sh" = {
-              source = ../../dotfiles/polybar/launch.sh;
-              executable = true;
-            };
-
-            home.file.".config/rofi" = {
-              source = ../../dotfiles/rofi;
+            home.file.".config/waybar" = {
+              source = ../../dotfiles/waybar;
               recursive = true;
             };
 
@@ -83,8 +77,6 @@
               # size = 40;
               package = pkgs.capitaine-cursors;
               name = "capitaine-cursors";
-
-              x11.enable = true;
             };
 
             # Add the default connection for virt-manager
@@ -94,8 +86,6 @@
                 uris = [ "qemu:///system" ];
               };
             };
-
-            xsession.enable = true;
           }
         ];
       };
@@ -113,16 +103,17 @@
       packages = with pkgs; [
         discord
         dunst
-        feh
         file
         flameshot
         ghostscript
         keepassxc
         newsboat
-        (polybar.override { i3Support = true; })
         pulsemixer
-        rofi
         spotify
+
+        # hyprland stuff
+        hyprpaper
+        waybar
 
         # for reverse engineering
         ghidra
@@ -143,46 +134,31 @@
       nerd-fonts.fira-mono
     ];
 
-    services.displayManager = {
-      defaultSession = "none+i3";
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
     };
 
-    # Enable the X11 windowing system.
+    # Naming on this service is rather confusing. It's not just tied to wayland.
     services.xserver = {
       enable = true;
       autorun = false;
 
-      # TODO(tatu): Should move this, hardware dependent
-      videoDrivers = [ "nvidia" ];
-
-      windowManager.i3 = {
-        enable = true;
-      };
-
       displayManager = {
-        # Login to vtty. I don't want a graphical user login, it's just useless
-        # crap. When there's an issue with the system it's almost always due to
-        # the GUI. It's super rare in linux nowadays, but why would I waste my
-        # life on a solution that opens the path to failure when I can have a path
-        # where it cannot ever exist?
+        # Login to tty. Based on reddit comments I decided to finally try
+        # logging in to display manager instead of tty. Many of them don't work
+        # on wayland and the one that I finally got working (ssdm) has multiple
+        # other issues like mouse and keyboard being completely dead once
+        # hyprland had started. Only way to fix it was to reconnect them, not
+        # even changing modes on the keyboard would make it reconnect. So yeah,
+        # fuck that noise, tty still works. One of the questions in reddit was
+        # that can't you just ctrl+alt+fx to another termina, well fucking
+        # obviously not right away if your keyboard doesn't work :D
         startx.enable = true;
       };
 
-      xkb = {
-        # Enable Finnish layout
-        layout = "fi";
-
-        # Map capslock to escape
-        options = "caps:escape";
-      };
-
-      # I'm still unsure if I should just use the nix options or my old
-      # configuration files.
-      extraConfig = builtins.readFile ../../dotfiles/X11/50-mouse-acceleration.conf;
-
-      excludePackages = with pkgs; [
-        xterm
-      ];
+      # TODO(tatu): Should move this, hardware dependent
+      videoDrivers = [ "nvidia" ];
     };
 
     # Install extensions for all profiles. This seemed like a way simpler solution

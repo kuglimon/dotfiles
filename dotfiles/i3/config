@@ -297,8 +297,8 @@ for_window [class="rusty-path-of-building"] floating false
 #
 # j - main browser
 # k - main terminal
-# l - spotify
-# ö - discord
+# ö - spotify
+# l - discord
 #
 # I tried mapping keys to their names, like browser is on b and so
 # on. But this is just annoying to type, you won't look at the keys
