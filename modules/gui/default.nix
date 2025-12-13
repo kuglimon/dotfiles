@@ -31,6 +31,11 @@
               recursive = true;
             };
 
+            home.file.".config/rofi" = {
+              source = ../../dotfiles/rofi;
+              recursive = true;
+            };
+
             home.file.".config/dunst/dunstrc".source = ../../dotfiles/dunst/dunstrc;
 
             # Mangohud frame limiting goes crazy on the new Fallout 4 update, limiting fps
@@ -99,26 +104,48 @@
     };
 
     # Still need to set password with 'passwd' after creation.
-    users.users.kuglimon = {
-      packages = with pkgs; [
-        discord
-        dunst
-        file
-        flameshot
-        ghostscript
-        keepassxc
-        newsboat
-        pulsemixer
-        spotify
+    users.users.kuglimon =
+      let
+        toggle-rofi = pkgs.writeShellApplication {
+          name = "toggle-rofi";
 
-        # hyprland stuff
-        hyprpaper
-        waybar
+          runtimeInputs = with pkgs; [
+            killall
+            rofi
+            procps
+          ];
 
-        # for reverse engineering
-        ghidra
-      ];
-    };
+          text = ''
+            if pgrep -x rofi; then
+                killall rofi
+            else
+                rofi -show drun
+            fi
+          '';
+        };
+      in
+      {
+        packages = with pkgs; [
+          discord
+          dunst
+          file
+          flameshot
+          ghostscript
+          keepassxc
+          newsboat
+          pulsemixer
+          spotify
+
+          # hyprland stuff
+          hyprpaper
+          waybar
+          rofi
+          toggle-rofi
+
+          # for reverse engineering
+          ghidra
+        ];
+      };
 
     # TODO(tatu): Why does NixOS recommend enabling this?
     security.rtkit.enable = true;
