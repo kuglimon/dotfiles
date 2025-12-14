@@ -184,6 +184,11 @@
         startx.enable = true;
       };
 
+      # Otherwise startX display manager will try to boot into xterm
+      excludePackages = with pkgs; [
+        xterm
+      ];
+
       # TODO(tatu): Should move this, hardware dependent
       videoDrivers = [ "nvidia" ];
     };
