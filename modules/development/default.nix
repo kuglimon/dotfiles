@@ -94,7 +94,6 @@
                   nvim-lspconfig
                   (nvim-treesitter.withAllGrammars)
                   nvim-treesitter-textobjects
-                  playground
 
                   # EasyMotion/Sneak alternative. Allows for searching based on two
                   # characters like in sneak but can search globaly in windows with 'g'
