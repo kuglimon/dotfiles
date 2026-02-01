@@ -41,6 +41,7 @@
         tree
         unzip
         xclip
+        vagrant
 
         # I didn't configure these using program.zsh nor program.starship as I'm
         # not a fan of having another layer of abstraction on top of the
@@ -137,5 +138,9 @@
     ];
 
     programs.zsh.enable = true;
+
+    bundles.unfreePackages = [
+      "vagrant"
+    ];
   };
 }
