@@ -127,6 +127,9 @@
             nil
             lua-language-server
 
+            # For clangd LSP
+            clang-tools
+
             # ts LSP
             vtsls
           ];

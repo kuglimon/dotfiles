@@ -102,6 +102,7 @@ local servers = {
   rust_analyzer = {},
   vtsls = {},
   biome = {},
+  clangd = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
