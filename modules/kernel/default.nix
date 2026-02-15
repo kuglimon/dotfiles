@@ -5,7 +5,8 @@
   ...
 }:
 {
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # FIXME(tatu): Nvidia drivers don't compile against the latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
