@@ -104,7 +104,7 @@
                   oil-nvim
 
                   # Lords plugins
-                  fugitive
+                  vim-fugitive
                   vim-surround
                 ];
               };
