@@ -17,6 +17,9 @@
     # configurable.
     users.users.kuglimon = {
       packages = with pkgs; [
+        # Helper for sandboxing ai agents
+        aisabox
+
         # Main reason I use alacritty is that it works on all platforms I use
         # (windows, macos, linux).
         alacritty
@@ -24,6 +27,9 @@
 
         # Mostly using for reverse engineering
         gdb
+
+        # For sandboxing applications
+        nixos-shell
 
         bat
         cargo
