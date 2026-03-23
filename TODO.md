@@ -4,8 +4,6 @@
   * Separation of modules is confusing
   * Directory per module is confusing
   * Packages are scattered around
-* Better support for AI workflows
-  * This shit needs to be at least sandboxed
 * Scratchpads don't yet work in the hyprland setup
 * Try niri as an alternative dm
 * Stop using ZFS in homeserver
