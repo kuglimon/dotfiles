@@ -58,6 +58,21 @@ pkgs.writeShellApplication {
       exit 1
     fi
 
+    # Try flake output first, then vm.nix
+    PROJECT_IMPORT_LINE=""
+    DEFAULT_CONFIG=""
+    if [ -z "$VM_CONFIG" ]; then
+      if [ -f "$PROJECT_DIR/flake.nix" ] && \
+          nix eval "$PROJECT_DIR#claude-vm" --no-update-lock-file >/dev/null 2>&1; then
+        PROJECT_IMPORT_LINE="(builtins.getFlake \"$PROJECT_DIR\").claude-vm"
+      elif [ -f "$PROJECT_DIR/vm.nix" ]; then
+        PROJECT_IMPORT_LINE="$PROJECT_DIR/vm.nix"
+      else
+        # defaults to launch the vm
+        DEFAULT_CONFIG='claude-vm.user = "${defaultUser}"; claude-vm.uid = ${toString defaultUid};'
+      fi
+    fi
+
     if [ -z "$VM_CONFIG" ] && [ -f "$PROJECT_DIR/vm.nix" ]; then
       VM_CONFIG="$PROJECT_DIR/vm.nix"
     fi
@@ -77,16 +92,6 @@ pkgs.writeShellApplication {
     if [ ! -d "$HOME/.claude" ]; then
       echo "Claude authentication directory doesn't exist" >&2
       exit 1
-    fi
-
-    # ── Optional project import ────────────────────────────────
-    PROJECT_IMPORT_LINE=""
-    DEFAULT_CONFIG=""
-    if [ -n "$VM_CONFIG" ]; then
-      PROJECT_IMPORT_LINE="$VM_CONFIG"
-      echo "Using project config: $VM_CONFIG" >&2
-    else
-      DEFAULT_CONFIG='claude-vm.user = "${defaultUser}"; claude-vm.uid = ${toString defaultUid};'
     fi
 
     # ── Generate wrapper vm.nix ─────────────────────────────────
