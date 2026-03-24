@@ -2,7 +2,11 @@
 # If you install them via systemPackages / home.packages alongside
 # this script, writeShellApplication's runtimeInputs handles the rest.
 #
-{ pkgs }:
+{
+  pkgs,
+  defaultUser ? "kuglimon",
+  defaultUid ? 1000,
+}:
 
 pkgs.writeShellApplication {
   name = "aisabox";
@@ -77,9 +81,12 @@ pkgs.writeShellApplication {
 
     # ── Optional project import ────────────────────────────────
     PROJECT_IMPORT_LINE=""
+    DEFAULT_CONFIG=""
     if [ -n "$VM_CONFIG" ]; then
       PROJECT_IMPORT_LINE="$VM_CONFIG"
       echo "Using project config: $VM_CONFIG" >&2
+    else
+      DEFAULT_CONFIG='claude-vm.user = "${defaultUser}"; claude-vm.uid = ${toString defaultUid};'
     fi
 
     # ── Generate wrapper vm.nix ─────────────────────────────────
@@ -89,6 +96,8 @@ pkgs.writeShellApplication {
         ${./module.nix}
         $PROJECT_IMPORT_LINE
       ];
+
+      $DEFAULT_CONFIG
 
       nixos-shell.mounts.extraMounts = {
         "/project" = {
