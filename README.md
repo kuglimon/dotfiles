@@ -31,6 +31,105 @@ Update NixOS system:
 sudo nixos-rebuild switch --flake .
 ```
 
+## Features
+
+* hyprland
+* terminal based workflows
+* neovim
+* ai sandboxing
+
+### AI Sandbox - aisabox
+
+The script `aisabox` can be used to launch a sandboxed claude-code instance.
+Sandboxing is done using a Qemu virtual machine, making it safe to allow Claude
+to execute tools automatically.
+
+The command works without any arguments but you can configure it in two ways:
+`vm.nix` either at `$PWD` or given as flag `-c`, `flake.nix` output
+configuration.
+
+```nix
+# vm.nix
+{ pkgs, ... }: {
+  claude-vm = {
+    user = "youruser";
+    uid = 1000;
+    # shell = pkgs.zsh;
+    # memory = 4096;
+    # cores = 4;
+    # enableIdeForward = false;
+    # idePort = 61022;
+  };
+
+  # claude-vm.extraPackages = with pkgs; [
+  #   rustc cargo clippy rust-analyzer
+  #   nodejs_22 npm
+  #   go gopls
+  # ];
+
+  # nixos-shell.mounts.extraMounts = {
+  #   "/data" = {
+  #     target = /path/to/shared/data;
+  #     cache = "none";
+  #   };
+  # };
+}
+```
+
+```nix
+# flake.nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        devShells.default =
+          with pkgs;
+          mkShell {
+            packages = [ ];
+          };
+      }
+    )
+    //
+      {
+
+        claude-vm =
+          { pkgs, ... }:
+          {
+            claude-vm.user = "youruser";
+            claude-vm.uid = 1000;
+            claude-vm.extraPackages = with pkgs; [
+              lolcat
+            ];
+          };
+      };
+}
+```
+
+When run, `$PWD` is mounted inside the VM with RW permissions. Root `.git`
+directory is remounted as read-only to make sure the AI doesn't accidentally
+destroy your local repository.
+
+Claude is initialized with some defaults like skipping the default init
+questions. After login, unless you've already done it once, you should be able
+to just start prompting.
+
+This also exposes ports for $EDITOR integration. But I have not yet verified
+those to work.
+
 ## Repo history
 
 Over a decade ago, I used
