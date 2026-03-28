@@ -103,6 +103,7 @@ local servers = {
   vtsls = {},
   biome = {},
   clangd = {},
+  ruff = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

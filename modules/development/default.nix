@@ -136,7 +136,10 @@
             # For clangd LSP
             clang-tools
 
-            # ts LSP
+            # Hourly consultants hate this tool
+            ruff
+
+            # typescript LSP
             vtsls
           ];
           text = ''
