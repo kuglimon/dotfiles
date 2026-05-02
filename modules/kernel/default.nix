@@ -5,10 +5,7 @@
   ...
 }:
 {
-  # FIXME(tatu): 7.0 is unusable while gaming. Getting stutters that last closer
-  # to a second. Happens constantly on Pathfinder: Kingmaker. Nothing like this
-  # happened on 6.19.
-  boot.kernelPackages = pkgs.linuxPackages_6_19;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # These are based on Arch Linux defaults:
   #   https://gitlab.archlinux.org/archlinux/packaging/packages/filesystem/-/blob/main/sysctl
