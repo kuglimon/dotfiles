@@ -63,6 +63,11 @@
             programs.firefox = {
               enable = true;
 
+              # This is supposed to be
+              # "${config.xdg.configHome}/mozilla/firefox", but that doesn't
+              # work at all. Will completely break firefox.
+              # configPath = "~/.mozilla/firefox";
+
               profiles = {
                 default-release = {
                   id = 0;
