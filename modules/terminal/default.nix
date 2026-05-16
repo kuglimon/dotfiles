@@ -6,6 +6,9 @@
   inputs,
   ...
 }:
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+in
 {
   options = {
     bundles.terminal = {
