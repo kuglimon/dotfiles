@@ -89,7 +89,7 @@
         ++ modules;
       };
 
-      devShells.x86_64-linux.default = pkgs.mkShell {
+      devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
           pkgs.gh
           self.packages.${system}.release-wsl-tarbal
