@@ -1,7 +1,7 @@
 { ... }:
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (final: _prev: {
       aisabox = final.callPackage ../pkgs/aisabox { };
     })
   ];
