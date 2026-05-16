@@ -44,7 +44,6 @@
       };
 
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         specialArgs = {
           inherit self;
           inherit inputs;
@@ -52,12 +51,12 @@
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/kuglimon-desktop/configuration.nix
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
         ]
         ++ modules;
       };
 
       nixosConfigurations.watermedia = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         specialArgs = {
           inherit self;
           inherit inputs;
@@ -65,12 +64,12 @@
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/watermedia-elitedesk/configuration.nix
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
         ]
         ++ modules;
       };
 
       nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         specialArgs = {
           inherit self;
           inherit inputs;
@@ -85,6 +84,7 @@
             wsl.enable = true;
           }
           ./hosts/kuglimon-wsl/configuration.nix
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
         ]
         ++ modules;
       };
