@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Helper for managing tmux layouts. It's a monorepo and this allows me to
     # pull just one project from a subdirectory.
     rojekti = {
@@ -29,14 +34,60 @@
       nixpkgs,
       home-manager,
       nixos-wsl,
+      git-hooks,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       modules = pkgs.lib.filesystem.listFilesRecursive ./modules;
+
+      pre-commit-check = git-hooks.lib.${system}.run {
+        src = ./.;
+        # Use prek instead of pre-commit
+        package = pkgs.prek;
+        hooks = {
+          # Nix hygiene
+          nixfmt-rfc-style.enable = true;
+          deadnix.enable = true;
+
+          # Commit message format check
+          commit-format = {
+            enable = true;
+            name = "commit message format";
+            description = "enforce '<component>: <description>' with lowercase description";
+            stages = [ "commit-msg" ];
+            entry = "${pkgs.writeShellScript "check-commit-format" ''
+              set -eu
+              msg_file="$1"
+
+              # Read first line, skip comment lines and empty lines
+              first_line=$(grep -v '^#' "$msg_file" | grep -v '^$' | head -n1 || true)
+
+              # Allow merge/revert/fixup commits to pass
+              case "$first_line" in
+                "Merge "*|"Revert "*|"fixup! "*|"squash! "*) exit 0 ;;
+              esac
+
+              # Match: lowercase-component-with-optional-dashes-or-slashes: lowercase-start
+              if ! echo "$first_line" | grep -qE '^[a-z][a-z0-9._/-]*: [a-z]'; then
+                echo "✗ commit message must match: '<component>: <description>'" >&2
+                echo "  - component: lowercase letters, digits, dots, slashes, underscores, dashes" >&2
+                echo "  - description: must start with a lowercase letter" >&2
+                echo "" >&2
+                echo "  got: $first_line" >&2
+                echo "" >&2
+                echo "  retry with: git commit -e -F .git/COMMIT_EDITMSG" >&2
+                exit 1
+              fi
+            ''}";
+          };
+        };
+      };
     in
     {
+      checks.${system}.pre-commit-check = pre-commit-check;
+
       packages.${system} = {
         release-wsl-tarbal = pkgs.callPackage ./pkgs/release-wsl-tarbal.nix {
           tarballBuilder = self.nixosConfigurations.wsl.config.system.build.tarballBuilder;
@@ -90,6 +141,7 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
+        inherit (pre-commit-check) shellHook;
         buildInputs = [
           pkgs.gh
           self.packages.${system}.release-wsl-tarbal
@@ -98,7 +150,8 @@
           # develop --command' but fails in Github CI. I haven't had the time to
           # debug why.
           self.nixosConfigurations.wsl.config.system.build.tarballBuilder
-        ];
+        ]
+        ++ pre-commit-check.enabledPackages;
       };
     };
 }
