@@ -168,7 +168,16 @@
 
     programs.hyprland = {
       enable = true;
-      withUWSM = true;
+      package = pkgs.hyprland.overrideAttrs (_old: rec {
+        version = "0.55.3";
+        src = pkgs.fetchFromGitHub {
+          owner = "hyprwm";
+          repo = "Hyprland";
+          rev = "v${version}";
+          hash = "sha256-g3kzroSoipkMXv5wJWVYQDL+gI1qRJ7UhOrUzyTk9Zs=";
+          fetchSubmodules = true;
+        };
+      });
     };
 
     # Naming on this service is rather confusing. It's not just tied to wayland.
