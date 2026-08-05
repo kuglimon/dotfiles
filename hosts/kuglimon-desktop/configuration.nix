@@ -16,7 +16,6 @@
   bundles.development.enable = true;
   bundles.terminal.enable = true;
   bundles.virtualization.enable = true;
-  bundles.android.enable = true;
   bundles.users.enable = true;
 
   bundles.networking.hostname = "desktop";
