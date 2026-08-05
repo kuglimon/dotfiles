@@ -168,15 +168,16 @@
 
     programs.hyprland = {
       enable = true;
-      package = pkgs.hyprland.overrideAttrs (_old: rec {
-        version = "0.55.3";
-        src = pkgs.fetchFromGitHub {
-          owner = "hyprwm";
-          repo = "Hyprland";
-          rev = "v${version}";
-          hash = "sha256-g3kzroSoipkMXv5wJWVYQDL+gI1qRJ7UhOrUzyTk9Zs=";
-          fetchSubmodules = true;
-        };
+      # FIXME(tatu): Nixpkgs merged broken update...
+      package = pkgs.hyprland.overrideAttrs (oldAttrs: {
+        postPatch = ''
+          # Relax glaze dependency
+          # FIXME: this shouldn't be needed once the upstream code will adopt it
+          substituteInPlace CMakeLists.txt start/CMakeLists.txt hyprpm/CMakeLists.txt \
+            --replace-fail "glaze 7...<8" "glaze"
+
+        ''
+        + (oldAttrs.postPatch or "");
       });
     };
 
