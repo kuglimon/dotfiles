@@ -293,6 +293,7 @@
 
     bundles.unfreePackages = [
       "discord"
+      "discord-unwrapped"
       "spotify"
     ];
   };
