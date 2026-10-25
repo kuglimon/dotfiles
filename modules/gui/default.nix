@@ -147,6 +147,9 @@
           rofi
           toggle-rofi
 
+          # for AI training use only
+          makemkv
+
           # for reverse engineering
           ghidra
         ];
@@ -295,6 +298,7 @@
       "discord"
       "discord-unwrapped"
       "spotify"
+      "makemkv"
     ];
   };
 }
