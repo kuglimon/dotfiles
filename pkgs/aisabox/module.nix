@@ -95,7 +95,8 @@ in
     nixos-shell.mounts = {
       mountHome = false;
       mountNixProfile = false;
-      cache = "none";
+      # virtiofs cache mode, "never" keeps host edits visible immediately
+      cache = "never";
     };
 
     # ── VM resources ──────────────────────────────────────────────

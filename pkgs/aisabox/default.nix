@@ -107,11 +107,9 @@ pkgs.writeShellApplication {
       nixos-shell.mounts.extraMounts = {
         "/project" = {
           target = "$PROJECT_DIR";
-          cache = "none";
         };
         "/home/$USER/.claude" = {
           target = "$HOME/.claude";
-          cache = "none";
         };
       };
     }

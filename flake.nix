@@ -20,6 +20,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixos-shell 2.2.0 in nixpkgs still sets `virtualisation.msize`, which
+    # nixpkgs removed when the qemu-vm module moved from 9p to virtiofs.
+    # Upstream master has the virtiofs migration but no release yet.
+    # Drop this input once nixpkgs ships a release newer than 2.2.0.
+    nixos-shell = {
+      url = "github:Mic92/nixos-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Helper for managing tmux layouts. It's a monorepo and this allows me to
     # pull just one project from a subdirectory.
     rojekti = {
