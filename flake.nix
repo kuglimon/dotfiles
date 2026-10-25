@@ -48,7 +48,7 @@
         package = pkgs.prek;
         hooks = {
           # Nix hygiene
-          nixfmt-rfc-style.enable = true;
+          nixfmt.enable = true;
           deadnix.enable = true;
 
           # Commit message format check
