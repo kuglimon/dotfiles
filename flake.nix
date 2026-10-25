@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     };
 
     nixos-wsl = {

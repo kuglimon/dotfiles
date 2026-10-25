@@ -23,6 +23,8 @@ in
       "nccl"
     ];
 
+    bundles.unfreePackages = [ "cccl" ];
+
     nix.settings = {
       substituters = [ "https://cache.nixos-cuda.org" ];
       trusted-public-keys = [
