@@ -17,10 +17,17 @@
       type = lib.types.listOf lib.types.str;
       default = [ ];
     };
+    bundles.unfreePackagePrefixes = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+    };
   };
 
-  config = {
-    nixpkgs.config.allowUnfreePredicate =
-      pkg: builtins.elem (lib.getName pkg) config.bundles.unfreePackages;
-  };
+  config.nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    let
+      name = lib.getName pkg;
+    in
+    builtins.elem name config.bundles.unfreePackages
+    || lib.any (p: lib.hasPrefix p name) config.bundles.unfreePackagePrefixes;
 }

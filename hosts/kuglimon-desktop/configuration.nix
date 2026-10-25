@@ -17,6 +17,7 @@
   bundles.terminal.enable = true;
   bundles.virtualization.enable = true;
   bundles.users.enable = true;
+  bundles.llm.enable = true;
 
   bundles.networking.hostname = "desktop";
 
