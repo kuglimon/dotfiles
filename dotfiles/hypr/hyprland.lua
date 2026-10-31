@@ -142,6 +142,13 @@ hl.window_rule({ match = { initial_title = "^(Friends List)$" }, workspace = "6 
 -- Steam Games to Workspace 7 (Present)
 hl.window_rule({ match = { class = [[^steam_app_\d+$]] }, workspace = "7" })
 
+-- Allow keepass to focus on activation, like when git wants to sign commits
+hl.window_rule({
+  name = "keepass-may-focus",
+  match = { class = "^(org\\.keepassxc\\.KeePassXC)$" },
+  focus_on_activate = true,
+})
+
 -- Scratchpads (Special Workspaces)
 -- In Hyprland, scratchpads are "special workspaces".
 -- We define rules to send these apps to specific special workspaces on launch.
