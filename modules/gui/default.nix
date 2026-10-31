@@ -18,7 +18,7 @@
       {
         imports = [
           {
-            home.file.".config/hypr/hyprland.conf".source = ../../dotfiles/hypr/hyprland.conf;
+            home.file.".config/hypr/hyprland.lua".source = ../../dotfiles/hypr/hyprland.lua;
             home.file.".config/hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
 
             home.file.".config/waybar" = {
