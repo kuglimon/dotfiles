@@ -127,12 +127,17 @@ hl.config({
 -- -----------------------------------------------------------------------------
 -- Workspace assignments
 --
--- All silent so apps never steal focus or switch workspaces when they open.
+-- Silent so apps never steal focus or switch workspaces when they open.
 -- Discord and Steam fork and open several windows (updaters, main window,
 -- Friends List), so the silent exec_cmd rules in autostart don't catch them,
 -- these do.
+--
+-- KeePassXC is the exception. When git asks it to sign a commit while the
+-- database is locked, it opens a new unlock dialog window. That dialog has to
+-- take focus, otherwise git just appears to hang. The autostart exec_cmd rule
+-- keeps the main window silent on boot.
 hl.window_rule({ match = { class = "^(alacritty)$", title = "^(term-main)$" }, workspace = "2 silent" })
-hl.window_rule({ match = { class = "^(org.keepassxc.KeePassXC)$" }, workspace = "3 silent" })
+hl.window_rule({ match = { class = "^(org.keepassxc.KeePassXC)$" }, workspace = "3" })
 hl.window_rule({ match = { class = "^(discord)$" }, workspace = "4 silent" })
 hl.window_rule({ match = { class = "^(firefox-main)$" }, workspace = "1" })
 hl.window_rule({ match = { class = "^(Spotify)$" }, workspace = "5 silent" })
@@ -141,13 +146,6 @@ hl.window_rule({ match = { initial_title = "^(Friends List)$" }, workspace = "6 
 
 -- Steam Games to Workspace 7 (Present)
 hl.window_rule({ match = { class = [[^steam_app_\d+$]] }, workspace = "7" })
-
--- Allow keepass to focus on activation, like when git wants to sign commits
-hl.window_rule({
-  name = "keepass-may-focus",
-  match = { class = "^(org\\.keepassxc\\.KeePassXC)$" },
-  focus_on_activate = true,
-})
 
 -- Scratchpads (Special Workspaces)
 -- In Hyprland, scratchpads are "special workspaces".
