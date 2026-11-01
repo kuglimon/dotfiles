@@ -28,6 +28,17 @@ in
       description = "UID (should match your host UID)";
     };
 
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = "users";
+      description = ''
+        Primary group (its GID should match your host user's primary GID).
+        virtiofsd runs unprivileged on the host and can't create files owned
+        by a GID the host user doesn't have, so a mismatch makes every file
+        creation in shared mounts fail with EPERM.
+      '';
+    };
+
     shell = lib.mkOption {
       type = lib.types.package;
       default = pkgs.zsh;
@@ -70,12 +81,11 @@ in
     users.users.${cfg.user} = {
       isNormalUser = true;
       uid = cfg.uid;
-      group = cfg.user;
+      group = cfg.group;
       extraGroups = [ "wheel" ];
       home = "/home/${cfg.user}";
       shell = cfg.shell;
     };
-    users.groups.${cfg.user}.gid = cfg.uid;
 
     # ── Packages ──────────────────────────────────────────────────
     environment.systemPackages =
@@ -114,7 +124,7 @@ in
     programs.zsh.enable = lib.mkIf (cfg.shell == pkgs.zsh) true;
 
     systemd.tmpfiles.rules = [
-      "f /home/${cfg.user}/.zshrc 0644 ${cfg.user} ${cfg.user} -"
+      "f /home/${cfg.user}/.zshrc 0644 ${cfg.user} ${cfg.group} -"
     ];
 
     environment.loginShellInit = ''
@@ -160,7 +170,7 @@ in
         ExecStart = pkgs.writeShellScript "setup-secrets" ''
           mkdir -p /run/claude-secrets
           cp /secrets/api-key /run/claude-secrets/api-key
-          chown ${cfg.user}:${cfg.user} /run/claude-secrets/api-key
+          chown ${cfg.user}:${cfg.group} /run/claude-secrets/api-key
           chmod 600 /run/claude-secrets/api-key
         '';
       };
