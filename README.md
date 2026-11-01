@@ -59,6 +59,7 @@ configuration.
     # cores = 4;
     # enableIdeForward = false;
     # idePort = 61022;
+    # gitReadOnly = true;
   };
 
   # claude-vm.extraPackages = with pkgs; [
@@ -121,7 +122,8 @@ configuration.
 
 When run, `$PWD` is mounted inside the VM with RW permissions. Root `.git`
 directory is remounted as read-only to make sure the AI doesn't accidentally
-destroy your local repository.
+destroy your local repository. Set `claude-vm.gitReadOnly = false;` to let the
+AI write to `.git`, e.g. to make commits.
 
 Claude is initialized with some defaults like skipping the default init
 questions. After login, unless you've already done it once, you should be able

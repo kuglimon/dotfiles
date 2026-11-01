@@ -74,6 +74,16 @@ in
       default = false;
       description = "Enable socat WebSocket forwarding for host-side neovim";
     };
+
+    gitReadOnly = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Remount /project/.git read-only inside the VM so the AI can't commit,
+        rewrite history or otherwise damage the local repository. Set to false
+        to let the AI run git commands that write to the repository.
+      '';
+    };
   };
 
   config = {
@@ -144,7 +154,7 @@ in
       ];
 
     # ── Protect .git read-only ────────────────────────────────────
-    systemd.services.protect-git = {
+    systemd.services.protect-git = lib.mkIf cfg.gitReadOnly {
       description = "Remount .git read-only";
       wantedBy = [ "multi-user.target" ];
       after = [ "local-fs.target" ];
