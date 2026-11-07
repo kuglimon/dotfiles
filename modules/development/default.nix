@@ -72,48 +72,52 @@
                 luafile ~/.config/nvim/init.lua
               '';
               # XXX(tatu): The fuck is this package name supposed to be?
-              packages.myVimPackage = with pkgs.vimPlugins; {
-                start = [
-                  catppuccin-nvim
-                  popup-nvim
-                  plenary-nvim
-                  telescope-fzf-native-nvim
-                  telescope-nvim
-                  comment-nvim
-                  luasnip
-                  nvim-cmp
+              packages.myVimPackage =
+                let
+                  vp = pkgs.vimPlugins;
+                in
+                {
+                  start = [
+                    vp.catppuccin-nvim
+                    vp.popup-nvim
+                    vp.plenary-nvim
+                    vp.telescope-fzf-native-nvim
+                    vp.telescope-nvim
+                    vp.comment-nvim
+                    vp.luasnip
+                    vp.nvim-cmp
 
-                  # Completions from current buffer
-                  cmp-buffer
+                    # Completions from current buffer
+                    vp.cmp-buffer
 
-                  # LSP completions
-                  cmp-nvim-lsp
+                    # LSP completions
+                    vp.cmp-nvim-lsp
 
-                  # Completions for Neovim Lua with natural 20 roll for int
-                  cmp-nvim-lua
+                    # Completions for Neovim Lua with natural 20 roll for int
+                    vp.cmp-nvim-lua
 
-                  # Path based completions
-                  cmp-path
+                    # Path based completions
+                    vp.cmp-path
 
-                  # Completions from snippets
-                  cmp_luasnip
-                  neodev-nvim
-                  nvim-lspconfig
-                  (nvim-treesitter.withAllGrammars)
-                  nvim-treesitter-textobjects
+                    # Completions from snippets
+                    vp.cmp_luasnip
+                    vp.neodev-nvim
+                    vp.nvim-lspconfig
+                    (vp.nvim-treesitter.withAllGrammars)
+                    vp.nvim-treesitter-textobjects
 
-                  # EasyMotion/Sneak alternative. Allows for searching based on two
-                  # characters like in sneak but can search globaly in windows with 'g'
-                  # prefix
-                  leap-nvim
-                  none-ls-nvim
-                  oil-nvim
+                    # EasyMotion/Sneak alternative. Allows for searching based on two
+                    # characters like in sneak but can search globaly in windows with 'g'
+                    # prefix
+                    vp.leap-nvim
+                    vp.none-ls-nvim
+                    vp.oil-nvim
 
-                  # Lords plugins
-                  vim-fugitive
-                  vim-surround
-                ];
-              };
+                    # Lords plugins
+                    vp.vim-fugitive
+                    vp.vim-surround
+                  ];
+                };
             };
           };
         in
