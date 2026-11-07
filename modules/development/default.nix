@@ -116,6 +116,9 @@
                     # Lords plugins
                     vp.vim-fugitive
                     vp.vim-surround
+
+                    # For presentations
+                    vp.presenterm-nvim
                   ];
                 };
             };
@@ -145,6 +148,9 @@
 
             # typescript LSP
             vtsls
+
+            # Used by presenterm-nvim for previews
+            presenterm
           ];
           text = ''
             ${wrappedNeovim}/bin/nvim "$@"
